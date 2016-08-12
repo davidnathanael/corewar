@@ -6,8 +6,10 @@
 /*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:37:08 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/07 15:37:27 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/08/12 15:53:30 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "libft.h"
+#include <fcntl.h>
+#include "op.h"
