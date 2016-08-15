@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 13:26:11 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/15 15:33:43 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/08/15 15:41:34 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_parse(char *file)
 		data->nb_lines++;
 		if (data->setting_name == 1 || data->setting_comment == 1
 			|| (line_kind(line) < 5 && line_kind(line) >= 0))
-			check_name_comment(line, data, line_kind(line));
+			ft_check_name_comment(line, data, line_kind(line));
 		else if (line_kind(line) == 5)
 			check_label(line, data);
 		else if (line_kind(line) >= 10 && data->isset_name == 1 &&

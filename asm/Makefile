@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/15 13:58:16 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/08/15 14:07:43 by ddela-cr         ###   ########.fr        #
+#    Updated: 2016/08/15 15:25:48 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ LIBFT_DIR	=	../libft/
 LIBFT_LIB	=	../libft/libft.a
 
 SRCBASE		=	\
+				check_name_comment.c										\
 				line_kind.c													\
 				main.c														\
 				parse.c

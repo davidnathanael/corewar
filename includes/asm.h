@@ -31,4 +31,7 @@ typedef struct		s_parse
 	int				nb_lines;
 }					t_parse;
 
+void	ft_parse(char *file);
+void	ft_check_name_comment(char *line, t_parse *data, int type);
+
 #endif
