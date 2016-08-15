@@ -6,7 +6,7 @@
 /*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:37:08 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/15 13:06:06 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/08/15 14:49:47 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,17 @@
 #include "op.h"
 #include "libft.h"
 
-t_op		ft_init_op(char *name, int nb_args, int *type_arg, int code);
-void		ft_init_op_bis(t_op *tab, int cycle, char *desc, int octet);
+typedef struct		s_parse
+{
+	int				isset_name;
+	int				setting_name;
+	char			*name;
+	int				isset_comment;
+	int				setting_comment;
+	char			*comment;
+	int				line_header;
+	int				line_inst;
+	int				nb_lines;
+}					t_parse;
 
 #endif
