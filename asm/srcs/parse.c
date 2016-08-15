@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/07 15:10:45 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/15 13:07:44 by vbaudin          ###   ########.fr       */
+/*   Created: 2016/08/15 13:26:11 by ddela-cr          #+#    #+#             */
+/*   Updated: 2016/08/15 13:26:12 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int				main(int ac, char **av)
+void	ft_parse(char *file)
 {
-	if (ac != 2)
-		ft_putendl("Usage: ./asm <sourcefile>\n");
-	else
+	int		fd;
+	char	*line;
+
+	fd = open(file, O_RDONLY);
+	while (get_next_line(fd, &line) > 0)
 	{
-		ft_parse(av[1]);
+		
 	}
-	return (0);
+	return ;
 }

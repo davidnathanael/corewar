@@ -3,36 +3,84 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/08/07 15:21:19 by vbaudin           #+#    #+#              #
-#    Updated: 2016/08/15 13:07:12 by vbaudin          ###   ########.fr        #
+#    Created: 2016/08/15 13:58:16 by ddela-cr          #+#    #+#              #
+#    Updated: 2016/08/15 14:07:43 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = asm
+NAME		=	asm
 
-SRCS = srcs/main.c
+NAMEBASE    =   $(shell basename $(NAME))
 
-HEADERS = -I ../includes
+CC			=	gcc -I ../includes
 
-OBJS = $(subst .c,.o,$(SRCS))
+FLAGS		=	-Wall -Wextra -Werror
 
-WFLAGS = -Wall -Werror -Wextra
+SRCDIR		=	srcs/
 
-cc = gcc
+OBJDIR		=	objs/
 
-$(NAME): $(OBJS)
-		$(CC) ../libft/libft.a ../ft_printf/libftprintf.a $(OBJS) -o $(NAME)
+INCDIR		=	../includes/
 
-all: $(NAME)
+LIBFT_DIR	=	../libft/
+
+LIBFT_LIB	=	../libft/libft.a
+
+SRCBASE		=	\
+				line_kind.c													\
+				main.c														\
+				parse.c
+
+INCBASE		=	\
+
+SRCS		=	$(addprefix $(SRCDIR), $(SRCBASE))
+
+INCS		=	$(addprefix $(INCDIR), $(INCBASE))
+
+OBJS		=	$(addprefix $(OBJDIR), $(SRCBASE:.c=.o))
+
+.SILENT:
+
+all:		$(NAME)
+	echo "\033[38;5;44m☑️  ALL    $(NAMEBASE) is done\033[0m\033[K"
+
+$(NAME):	$(OBJS)
+	$(CC) $(FLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB)
+	echo -en "\r\033[38;5;22m☑️  MAKE   $(NAMEBASE)\033[0m\033[K"
+	echo "\r\033[38;5;184m👥  GROUP MEMBER(S):\033[0m\033[K"
+	echo "\r\033[38;5;15m - vbaudin \033[0m\033[K"
+	echo "\r\033[38;5;15m - ddela-cr \033[0m\033[K"
+
+$(OBJS):	$(SRCS) $(INCS)
+	printf "\r\033[38;5;11m⌛  MAKE   $(NAMEBASE) please wait ...\033[0m\033[K"
+	mkdir -p $(OBJDIR)
+	(cd $(OBJDIR);															\
+	$(CC) $(FLAGS) -c $(addprefix ../, $(SRCS))								\
+	-I $(addprefix ../, $(LIBFT_DIR)/$(INCDIR))								\
+	-I $(addprefix ../, $(INCDIR)))
 
 clean:
-		rm -rf $(OBJS)
+	printf "\r\033[38;5;11m⌛  CLEAN  $(NAMEBASE) please wait ...\033[0m\033[K"
+	if [[ `rm -R $(OBJDIR) &> /dev/null 2>&1; echo $$?` == "0" ]]; then		\
+		echo -en "\r\033[38;5;124m🔘  CLEAN  $(NAMEBASE)\033[0m\033[K";		\
+	else																	\
+		printf "\r";														\
+	fi
 
-fclean: clean
-		rm -rf $(NAME)
+fclean:		clean
+	printf "\r\033[38;5;11m⌛  FCLEAN $(NAMEBASE) please wait ...\033[0m\033[K"
+	if [[ `rm $(NAME) &> /dev/null 2>&1; echo $$?` == "0" ]]; then			\
+		echo -en "\r\033[38;5;124m🔘  FCLEAN $(NAMEBASE)\033[0m\033[K";		\
+	else																	\
+		printf "\r";														\
+	fi
 
-re: fclean all
+re:			fclean all
 
-.PHONY: re flcean clean all
+debug:		CC = cc
+debug:		FLAGS += --analyze
+debug:		re
+
+.PHONY:		fclean clean re

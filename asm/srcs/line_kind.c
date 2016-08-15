@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   line_kind.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/07 15:10:45 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/15 13:07:44 by vbaudin          ###   ########.fr       */
+/*   Created: 2016/08/15 12:56:22 by ddela-cr          #+#    #+#             */
+/*   Updated: 2016/08/15 13:10:57 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
-
-int				main(int ac, char **av)
-{
-	if (ac != 2)
-		ft_putendl("Usage: ./asm <sourcefile>\n");
-	else
-	{
-		ft_parse(av[1]);
-	}
-	return (0);
-}
+// int		ft_get_line_kind(char *line)
+// {
+// 	int ret;
+//
+// 	ret = -1;
+//
+// }
