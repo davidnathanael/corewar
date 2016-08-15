@@ -40,7 +40,7 @@ void	ft_parse(char *file)
 		data->nb_lines++;
 		if (data->setting_name == 1 || data->setting_comment == 1
 			|| (line_kind(line) < 5 && line_kind(line) >= 0))
-			check_name_comment(line, data);
+			ft_check_name_comment(line, data, line_kind(line));
 		free(line);
 	}
 }
