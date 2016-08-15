@@ -11,6 +11,7 @@
 #                                                                              #
 # **************************************************************************** #
 
+PRINTF = ./ft_printf/
 LIB = ./libft/
 ASM = ./asm/
 
@@ -19,6 +20,7 @@ MAKE = make -C
 all: asm libft
 
 libft:
+		$(MAKE) $(PRINTF)
 		$(MAKE) $(LIB)
 
 asm: libft
@@ -26,10 +28,12 @@ asm: libft
 
 clean:
 		$(MAKE) $(LIB) clean
+		$(MAKE) $(PRINTF) clean
 		$(MAKE) $(ASM) clean
 
 fclean:
 		$(MAKE) $(LIB) fclean
+		$(MAKE) $(PRINTF) fclean
 		$(MAKE) $(ASM) fclean
 
 re: fclean all

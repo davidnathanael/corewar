@@ -6,7 +6,7 @@
 #    By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/07 15:21:19 by vbaudin           #+#    #+#              #
-#    Updated: 2016/08/15 12:02:39 by vbaudin          ###   ########.fr        #
+#    Updated: 2016/08/15 13:07:12 by vbaudin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ WFLAGS = -Wall -Werror -Wextra
 cc = gcc
 
 $(NAME): $(OBJS)
-		$(CC) ../libft/libft.a $(OBJS) -o $(NAME)
+		$(CC) ../libft/libft.a ../ft_printf/libftprintf.a $(OBJS) -o $(NAME)
 
 all: $(NAME)
 
