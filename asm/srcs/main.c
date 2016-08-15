@@ -6,7 +6,7 @@
 /*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:10:45 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/15 14:32:52 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/08/15 16:44:04 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int				main(int ac, char **av)
 {
 	if (ac != 2)
-		ft_putendl("Usage: ./asm <sourcefile>\n");
+		ft_putendl("Usage: ./asm <sourcefile>");
 	else
 	{
 		ft_parse(av[1]);
