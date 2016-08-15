@@ -6,7 +6,7 @@
 #    By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/07 15:21:19 by vbaudin           #+#    #+#              #
-#    Updated: 2016/08/12 13:07:55 by vbaudin          ###   ########.fr        #
+#    Updated: 2016/08/15 12:02:39 by vbaudin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = asm
 
 SRCS = srcs/main.c
 
-HEADERS = -I ../../includes/
+HEADERS = -I ../includes
 
 OBJS = $(subst .c,.o,$(SRCS))
 
