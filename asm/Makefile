@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/15 13:58:16 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/08/15 19:20:21 by vbaudin          ###   ########.fr        #
+#    Updated: 2016/08/17 18:45:51 by vbaudin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SRCBASE		=	\
 				ft_check_label.c											\
 				ft_check_instr.c											\
 				ft_error.c													\
-				ft_end_name_comment.c
+				ft_end_name_comment.c										\
+				check_file_name.c
 
 INCBASE		=	\
 

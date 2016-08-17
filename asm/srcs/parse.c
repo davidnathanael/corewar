@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 13:26:11 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/17 18:06:49 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/08/17 19:00:41 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,8 @@ void	ft_parse(char *file)
 	char	*line;
 	t_parse	*data;
 
-	fd = open(file, O_RDONLY);
-	if (!(data = (t_parse *)malloc(sizeof(t_parse))))
-		exit(0);
+	fd = is_correct_file(file);
+	data = malloc_me();
 	init(data);
 	while (get_next_line(fd, &line) > 0)
 	{
@@ -50,8 +49,7 @@ void	ft_parse(char *file)
 			ft_check_name_comment(line, data, line_kind(line));
 		else if (line_kind(line) == 5)
 			ft_check_label(line, data);
-		else if (line_kind(line) >= 10 && data->isset_name == 1 &&
-				data->isset_comment == 1)
+		else if (line_kind(line) >= 10 && data->header_is_parsed == 1)
 			ft_check_instr(line, line_kind(line) / 10, data);
 		else
 			ft_error(1);
