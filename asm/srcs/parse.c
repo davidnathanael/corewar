@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 13:26:11 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/15 16:31:10 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/08/17 18:06:49 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	init(t_parse *data)
 	data->isset_comment = 0;
 	data->setting_comment = 0;
 	data->comment = NULL;
-	data->line_header = 0;
+	data->header_is_parsed = 0;
 	data->line_inst = 0;
 	data->nb_lines = 0;
 }

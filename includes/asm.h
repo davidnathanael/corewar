@@ -6,7 +6,7 @@
 /*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:37:08 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/15 19:19:58 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/08/17 17:24:18 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct		s_parse
 	int				isset_comment;
 	int				setting_comment;
 	char			*comment;
-	int				line_header;
+	int				header_is_parsed;
 	int				line_inst;
 	int				nb_lines;
 }					t_parse;

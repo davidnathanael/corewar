@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 15:00:55 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/17 16:17:05 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/08/17 17:38:20 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	ft_check_name_comment(char *line, t_parse *data, int type)
 		ft_get_comment(data, trimmed);
 	ft_memdel((void **)&trimmed);
 	if (data->setting_name == 2 && data->setting_comment == 2 &&
-			data->line_header == 0)
+			data->header_is_parsed == 0)
+	{
 		ft_end_name_comment(data);
+	}
 }
