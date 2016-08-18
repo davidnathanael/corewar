@@ -18,7 +18,7 @@ int				main(int ac, char **av)
 		ft_putendl("Usage: ./asm <sourcefile>");
 	else
 	{
-		// ft_parse(av[1]);
+		ft_parse(av[1]);
 		ft_compile(av[1]);
 	}
 	return (0);
