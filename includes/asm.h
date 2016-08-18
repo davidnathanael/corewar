@@ -13,10 +13,14 @@
 #ifndef ASM_H
 # define ASM_H
 
-# include "libft.h"
 # include <fcntl.h>
+# include <unistd.h>
+# include "printf.h"
 # include "op.h"
 # include "libft.h"
+
+# define IS_CHAMP_NAME 3
+# define IS_CHAMP_COMMENT 4
 
 typedef struct		s_parse
 {
@@ -39,6 +43,10 @@ void		ft_check_label(char *line, t_parse *data);
 void		ft_end_name_comment(t_parse *data);
 int			line_kind(char *line);
 int			is_correct_file(char *name);
+
+void		ft_compile(char *file);
+t_header	*ft_get_header(int fd);
+void		ft_write_name_comment(char *line, int kind, int fd);
 
 t_parse		*malloc_me(void);
 

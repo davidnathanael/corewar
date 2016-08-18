@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/15 13:58:16 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/08/17 18:45:51 by vbaudin          ###   ########.fr        #
+#    Updated: 2016/08/18 17:52:12 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	asm
 
 NAMEBASE    =   $(shell basename $(NAME))
 
-CC			=	gcc -I ../includes
+CC			=	gcc
 
 FLAGS		=	-Wall -Wextra -Werror
 
@@ -28,16 +28,21 @@ LIBFT_DIR	=	../libft/
 
 LIBFT_LIB	=	../libft/libft.a
 
+FTPRINTF_LIB	=	../ft_printf/libftprintf.a
+
 SRCBASE		=	\
+				check_file_name.c											\
 				check_name_comment.c										\
+				compile.c													\
+				ft_check_instr.c											\
+				ft_check_label.c											\
+				ft_end_name_comment.c										\
+				ft_error.c													\
+				get_header.c												\
 				line_kind.c													\
 				main.c														\
 				parse.c														\
-				ft_check_label.c											\
-				ft_check_instr.c											\
-				ft_error.c													\
-				ft_end_name_comment.c										\
-				check_file_name.c
+				write_name_comment.c
 
 INCBASE		=	\
 
@@ -53,7 +58,7 @@ all:		$(NAME)
 	echo "\033[38;5;44m☑️  ALL    $(NAMEBASE) is done\033[0m\033[K"
 
 $(NAME):	$(OBJS)
-	$(CC) $(FLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB)
+	$(CC) -I $(INCDIR) $(FLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB) $(FTPRINTF_LIB)
 	echo -en "\r\033[38;5;22m☑️  MAKE   $(NAMEBASE)\033[0m\033[K"
 	echo "\r\033[38;5;184m👥  GROUP MEMBER(S):\033[0m\033[K"
 	echo "\r\033[38;5;15m - vbaudin \033[0m\033[K"

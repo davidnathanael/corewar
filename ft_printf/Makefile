@@ -6,7 +6,7 @@
 #    By: tettouat <tettouat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/05/30 11:06:29 by tettouat          #+#    #+#              #
-#    Updated: 2016/03/22 16:56:57 by ddela-cr         ###   ########.fr        #
+#    Updated: 2016/08/18 16:16:20 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,8 +59,6 @@ $(NAME): $(OBJ) $(LIB)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 	echo -en "\r\033[38;5;22m☑️  MAKE   $(NAMEBASE)\033[0m\033[K"
-	echo "\r\033[38;5;184m👥  GROUP MEMBER(S):\033[0m\033[K"
-	echo "\r\033[38;5;15m`cat auteur | sed s/^/\ \ \ \ /g`\033[0m\033[K"
 
 $(OBJ): $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	mkdir -p $(OBJDIR)

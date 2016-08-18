@@ -25,10 +25,10 @@ int			line_kind(char *line)
 		ret = 1;
 	else if (line_t[0] == ';')
 		ret = 2;
-	else if (ft_strncmp(line_t, NAME_CMD_STRING, 
+	else if (ft_strncmp(line_t, NAME_CMD_STRING,
 				ft_strlen(NAME_CMD_STRING)) == 0)
 		ret = 3;
-	else if (ft_strncmp(line_t, COMMENT_CMD_STRING, 
+	else if (ft_strncmp(line_t, COMMENT_CMD_STRING,
 				ft_strlen(COMMENT_CMD_STRING)) == 0)
 		ret = 4;
 	ft_memdel((void **)&line_t);

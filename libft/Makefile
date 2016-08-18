@@ -6,7 +6,7 @@
 #    By: ddela-cr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 16:43:54 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/08/12 11:57:47 by ddela-cr         ###   ########.fr        #
+#    Updated: 2016/08/18 16:16:40 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libft.a
@@ -113,8 +113,6 @@ $(NAME):
 	mkdir $(OBJS_PATH)
 	mv $(OBJS) $(OBJS_PATH)
 	echo -en "\r\033[38;5;22m☑️  MAKE   $(NAMEBASE)\033[0m\033[K"
-	echo "\r\033[38;5;184m👥  GROUP MEMBER(S):\033[0m\033[K"
-	echo "\r\033[38;5;15m`cat auteur | sed s/^/\ \ \ \ /g`\033[0m\033[K"
 
 clean:
 	printf "\r\033[38;5;11m⌛  CLEAN  $(NAMEBASE) please wait ...\033[0m\033[K"

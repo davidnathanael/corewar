@@ -17,6 +17,8 @@ ASM = ./asm/
 
 MAKE = make -C
 
+.SILENT:
+
 all: asm libft
 
 libft:

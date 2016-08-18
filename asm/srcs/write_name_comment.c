@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   write_name_comment.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/07 15:10:45 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/17 17:35:52 by vbaudin          ###   ########.fr       */
+/*   Created: 2016/08/18 16:26:12 by ddela-cr          #+#    #+#             */
+/*   Updated: 2016/08/18 16:26:12 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int				main(int ac, char **av)
+void	ft_write_name_comment(char *line, int kind, int fd)
 {
-	if (ac != 2)
-		ft_putendl("Usage: ./asm <sourcefile>");
-	else
-	{
-		// ft_parse(av[1]);
-		ft_compile(av[1]);
-	}
-	return (0);
+	(void)line;
+	(void)kind;
+	(void)fd;
+	/*
+	** code
+	*/
 }
