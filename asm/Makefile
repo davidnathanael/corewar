@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/15 13:58:16 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/08/18 17:52:12 by ddela-cr         ###   ########.fr        #
+#    Updated: 2016/08/18 19:54:17 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCBASE		=	\
 				ft_end_name_comment.c										\
 				ft_error.c													\
 				get_header.c												\
+				get_instructions.c											\
 				line_kind.c													\
 				main.c														\
 				parse.c														\

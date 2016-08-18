@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compile.c                                          :+:      :+:    :+:   */
+/*   get_instructions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/18 15:54:43 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/18 15:54:45 by ddela-cr         ###   ########.fr       */
+/*   Created: 2016/08/18 18:50:24 by ddela-cr          #+#    #+#             */
+/*   Updated: 2016/08/18 18:50:26 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	ft_compile(char *file)
+static t_inst		*ft_extract_instruction(char *line)
 {
-	int			fd;
-	t_header	*header;
+	(void)line;
+	return (NULL);
+}
+
+t_list		*ft_get_instructions(int fd)
+{
 	t_list		*instructions;
+	t_inst		*inst;
+	char		*line;
 
-	fd = open(file, O_RDONLY);
-	header = ft_get_header(fd);
-	instructions = ft_get_instructions(fd);
-
+	instructions = NULL;
+	inst = NULL;
+	while (get_next_line(fd, &line) > 0)
+	{
+		if ((inst = ft_extract_instruction(line)))
+			ft_lstappend(&instructions, ft_lstnew(inst, sizeof(inst))); //leak of inst
+		free(line);
+	}
+	return (instructions);
 }

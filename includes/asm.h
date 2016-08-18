@@ -35,6 +35,12 @@ typedef struct		s_parse
 	int				nb_lines;
 }					t_parse;
 
+typedef struct		s_inst
+{
+	char			*label;
+	char			*name;
+}					t_inst;
+
 void		ft_error(int i);
 void		ft_parse(char *file);
 void		ft_check_name_comment(char *line, t_parse *data, int type);
@@ -46,6 +52,7 @@ int			is_correct_file(char *name);
 
 void		ft_compile(char *file);
 t_header	*ft_get_header(int fd);
+t_list		*ft_get_instructions(int fd);
 void		ft_write_name_comment(char *line, int kind, int fd);
 
 t_parse		*malloc_me(void);
