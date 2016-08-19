@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 13:26:11 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/17 19:00:41 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/08/19 13:55:49 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,22 @@ static void	init(t_parse *data)
 	data->header_is_parsed = 0;
 	data->line_inst = 0;
 	data->nb_lines = 0;
+	data->label = NULL;
 }
 
 static void	free_data(t_parse *data)
 {
+	t_label	*c_label;
+
 	ft_memdel((void **)&data->name);
 	ft_memdel((void **)&data->comment);
+	while (data->label != NULL)
+	{
+		c_label = data->label;
+		data->label = data->label->next;
+		ft_memdel((void **)&c_label->name);
+		ft_memdel((void **)&c_label);
+	}
 	ft_memdel((void **)&data);
 }
 
@@ -55,6 +65,8 @@ void	ft_parse(char *file)
 			ft_error(1);
 		free(line);
 	}
+	ft_putendl(data->name);
+	ft_putendl(data->comment);
 	(data->line_inst == 0) ? ft_error(2) : NULL;
 	free_data(data);
 }

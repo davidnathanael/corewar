@@ -6,7 +6,7 @@
 /*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 15:23:52 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/17 18:54:04 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/08/19 13:44:09 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,9 @@ void	ft_error(int i)
 		ft_putendl("This file doesn't exist.");
 	else if (i == 5)
 		ft_putendl("Malloc Error.");
+	else if (i == 6)
+		ft_putendl("Op Args Invalid.");
+	else if (i == 7)
+		ft_putendl("ft_check_label error.");
 	exit (0);
 }

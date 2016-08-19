@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 17:44:12 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/18 17:44:16 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/08/19 14:56:22 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ t_header		*ft_get_header(int fd)
 		}
 		free(line);
 	}
-	lseek(fd, 0, SEEK_SET);
+//	lseek(fd, 0, SEEK_SET); La ligne empeche la compilation (?)
 	return (header);
 }
