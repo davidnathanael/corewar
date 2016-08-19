@@ -1,9 +1,11 @@
 #include <stdio.h>
+#include "libft.h"
+#include "vm.h"
 
 #define NUM_REGS 4
-unsigned regs[ NUM_REGS ];
+unsigned regs[NUM_REGS];
 
-unsigned program[] = { 0x1064, 0x11C8, 0x2201, 0x0000 };
+unsigned program[] = {0x1064, 0x11C8, 0x2201, 0x0000};
 
 /* program counter */
 int pc = 0;
@@ -11,7 +13,7 @@ int pc = 0;
 /* fetch the next word from the program */
 int fetch()
 {
-	return program[ pc++ ];
+	return program[pc++];
 }
 
 /* instruction fields */
@@ -22,7 +24,7 @@ int reg3     = 0;
 int imm      = 0;
 
 /* decode a word */
-void decode( int instr )
+void decode(int instr)
 {
 	instrNum = (instr & 0xF000) >> 12;
 	reg1     = (instr & 0xF00 ) >>  8;
@@ -37,22 +39,22 @@ int running = 1;
 /* evaluate the last decoded instruction */
 void eval()
 {
-	switch( instrNum )
+	switch(instrNum)
 	{
 		case 0:
 			/* halt */
-			printf( "halt\n" );
+			printf("halt\n");
 			running = 0;
 			break;
 		case 1:
 			/* loadi */
-			printf( "loadi r%d #%d\n", reg1, imm );
-			regs[ reg1 ] = imm;
+			printf("loadi r%d #%d\n", reg1, imm);
+			regs[reg1] = imm;
 			break;
 		case 2:
 			/* add */
-			printf( "add r%d r%d r%d\n", reg1, reg2, reg3 );
-			regs[ reg1 ] = regs[ reg2 ] + regs[ reg3 ];
+			printf("add r%d r%d r%d\n", reg1, reg2, reg3);
+			regs[reg1] = regs[reg2] + regs[reg3];
 			break;
 	}
 }
@@ -61,26 +63,31 @@ void eval()
 void showRegs()
 {
 	int i;
-	printf( "regs = " );
-	for( i=0; i<NUM_REGS; i++ )
-		printf( "%04X ", regs[ i ] );
-	printf( "\n" );
+	printf("regs = ");
+	for(i=0; i<NUM_REGS; i++)
+		printf("%04X ", regs[ i ]);
+	printf("\n");
 }
 
 void run()
 {
-	while( running )
+	while(running)
 	{
 		showRegs();
 		int instr = fetch();
-		decode( instr );
+		decode(instr);
 		eval();
 	}
 	showRegs();
 }
 
-int main(int ac, const char **av)
+/* read the byte code file and put instruction in **byte_code tab */
+
+int main(int ac, char **av)
 {
+	if (ac < 2)
+		return (-1); //ft_error to implemente.
+	get_byteCode(av[1]);
 	run();
 	return 0;
 }
