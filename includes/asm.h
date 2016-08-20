@@ -6,15 +6,16 @@
 /*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:37:08 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/19 14:53:40 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/08/20 20:58:01 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASM_H
 # define ASM_H
 
-# include "libft.h"
+# include <unistd.h>
 # include <fcntl.h>
+# include "libft.h"
 # include "op.h"
 # include "libft.h"
 # include "printf.h"
