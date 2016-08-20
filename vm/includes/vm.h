@@ -6,12 +6,15 @@
 /*   By: bbichero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/19 15:17:56 by bbichero          #+#    #+#             */
-/*   Updated: 2016/08/19 16:12:07 by bbichero         ###   ########.fr       */
+/*   Updated: 2016/08/20 13:11:34 by bbichero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VM_H
 # define VM_H
+
+# include "../includes/libft.h"
+# include "../includes/op.h"
 
 typedef struct			s_byteCode
 {
