@@ -6,28 +6,28 @@
 /*   By: bbichero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/19 15:35:58 by bbichero          #+#    #+#             */
-/*   Updated: 2016/08/19 16:44:48 by bbichero         ###   ########.fr       */
+/*   Updated: 2016/08/20 13:10:48 by bbichero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <fcntl.h>
-#include "libft.h"
+#include <unistd.h>
 #include "vm.h"
 
 int		get_byteCode(char *file)
 {
 	int			fd;
 	int			ret;
-	char		*line;
-	t_byteCode	*list;
+	t_header	*header;
 
-	ret = 0;
-	list = NULL;
-	if ((fd = open(file, O_RDONLY)) < 0)
+	header = (t_header *)malloc(sizeof(t_header));
+	if (!(fd = open(file, O_RDONLY)))
 		return (-1); //ft_error to implemente.
-	while ((ret = get_next_line(fd, &line)) > 0)
-		add_link(&list, new_link(line));
+	while ((ret = read(fd, header, 64)) > 0)
+	{
+		printf("%x\n", header->magic);
+	}
 	if (ret < 0)
 		return(-1); //ft_error to implemente.
 	return (0);

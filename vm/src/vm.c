@@ -88,7 +88,7 @@ int main(int ac, char **av)
 	if (ac < 2)
 		return (-1); //ft_error to implemente.
 	get_byteCode(av[1]);
-	run();
+	//run();
 	return 0;
 }
 
