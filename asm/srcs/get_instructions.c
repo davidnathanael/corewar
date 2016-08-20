@@ -14,7 +14,11 @@
 
 static t_inst		*ft_extract_instruction(char *line)
 {
-	(void)line;
+	t_inst		*instruction;
+
+	if (!(instruction = (t_inst *)malloc(sizeof(t_inst))));
+		return (NULL);
+
 	return (NULL);
 }
 
@@ -28,8 +32,9 @@ t_list		*ft_get_instructions(int fd)
 	inst = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
-		if ((inst = ft_extract_instruction(line)))
+		if (inst = ft_extract_instruction(line))
 			ft_lstappend(&instructions, ft_lstnew(inst, sizeof(inst))); //leak of inst
+		free(inst);
 		free(line);
 	}
 	return (instructions);

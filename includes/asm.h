@@ -40,6 +40,10 @@ typedef struct		s_inst
 {
 	char			*label;
 	char			*name;
+	int				nb_args;
+	int				size;
+	char			**args;
+
 }					t_inst;
 
 typedef struct		s_parse
