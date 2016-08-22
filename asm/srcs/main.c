@@ -19,6 +19,7 @@ int				main(int ac, char **av)
 	else
 	{
 		ft_parse(av[1]);
+		// ft_compile(av[1]);
 	}
 	return (0);
 }

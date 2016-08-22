@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 17:44:12 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/20 20:57:23 by                  ###   ########.fr       */
+/*   Updated: 2016/08/22 18:49:43 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,6 @@ t_header		*ft_get_header(int fd)
 			ft_get_name(line, header);
 		else if (kind == IS_CHAMP_COMMENT)
 			ft_get_comment(line, header);
-		else
-		{
-			free(line);
-			break;
-		}
 		free(line);
 	}
 	lseek(fd, 0, SEEK_SET);
