@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/15 13:58:16 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/08/19 14:31:59 by vbaudin          ###   ########.fr        #
+#    Updated: 2016/08/22 21:37:50 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,18 +34,21 @@ SRCBASE		=	\
 				check_file_name.c											\
 				check_name_comment.c										\
 				compile.c													\
+				compile_debug.c												\
 				ft_check_instr.c											\
 				ft_check_label.c											\
 				ft_end_name_comment.c										\
 				ft_error.c													\
+				get_args.c													\
 				get_header.c												\
 				get_instructions.c											\
+				get_kind_arg.c												\
+				get_label_opcode.c											\
+				get_new_label.c												\
 				line_kind.c													\
 				main.c														\
 				parse.c														\
-				write_name_comment.c										\
-				get_new_label.c												\
-				get_kind_arg.c
+				write_name_comment.c
 
 INCBASE		=	\
 

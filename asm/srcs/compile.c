@@ -21,5 +21,4 @@ void	ft_compile(char *file)
 	fd = open(file, O_RDONLY);
 	header = ft_get_header(fd);
 	instructions = ft_get_instructions(fd);
-
 }

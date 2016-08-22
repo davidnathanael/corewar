@@ -39,10 +39,10 @@ typedef struct		s_label
 typedef struct		s_inst
 {
 	char			*label;
-	char			*name;
+	char			*opcode;
 	int				nb_args;
-	int				size;
 	char			**args;
+	int				size;
 
 }					t_inst;
 
@@ -75,7 +75,14 @@ int			get_kind_arg(char *arg, t_parse *data);
 void		ft_compile(char *file);
 t_header	*ft_get_header(int fd);
 t_list		*ft_get_instructions(int fd);
+char		*ft_get_label(char *line);
+char		*ft_get_opcode(char *line, t_bool has_label);
+int			ft_get_nb_args(char *opcode);
+char		**ft_get_args(char *line, char *opcode, t_bool has_label);
+
 void		ft_write_name_comment(char *line, int kind, int fd);
+
+void		ft_debug_instruction(t_inst *instruction);
 
 t_parse		*malloc_me(void);
 
