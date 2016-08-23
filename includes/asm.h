@@ -20,6 +20,8 @@
 # include "libft.h"
 # include "printf.h"
 
+# define IS_EMPTY 0
+# define IS_COMMENT 1
 # define IS_CHAMP_NAME 3
 # define IS_CHAMP_COMMENT 4
 
@@ -39,6 +41,7 @@ typedef struct		s_label
 typedef struct		s_inst
 {
 	char			*label;
+	t_bool			is_label_only;
 	char			*opcode;
 	int				nb_args;
 	char			**args;
@@ -73,16 +76,18 @@ int			is_correct_file(char *name);
 int			get_kind_arg(char *arg, t_parse *data);
 
 void		ft_compile(char *file);
+t_op		*ft_get_op(char *name);
 t_header	*ft_get_header(int fd);
-t_list		*ft_get_instructions(int fd);
+t_list		*ft_get_instructions(int fd, t_header *header);
 char		*ft_get_label(char *line);
 char		*ft_get_opcode(char *line, t_bool has_label);
-int			ft_get_nb_args(char *opcode);
 char		**ft_get_args(char *line, char *opcode, t_bool has_label);
+int			ft_get_size(char **args, char *opcode);
 
 void		ft_write_name_comment(char *line, int kind, int fd);
 
 void		ft_debug_instruction(t_inst *instruction);
+void		ft_debug_header(t_header *header);
 
 t_parse		*malloc_me(void);
 

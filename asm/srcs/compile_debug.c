@@ -24,3 +24,12 @@ void	ft_debug_instruction(t_inst *instruction)
 		ft_printf("  -> {green}%s{eoc}\n", instruction->args[i++]);
 	ft_putchar('\n');
 }
+
+void	ft_debug_header(t_header *header)
+{
+	ft_printf("\n-------- {bold}{red}HEADER DEBUG{eoc} --------\n\n");
+	ft_printf("PROG_NAME    -> {bold}{green}%s{eoc}\n", header->prog_name);
+	ft_printf("PROG_SIZE    -> {bold}{green}%u{eoc}\n", header->prog_size);
+	ft_printf("PROG_COMMENT -> {bold}{green}%s{eoc}\n\n", header->comment);
+
+}

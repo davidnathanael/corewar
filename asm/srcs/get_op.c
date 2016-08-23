@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_args.c                                         :+:      :+:    :+:   */
+/*   get_op.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/22 21:00:57 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/22 21:00:59 by ddela-cr         ###   ########.fr       */
+/*   Created: 2016/08/23 12:12:40 by ddela-cr          #+#    #+#             */
+/*   Updated: 2016/08/23 12:12:42 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-char	**ft_get_args(char *line, char *opcode, t_bool has_label)
+t_op	*ft_get_op(char *name)
 {
-	char	**args;
-	char	*tmp;
 	int		i;
 
-	args = NULL;
-	tmp = NULL;
 	i = 0;
-	line = ft_strstr((has_label) ? ft_strchr(line, LABEL_CHAR) : line, opcode);
-	while (!ft_isspace(*line))
-		++line;
-	args = ft_strsplit(line, SEPARATOR_CHAR);
-	while (args[i])
+	while (g_op_tab[i].name != NULL)
 	{
-		tmp = args[i];
-		args[i] = ft_strtrim(args[i]);
-		free(tmp);
+		if (ft_strcmp(g_op_tab[i].name, name) == 0)
+			return (&g_op_tab[i]);
 		i++;
 	}
-	return (args);
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/15 13:58:16 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/08/22 21:37:50 by ddela-cr         ###   ########.fr        #
+#    Updated: 2016/08/23 12:15:23 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	asm
 
 NAMEBASE    =   $(shell basename $(NAME))
 
-CC			=	gcc
+CC			=	gcc -g
 
 FLAGS		=	-Wall -Wextra -Werror
 
@@ -45,6 +45,8 @@ SRCBASE		=	\
 				get_kind_arg.c												\
 				get_label_opcode.c											\
 				get_new_label.c												\
+				get_op.c													\
+				get_size.c													\
 				line_kind.c													\
 				main.c														\
 				parse.c														\

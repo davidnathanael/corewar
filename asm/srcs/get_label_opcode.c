@@ -37,9 +37,9 @@ char	*ft_get_opcode(char *line, t_bool has_label)
 	len = 0;
 	tmp = NULL;
 	if (has_label)
-		line = ft_strchr(line, LABEL_CHAR);
-	while (ft_isspace(*(++line)))
-		;
+		line = ft_strchr(line, LABEL_CHAR) + 1;
+	while (ft_isspace(*line))
+		++line;
 	tmp = line;
 	while (!ft_isspace(*(++tmp)))
 		len++;

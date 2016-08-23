@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_args.c                                         :+:      :+:    :+:   */
+/*   get_size.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/22 21:00:57 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/22 21:00:59 by ddela-cr         ###   ########.fr       */
+/*   Created: 2016/08/23 11:48:29 by ddela-cr          #+#    #+#             */
+/*   Updated: 2016/08/23 11:48:30 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-char	**ft_get_args(char *line, char *opcode, t_bool has_label)
+static int	ft_get_param_size(char *param, t_op *data)
 {
-	char	**args;
-	char	*tmp;
-	int		i;
+	if (param[0] == 'r')
+		return (1);
+	else if (param[0] == DIRECT_CHAR)
+		return (data->label_size);
+	else
+		return (2);
+}
 
-	args = NULL;
-	tmp = NULL;
+int		ft_get_size(char **args, char *opcode)
+{
+	int		i;
+	int		size;
+	t_op	*data;
+
 	i = 0;
-	line = ft_strstr((has_label) ? ft_strchr(line, LABEL_CHAR) : line, opcode);
-	while (!ft_isspace(*line))
-		++line;
-	args = ft_strsplit(line, SEPARATOR_CHAR);
+	size = 1;
+	data = ft_get_op(opcode);
 	while (args[i])
 	{
-		tmp = args[i];
-		args[i] = ft_strtrim(args[i]);
-		free(tmp);
+		size += ft_get_param_size(args[i], data);
 		i++;
 	}
-	return (args);
+
+	return (size + data->octet);
 }
