@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 12:56:22 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/19 13:52:20 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/08/23 17:49:24 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	is_label(char *line_t)
 	lc = ft_strdup(LABEL_CHARS);
 	i = 0;
 	ret = -1;
-	while (line_t[i] == '\0')
+	while (line_t[i] != '\0')
 	{
 		if (line_t[i] == LABEL_CHAR && i > 0)
 		{
@@ -79,8 +79,10 @@ int			line_kind(char *line)
 	else if (ft_strncmp(line_t, COMMENT_CMD_STRING, 
 				ft_strlen(COMMENT_CMD_STRING)) == 0)
 		ret = 4;
-	else if (is_label(line_t))
+	else if (is_label(line_t) == 1)
 		ret = 5;
+	else
+		ret = get_instr(line_t);
 	ft_memdel((void **)&line_t);
 	return (ret);
 }

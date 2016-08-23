@@ -6,7 +6,7 @@
 /*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:10:45 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/18 14:55:21 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/08/23 18:09:01 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int				main(int ac, char **av)
 	else
 	{
 		ft_parse(av[1]);
+		ft_putstr("The file ");
+		ft_putstr(av[1]);
+		ft_putendl(" is good.");
 		// ft_compile(av[1]);
 	}
 	return (0);

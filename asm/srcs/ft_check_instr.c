@@ -6,7 +6,7 @@
 /*   By: vbaudin <vbaudin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 15:54:52 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/19 13:42:54 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/08/23 16:31:36 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void		ft_check_instr(char *line, int opcode, t_parse *data)
 	while (instr[i] != NULL)
 	{
 		tmp = ft_strtrim(instr[i]);
-		if (!(get_kind_arg(tmp, data) & g_op_tab[get_line(opcode)].type_arg[i]))
+		if (!(get_kind_arg(tmp, data) && g_op_tab[get_line(opcode)].type_arg[i]))
 			ft_error(6);
 		ft_memdel((void **)&tmp);
 		ft_memdel((void **)&instr[i]);

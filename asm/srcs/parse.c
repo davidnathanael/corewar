@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 13:26:11 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/19 13:55:49 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/08/23 17:50:46 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ void	ft_parse(char *file)
 			ft_error(1);
 		free(line);
 	}
-	ft_putendl(data->name);
-	ft_putendl(data->comment);
 	(data->line_inst == 0) ? ft_error(2) : NULL;
 	free_data(data);
 }

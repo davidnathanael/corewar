@@ -6,35 +6,66 @@
 /*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/19 11:47:05 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/19 12:47:46 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/08/23 16:02:36 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static int	check_t_ind(char *arg, t_parse *data)
+static int	check_t_ind(char *arg)
 {
-	(void)arg;
-	(void)data;
-	return(0);
+	int		i;
+
+	i = (arg[0] == '-') ? 1 : 0;
+	while (arg[i] != '\0')
+	{
+		if (!ft_isdigit(arg[i]))
+			ft_error(6);
+		else
+			i++;
+	}
+	return (T_IND);
 }
 
 static int	check_t_dir(char *arg, t_parse *data)
 {
-	(void)arg;
-	(void)data;
-	return(0);
+	int		i;
+	char	*label_name;
+
+	i = 0;
+	if (arg[i + 1] == LABEL_CHAR && arg[i + 2] != '\0')
+	{
+		label_name = ft_strsub(arg, i + 2, ft_strlen(arg) - i - 2);
+		get_new_label(label_name, A_VERIF, data);
+		ft_memdel((void**)&label_name);
+	}
+	else if (ft_isdigit(arg[i + 1]) || (arg[i + 1] == '-'
+				&& ft_isdigit(arg[i + 2])))
+	{
+		i += (arg[i + 1] == '-') ? 1 : 0;
+		while (arg[++i] != '\0')
+			if (!ft_isdigit(arg[i]))
+				ft_error(6);
+	}
+	return(T_DIR);
 }
 
-static int	check_t_reg(char *arg, t_parse *data)
+static int	check_t_reg(char *arg)
 {
-/*	int		i;
+	int		i;
 
 	i = 1;
-	while (arg[1])*/
-	(void)arg;
-	(void)data;
-	return(0);
+	while (arg[i] != '\0')
+	{
+		if (!ft_isdigit(arg[i]))
+			ft_error(6);
+		else
+			i++;
+	}
+	i = ft_atoi(&arg[1]);
+	if (!(i > 0 && i <= REG_NUMBER))
+		ft_error(6);
+	return(T_REG);
 }
 
 int			get_kind_arg(char *arg, t_parse *data)
@@ -43,10 +74,10 @@ int			get_kind_arg(char *arg, t_parse *data)
 
 	t_kind = 0;
 	if ((ft_isdigit(arg[0]) || (arg[0] == '-')) && ft_isdigit(arg[1]))
-		t_kind = check_t_ind(arg, data);
+		t_kind = check_t_ind(arg);
 	else if (arg[0] == '%')
 		t_kind = check_t_dir(arg, data);
 	else if (arg[0] == 'r')
-		t_kind = check_t_reg(arg, data);
+		t_kind = check_t_reg(arg);
 	return (t_kind);
 }
