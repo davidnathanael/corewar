@@ -84,7 +84,7 @@ char		*ft_get_opcode(char *line, t_bool has_label);
 char		**ft_get_args(char *line, char *opcode, t_bool has_label);
 int			ft_get_size(char **args, char *opcode);
 
-void		ft_write_name_comment(char *line, int kind, int fd);
+void		ft_write_header(int fd, t_header *header);
 
 void		ft_debug_instruction(t_inst *instruction);
 void		ft_debug_header(t_header *header);

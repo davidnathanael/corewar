@@ -90,7 +90,7 @@ t_list		*ft_get_instructions(int fd, t_header *header)
 		{
 			ft_lstappend(&instructions, ft_lstnew(inst, sizeof(inst))); //leak of inst
 			header->prog_size += inst->size;
-			ft_debug_instruction(inst);
+			// ft_debug_instruction(inst);
 			free(inst);
 		}
 		free(line);
