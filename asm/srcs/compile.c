@@ -12,13 +12,34 @@
 
 #include "asm.h"
 
-void	ft_compile(char *file)
+static char		*ft_get_new_file(char *old)
+{
+	char	*pos;
+	char	*base;
+	char	*new;
+
+
+	pos = ft_strrchr(old, '.');
+	base = ft_strsub(old, 0, pos - old);
+	new = ft_strjoin(base, ".cor");
+	free(base);
+	return (new);
+}
+
+void			ft_compile(char *file)
 {
 	int			fd;
 	t_header	*header;
 	t_list		*instructions;
+	char		*new_file;
 
 	fd = open(file, O_RDONLY);
 	header = ft_get_header(fd);
 	instructions = ft_get_instructions(fd, header);
+	new_file = ft_get_new_file(file);
+	close(fd);
+	fd = open(new_file, O_WRONLY);
+	ft_write_header(fd, header);
+	// write_instructions(fd, instructions);
+	free(new_file);
 }
