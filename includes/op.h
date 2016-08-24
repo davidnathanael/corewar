@@ -56,6 +56,11 @@ typedef char					t_arg_type;
 # define T_IND					4
 # define T_LAB					8
 
+# define IS_REG					1
+# define IS_DIR_VALUE			2
+# define IS_DIR_LABEL			3
+# define IS_IND					4
+
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
@@ -79,33 +84,34 @@ typedef struct					s_op
 	int							octet;
 	int							unknown;
 	int							label_size;
+	t_bool						needs_prefix;
 }								t_op;
 
 static t_op						g_op_tab[17] =
 {
-	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0, 4},
-	{"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load", 1, 0, 4},
-	{"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store", 1, 0, 0},
-	{"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition", 1, 0, 0},
-	{"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction", 1, 0, 0},
+	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0, 4, FALSE},
+	{"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load", 1, 0, 4, TRUE},
+	{"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store", 1, 0, 0, TRUE},
+	{"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition", 1, 0, 0, TRUE},
+	{"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction", 1, 0, 0, TRUE},
 	{"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
-		"et (and  r1, r2, r3   r1&r2 -> r3", 1, 0, 4},
+		"et (and  r1, r2, r3   r1&r2 -> r3", 1, 0, 4, TRUE},
 	{"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 7, 6,
-		"ou  (or   r1, r2, r3   r1 | r2 -> r3", 1, 0, 4},
+		"ou  (or   r1, r2, r3   r1 | r2 -> r3", 1, 0, 4, TRUE},
 	{"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6,
-		"ou (xor  r1, r2, r3   r1^r2 -> r3", 1, 0, 4},
-	{"zjmp", 1, {T_DIR}, 9, 20, "jump if zero", 0, 1, 2},
+		"ou (xor  r1, r2, r3   r1^r2 -> r3", 1, 0, 4, TRUE},
+	{"zjmp", 1, {T_DIR}, 9, 20, "jump if zero", 0, 1, 2, FALSE},
 	{"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
-		"load index", 1, 1, 2},
+		"load index", 1, 1, 2, TRUE},
 	{"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
-		"store index", 1, 1, 2},
-	{"fork", 1, {T_DIR}, 12, 800, "fork", 0, 1, 2},
-	{"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load", 1, 0, 4},
+		"store index", 1, 1, 2, TRUE},
+	{"fork", 1, {T_DIR}, 12, 800, "fork", 0, 1, 2, FALSE},
+	{"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load", 1, 0, 4, TRUE},
 	{"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
-		"long load index", 1, 1, 2},
-	{"lfork", 1, {T_DIR}, 15, 1000, "long fork", 0, 1, 2},
-	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0, 2},
-	{0, 0, {0}, 0, 0, 0, 0, 0, 0}
+		"long load index", 1, 1, 2, TRUE},
+	{"lfork", 1, {T_DIR}, 15, 1000, "long fork", 0, 1, 2, FALSE},
+	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0, 2, FALSE},
+	{0, 0, {0}, 0, 0, 0, 0, 0, 0, 0}
 };
 
 #endif

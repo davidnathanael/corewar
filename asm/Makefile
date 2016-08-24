@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/15 13:58:16 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/08/24 12:29:31 by ddela-cr         ###   ########.fr        #
+#    Updated: 2016/08/24 18:39:55 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,13 +44,15 @@ SRCBASE		=	\
 				get_instructions.c											\
 				get_kind_arg.c												\
 				get_label_opcode.c											\
+				get_label_value.c											\
 				get_new_label.c												\
 				get_op.c													\
 				get_size.c													\
 				line_kind.c													\
 				main.c														\
 				parse.c														\
-				write_header.c
+				write_header.c												\
+				write_instructions.c
 
 INCBASE		=	\
 

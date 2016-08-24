@@ -20,9 +20,9 @@ static void		ft_write_unsigned_int(int fd, unsigned int nb)
 	int		oct_3;
 	int		oct_4;
 
-	oct_1 = (nb & 0xff000000) >> 24;
-	oct_2 = (nb & 0xff0000) >> 16;
-	oct_3 = (nb & 0xff00) >> 8;
+	oct_1 = (nb >> 24) & 0xff;
+	oct_2 = (nb >> 16) & 0xff;
+	oct_3 = (nb >> 8) & 0xff;
 	oct_4 = nb & 0xff;
 	write(fd, &oct_1, 1);
 	write(fd, &oct_2, 1);

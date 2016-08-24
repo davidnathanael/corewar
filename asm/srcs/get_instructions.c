@@ -87,9 +87,9 @@ t_list		*ft_get_instructions(int fd, t_header *header)
 			continue ;
 		if (line[0] != '\0' && (inst = ft_extract_instruction(line, fd)) != NULL)
 		{
-			ft_lstappend(&instructions, ft_lstnew(inst, sizeof(inst))); //leak of inst
+			ft_lstappend(&instructions, ft_lstnew(inst, sizeof(*inst))); //leak of inst
 			header->prog_size += inst->size;
-			// ft_debug_instruction(inst);
+			ft_debug_instruction(inst);
 			free(inst);
 		}
 		free(line);

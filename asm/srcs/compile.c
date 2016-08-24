@@ -40,7 +40,7 @@ void			ft_compile(char *file)
 	close(fd);
 	fd = open(new_file, O_WRONLY | O_CREAT | O_APPEND, S_IRWXU);
 	ft_write_header(fd, header);
-	// write_instructions(fd, instructions);
+	ft_write_instructions(fd, instructions);
 	close(fd);
 	free(new_file);
 }

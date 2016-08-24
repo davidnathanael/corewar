@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-char	**ft_get_args(char *line, char *opcode, t_bool has_label)
+char			**ft_get_args(char *line, char *opcode, t_bool has_label)
 {
 	char	**args;
 	char	*tmp;
@@ -28,6 +28,12 @@ char	**ft_get_args(char *line, char *opcode, t_bool has_label)
 	while (args[i])
 	{
 		tmp = args[i];
+		if (ft_strchr(tmp, ';'))
+		{
+			tmp = ft_strsub(tmp, 0, ft_strchr(tmp, ';') - tmp);
+			free(args[i]);
+			args[i] = tmp;
+		}
 		args[i] = ft_strtrim(args[i]);
 		free(tmp);
 		i++;
