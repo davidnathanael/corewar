@@ -21,6 +21,7 @@ static void		ft_get_comment(char *line, t_header *header)
 	len = 0;
 	while (start[len] && start[len] != '"')
 		len++;
+	len = (len > COMMENT_LENGTH) ? COMMENT_LENGTH : len;
 	ft_strncpy(header->comment, start, len);
 }
 
@@ -33,6 +34,7 @@ static void		ft_get_name(char *line, t_header *header)
 	len = 0;
 	while (start[len] && start[len] != '"')
 		len++;
+	len = (len > PROG_NAME_LENGTH) ? PROG_NAME_LENGTH : len;
 	ft_strncpy(header->prog_name, start, len);
 }
 
@@ -46,6 +48,8 @@ t_header		*ft_get_header(int fd)
 		return (NULL);
 	kind = 0;
 	header->magic = COREWAR_EXEC_MAGIC;
+	ft_bzero(header->prog_name, PROG_NAME_LENGTH + 1);
+	ft_bzero(header->comment, COMMENT_LENGTH + 1);
 	while (get_next_line(fd, &line) > 0)
 	{
 		kind = line_kind(line);

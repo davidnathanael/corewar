@@ -38,7 +38,6 @@ static t_bool		ft_is_label_only(char *line)
 			ret = FALSE;
 		}
 	}
-	ft_printf("RET : %d\n", ret);
 	return (ret);
 }
 

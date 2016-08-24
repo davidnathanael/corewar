@@ -38,8 +38,9 @@ void			ft_compile(char *file)
 	instructions = ft_get_instructions(fd, header);
 	new_file = ft_get_new_file(file);
 	close(fd);
-	fd = open(new_file, O_WRONLY);
+	fd = open(new_file, O_WRONLY | O_CREAT | O_APPEND, S_IRWXU);
 	ft_write_header(fd, header);
 	// write_instructions(fd, instructions);
+	close(fd);
 	free(new_file);
 }
