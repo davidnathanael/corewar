@@ -18,10 +18,10 @@ int				main(int ac, char **av)
 		ft_putendl("Usage: ./asm <sourcefile>");
 	else
 	{
-		ft_parse(av[1]);
-		ft_putstr("The file ");
-		ft_putstr((ft_strrchr(av[1], '/') + 1) ? ft_strrchr(av[1], '/') + 1 : av[1]);
-		ft_putendl(" is good.");
+		// ft_parse(av[1]);
+		// ft_putstr("The file ");
+		// ft_putstr((ft_strrchr(av[1], '/') + 1) ? ft_strrchr(av[1], '/') + 1 : av[1]);
+		// ft_putendl(" is good.");
 		ft_compile(av[1]);
 	}
 	return (0);

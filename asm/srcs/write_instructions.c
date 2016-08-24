@@ -45,7 +45,7 @@ static void		ft_write_prefix(int fd, int nb_args, char **args)
 		else if (type == IS_DIR_VALUE || type == IS_DIR_LABEL)
 			prefix = prefix | T_DIR;
 		else
-			prefix = prefix | T_IND;
+			prefix = prefix | 3;
 		i++;
 	}
 	prefix = prefix << (((3 - nb_args) * 2) + 2);
@@ -102,9 +102,12 @@ void	ft_write_instructions(int fd, t_list *instructions)
 	while(instructions)
 	{
 		instruction = instructions->content;
-		infos = ft_get_op(instruction->opcode);
-		write(fd, &(infos->code), 1);
-		ft_write_args(fd, instruction, infos, head);
+		if (!instruction->is_label_only)
+		{
+			infos = ft_get_op(instruction->opcode);
+			write(fd, &(infos->code), 1);
+			ft_write_args(fd, instruction, infos, head);
+		}
 		instructions = instructions->next;
 	}
 }

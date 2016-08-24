@@ -12,18 +12,6 @@
 
 #include "asm.h"
 
-static t_bool		ft_has_label(char *line)
-{
-	char	*label_char_pos;
-
-	label_char_pos = ft_strchr(line, LABEL_CHAR);
-	if (!label_char_pos)
-		return (FALSE);
-	else if (*(--label_char_pos) == DIRECT_CHAR)
-		return (FALSE);
-	return (TRUE);
-}
-
 static t_bool		ft_is_label_only(char *line)
 {
 	char	*label_char_pos;
@@ -41,27 +29,33 @@ static t_bool		ft_is_label_only(char *line)
 	return (ret);
 }
 
-static t_inst		*ft_extract_instruction(char *line, int fd)
+static t_inst		*ft_init_instruction()
+{
+	t_inst		*instruction;
+
+	if (!(instruction = (t_inst *)malloc(sizeof(t_inst))))
+		return (NULL);
+	instruction->label = NULL;
+	instruction->is_label_only = FALSE;
+	instruction->opcode = NULL;
+	instruction->nb_args = 0;
+	instruction->args = NULL;
+	instruction->size = 0;
+	return (instruction);
+}
+
+static t_inst		*ft_extract_instruction(char *line)
 {
 	t_inst		*instruction;
 	t_bool		has_label;
 
-	if (!(instruction = (t_inst *)malloc(sizeof(t_inst))))
-		return (NULL);
+	instruction = ft_init_instruction();
 	instruction->label = ft_get_label(line);
 	has_label = (instruction->label) ? TRUE : FALSE;
 	if (instruction->label && ft_is_label_only(line))
 	{
-		if (get_next_line(fd, &line) > 0)
-		{
-			if (ft_has_label(line))
-				return (ft_extract_instruction(line, fd));
-			else if (line_kind(line) == IS_EMPTY)
-				return (NULL);
-		}
-		else
-			return (NULL);
-		has_label = FALSE;
+		instruction->is_label_only = TRUE;
+		return (instruction);
 	}
 	instruction->opcode = ft_get_opcode(line, has_label);
 	instruction->nb_args = ft_get_op(instruction->opcode)->nb_args;
@@ -75,25 +69,27 @@ t_list		*ft_get_instructions(int fd, t_header *header)
 	t_list		*instructions;
 	t_inst		*inst;
 	char		*line;
+	char		*prev_line;
 	int			kind;
 
 	instructions = NULL;
 	inst = NULL;
+	prev_line = NULL;
 	kind = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
 		kind = line_kind(line);
 		if (IS_EMPTY <= kind && kind <= IS_CHAMP_COMMENT)
 			continue ;
-		if (line[0] != '\0' && (inst = ft_extract_instruction(line, fd)) != NULL)
+		if (line[0] != '\0' && (inst = ft_extract_instruction(line)) != NULL)
 		{
 			ft_lstappend(&instructions, ft_lstnew(inst, sizeof(*inst))); //leak of inst
 			header->prog_size += inst->size;
-			ft_debug_instruction(inst);
+			// ft_debug_instruction(inst);
 			free(inst);
 		}
 		free(line);
 	}
-	ft_debug_header(header);
+	// ft_debug_header(header);
 	return (instructions);
 }
