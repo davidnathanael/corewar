@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/15 13:58:16 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/08/24 18:39:55 by ddela-cr         ###   ########.fr        #
+#    Updated: 2016/08/25 12:51:53 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,9 +70,6 @@ all:		$(NAME)
 $(NAME):	$(OBJS)
 	$(CC) -I $(INCDIR) $(FLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB) $(FTPRINTF_LIB)
 	echo -en "\r\033[38;5;22m☑️  MAKE   $(NAMEBASE)\033[0m\033[K"
-	echo "\r\033[38;5;184m👥  GROUP MEMBER(S):\033[0m\033[K"
-	echo "\r\033[38;5;15m - vbaudin \033[0m\033[K"
-	echo "\r\033[38;5;15m - ddela-cr \033[0m\033[K"
 
 $(OBJS):	$(SRCS) $(INCS)
 	printf "\r\033[38;5;11m⌛  MAKE   $(NAMEBASE) please wait ...\033[0m\033[K"
