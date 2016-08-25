@@ -13,17 +13,25 @@
 #ifndef VM_H
 # define VM_H
 
-# include "../includes/libft.h"
-# include "../includes/op.h"
+# include "libft.h"
+# include "op.h"
 
-typedef struct			s_byteCode
+typedef struct			s_champion
 {
-	char				*line;
-	struct s_byteCode	*next;
-}						t_byteCode;
+	char				*name;
+	char				*comment;
+	unsigned char		*data;
+	int					data_len;
+	int					champ_nb;
+	int					live;
+}						t_champion;
 
-void					add_link(t_byteCode **list, t_byteCode *new);
-int						get_byteCode(char *file);
-t_byteCode				*new_link(char *line);
+typedef struct			s_vm
+{
+	int					cycle_to_die;
+	t_champion			champion[MAX_PLAYERS];
+	int					nb_executed_live;
+	unsigned char		memory[MEM_SIZE];
+}						t_vm;
 
 #endif

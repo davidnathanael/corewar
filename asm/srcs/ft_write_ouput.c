@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-void		ft_write_output(char *str)
+void		ft_write_output(char *str, t_bool option_a)
 {
 	int		i;
 	char	*tmp;
@@ -22,8 +22,9 @@ void		ft_write_output(char *str)
 	while (tmp[i] != '.')
 		i++;
 	tmp[i] = '\0';
-	ft_putstr("Writing in the file ");
-	ft_putstr(tmp);
-	ft_putendl(".cor");
+	if (option_a)
+		ft_printf("Dumping annotated program on standard output\n");
+	else
+		ft_printf("Writing in the file %s.cor\n", tmp);
 	ft_memdel((void**)&tmp);
 }

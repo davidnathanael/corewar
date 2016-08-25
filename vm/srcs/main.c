@@ -3,29 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/07 15:10:45 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/25 12:14:43 by vbaudin          ###   ########.fr       */
+/*   Created: 2016/08/25 14:37:21 by ddela-cr          #+#    #+#             */
+/*   Updated: 2016/08/25 14:38:17 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "vm.h"
 
-int				main(int ac, char **av)
+int main(int ac, char **av)
 {
-	t_bool		option_a;
-
-	option_a = FALSE;
-	if (ac == 1 || ac > 3)
-		ft_putendl("Usage: ./asm [-a] <sourcefile>");
-	else
-	{
-		if (ft_strcmp("-a", av[1]) == 0)
-			option_a = TRUE;
-		ft_parse((option_a) ? av[2] : av[1]);
-		ft_write_output(av[1], option_a);
-		ft_compile((option_a) ? av[2] : av[1], option_a);
-	}
+	(void)ac;
+	(void)av;
 	return (0);
 }

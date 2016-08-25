@@ -105,9 +105,14 @@ void	ft_write_instructions(int fd, t_list *instructions)
 		if (!instruction->is_label_only)
 		{
 			infos = ft_get_op(instruction->opcode);
-			write(fd, &(infos->code), 1);
+			if (fd == STDOUT)
+				ft_printf("%20s\n%20s\n",instruction->opcode, infos->name);
+			else
+				write(fd, &(infos->code), 1);
 			ft_write_args(fd, instruction, infos, head);
 		}
+		else if (instruction->is_label_only && fd == STDOUT)
+			ft_printf("%20s:\n", instruction->label);
 		instructions = instructions->next;
 	}
 }

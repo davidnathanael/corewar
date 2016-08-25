@@ -25,6 +25,8 @@
 # define IS_CHAMP_NAME 3
 # define IS_CHAMP_COMMENT 4
 
+# define STDOUT		1
+
 enum
 {
 	A_VERIF,
@@ -63,7 +65,7 @@ typedef struct		s_parse
 	t_label			*label;
 }					t_parse;
 
-void		ft_write_output(char *str);
+void		ft_write_output(char *str, t_bool option_a);
 void		ft_error(int i);
 void		ft_parse(char *file);
 void		ft_check_name_comment(char *line, t_parse *data, int type);
@@ -76,7 +78,7 @@ int			get_instr(char *line_t);
 int			is_correct_file(char *name);
 int			get_kind_arg(char *arg, t_parse *data);
 
-void		ft_compile(char *file);
+void		ft_compile(char *file, t_bool option_a);
 t_op		*ft_get_op(char *name);
 t_header	*ft_get_header(int fd);
 t_list		*ft_get_instructions(int fd, t_header *header);
