@@ -6,11 +6,11 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/25 14:36:28 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/08/25 14:39:20 by ddela-cr         ###   ########.fr        #
+#    Updated: 2016/08/25 16:26:13 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	vm
+NAME		=	corewar
 
 NAMEBASE    =   $(shell basename $(NAME))
 
@@ -31,6 +31,8 @@ LIBFT_LIB	=	../libft/libft.a
 FTPRINTF_LIB	=	../ft_printf/libftprintf.a
 
 SRCBASE		=	\
+				exit_error.c												\
+				get_champions.c												\
 				main.c
 
 INCBASE		=	\
