@@ -48,10 +48,12 @@ SRCBASE		=	\
 				get_label_value.c											\
 				get_new_label.c												\
 				get_op.c													\
+				get_prefix.c												\
 				get_size.c													\
 				line_kind.c													\
 				main.c														\
 				parse.c														\
+				print.c														\
 				write_header.c												\
 				write_instructions.c
 

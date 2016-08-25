@@ -87,9 +87,13 @@ char		*ft_get_opcode(char *line, t_bool has_label);
 char		**ft_get_args(char *line, char *opcode, t_bool has_label);
 int			ft_get_size(char **args, char *opcode);
 int			ft_get_label_value(t_list *instructions, t_inst *inst, char *label);
+int			ft_get_prefix(int nb_args, char **args);
+int			ft_get_arg_type(char *arg);
 
 void		ft_write_header(int fd, t_header *header);
 void		ft_write_instructions(int fd, t_list *instructions);
+
+void		ft_print_instruction(t_inst *instruction, t_op *infos, int total_size, t_list *head);
 
 void		ft_debug_instruction(t_inst *instruction);
 void		ft_debug_header(t_header *header);

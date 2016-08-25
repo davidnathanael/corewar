@@ -15,7 +15,9 @@
 char	*ft_get_label(char *line)
 {
 	char	*label_char_pos;
+	int		len;
 
+	len = 0;
 	label_char_pos = ft_strchr(line, LABEL_CHAR);
 	if (label_char_pos != NULL)
 	{
@@ -23,7 +25,14 @@ char	*ft_get_label(char *line)
 		{
 			while (line && ft_isspace(*line))
 				++line;
-			return (ft_strsub(line, 0, (label_char_pos - line) + 1));
+			len = label_char_pos - line;
+			while (label_char_pos != line)
+			{
+				if (*label_char_pos == SEPARATOR_CHAR)
+					return (NULL);
+				--label_char_pos;
+			}
+			return (ft_strsub(line, 0, len + 1));
 		}
 	}
 	return (NULL);

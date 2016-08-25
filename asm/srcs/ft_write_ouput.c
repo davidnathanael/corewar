@@ -19,11 +19,11 @@ void		ft_write_output(char *str, t_bool option_a)
 
 	tmp = ft_strdup(str);
 	i = 0;
-	while (tmp[i] != '.')
+	while (tmp[i] && tmp[i] != '.')
 		i++;
 	tmp[i] = '\0';
 	if (option_a)
-		ft_printf("Dumping annotated program on standard output\n");
+		ft_printf("Dumping annotated program on standard output\n\n");
 	else
 		ft_printf("Writing in the file %s.cor\n", tmp);
 	ft_memdel((void**)&tmp);

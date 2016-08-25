@@ -30,25 +30,26 @@ static void		ft_write_unsigned_int(int fd, unsigned int nb)
 	write(fd, &oct_4, 1);
 }
 
-static void		ft_write_string(int fd, char *string, int size, char *desc)
+static void		ft_write_string(int fd, char *string, int size)
 {
-	if (fd == STDOUT)
-		ft_printf("%s {bold}{green}%s{eoc}\n", desc, string);
-	else
-	{
 		write(fd, string, size);
 		write(fd, &"\0\0\0", 3);
-	}
 }
 
 void	ft_write_header(int fd, t_header *header)
 {
-	if (fd != STDOUT)
-		ft_write_unsigned_int(fd, header->magic);
-	ft_write_string(fd, header->prog_name, PROG_NAME_LENGTH + 1, "NAME :");
 	if (fd == STDOUT)
-		ft_printf("SIZE : {bold}{green}%u{eoc}\n", header->prog_size);
+	{
+		ft_printf("SIZE    : {bold}{green}%d{eoc}\n", header->prog_size);
+		ft_printf("NAME    : {bold}{green}%s{eoc}\n", header->prog_name);
+		ft_printf("COMMENT : {bold}{green}%s{eoc}\n\n", header->comment);
+
+	}
 	else
+	{
+		ft_write_unsigned_int(fd, header->magic);
+		ft_write_string(fd, header->prog_name, PROG_NAME_LENGTH + 1);
 		ft_write_unsigned_int(fd, header->prog_size);
-	ft_write_string(fd, header->comment, COMMENT_LENGTH + 1, "COMMENT :");
+		ft_write_string(fd, header->comment, COMMENT_LENGTH + 1);
+	}
 }

@@ -12,43 +12,11 @@
 
 #include "asm.h"
 
-static int		ft_get_arg_type(char *arg)
-{
-	if (arg[0] == 'r')
-		return (IS_REG);
-	else if (arg[0] == DIRECT_CHAR)
-	{
-		if (arg[1] == LABEL_CHAR)
-			return (IS_DIR_LABEL);
-		else
-			return (IS_DIR_VALUE);
-	}
-	else
-		return (IS_IND);
-}
-
 static void		ft_write_prefix(int fd, int nb_args, char **args)
 {
 	int		prefix;
-	int		type;
-	int		i;
 
-	prefix = 0;
-	type = 0;
-	i = 0;
-	while (i < nb_args)
-	{
-		type = ft_get_arg_type(args[i]);
-		prefix = prefix << 2;
-		if (type == IS_REG)
-			prefix = prefix | T_REG;
-		else if (type == IS_DIR_VALUE || type == IS_DIR_LABEL)
-			prefix = prefix | T_DIR;
-		else
-			prefix = prefix | 3;
-		i++;
-	}
-	prefix = prefix << (((3 - nb_args) * 2) + 2);
+	prefix = ft_get_prefix(nb_args, args);
 	write(fd, &prefix, 1);
 }
 
@@ -84,8 +52,11 @@ static void		ft_write_args(int fd, t_inst *inst, t_op *infos, t_list *instructio
 		else if (arg_type == IS_DIR_LABEL)
 			ft_write_value(fd, ft_get_label_value(instructions, inst, &(inst->args[i][2])),
 							infos->label_size);
-		else
+		else if (arg_type == IS_IND_VALUE)
 			ft_write_value(fd, ft_atoi(&(inst->args[i][0])), 2);
+		else if (arg_type == IS_IND_LABEL)
+			ft_write_value(fd, ft_get_label_value(instructions, inst, &(inst->args[i][1])),
+							infos->label_size);
 		i++;
 	}
 }
@@ -95,10 +66,12 @@ void	ft_write_instructions(int fd, t_list *instructions)
 	t_list	*head;
 	t_inst	*instruction;
 	t_op	*infos;
+	int		total_size;
 
 	head = instructions;
 	instruction = NULL;
 	infos = NULL;
+	total_size = 0;
 	while(instructions)
 	{
 		instruction = instructions->content;
@@ -106,13 +79,16 @@ void	ft_write_instructions(int fd, t_list *instructions)
 		{
 			infos = ft_get_op(instruction->opcode);
 			if (fd == STDOUT)
-				ft_printf("%20s\n%20s\n",instruction->opcode, infos->name);
+				ft_print_instruction(instruction, infos, total_size, head);
 			else
+			{
 				write(fd, &(infos->code), 1);
-			ft_write_args(fd, instruction, infos, head);
+				ft_write_args(fd, instruction, infos, head);
+			}
+			total_size += instruction->size;
 		}
 		else if (instruction->is_label_only && fd == STDOUT)
-			ft_printf("%20s:\n", instruction->label);
+			ft_printf("%16s{red}    %s:{eoc}\n", ":", instruction->label);
 		instructions = instructions->next;
 	}
 }

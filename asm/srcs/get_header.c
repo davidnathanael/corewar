@@ -48,8 +48,9 @@ t_header		*ft_get_header(int fd)
 		return (NULL);
 	kind = 0;
 	header->magic = COREWAR_EXEC_MAGIC;
-	ft_bzero(header->prog_name, PROG_NAME_LENGTH + 1);
-	ft_bzero(header->comment, COMMENT_LENGTH + 1);
+	ft_bzero(&header->prog_name, PROG_NAME_LENGTH + 1);
+	ft_bzero(&header->comment, COMMENT_LENGTH + 1);
+	header->prog_size = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
 		kind = line_kind(line);

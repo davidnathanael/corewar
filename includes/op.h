@@ -59,7 +59,8 @@ typedef char					t_arg_type;
 # define IS_REG					1
 # define IS_DIR_VALUE			2
 # define IS_DIR_LABEL			3
-# define IS_IND					4
+# define IS_IND_VALUE			4
+# define IS_IND_LABEL			5
 
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
