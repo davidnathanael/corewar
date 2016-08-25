@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_write_ouput.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/07 15:10:45 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/25 12:14:43 by vbaudin          ###   ########.fr       */
+/*   Created: 2016/08/25 12:10:55 by vbaudin           #+#    #+#             */
+/*   Updated: 2016/08/25 12:31:19 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int				main(int ac, char **av)
+void		ft_write_output(char *str)
 {
-	if (ac != 2)
-		ft_putendl("Usage: ./asm <sourcefile>");
-	else
-	{
-		ft_parse(av[1]);
-		ft_write_output(av[1]);
-		ft_compile(av[1]);
-	}
-	return (0);
+	int		i;
+	char	*tmp;
+
+	tmp = ft_strdup(str);
+	i = 0;
+	while (tmp[i] != '.')
+		i++;
+	tmp[i] = '\0';
+	ft_putstr("Writing in the file ");
+	ft_putstr(tmp);
+	ft_putendl(".cor");
+	ft_memdel((void**)&tmp);
 }

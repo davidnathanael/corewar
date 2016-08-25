@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/15 13:58:16 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/08/25 12:51:53 by ddela-cr         ###   ########.fr        #
+#    Updated: 2016/08/25 12:59:01 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCBASE		=	\
 				ft_check_label.c											\
 				ft_end_name_comment.c										\
 				ft_error.c													\
+				ft_write_ouput.c											\
 				get_args.c													\
 				get_header.c												\
 				get_instructions.c											\

@@ -32,7 +32,7 @@ char		*ft_strtrim(char const *s)
 		start++;
 	while (end > start && (ft_is_space(s[end]) != 0 || s[end] == 0))
 		end--;
-	if (start >= end)
+	if (start > end)
 		end = start - 1;
 	len = end - start + 1;
 	str = ft_strsub(s, start, len);
