@@ -6,7 +6,7 @@
 /*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:37:08 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/20 20:58:01 by                  ###   ########.fr       */
+/*   Updated: 2016/08/25 12:17:17 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct		s_parse
 	t_label			*label;
 }					t_parse;
 
+void		ft_write_output(char *str);
 void		ft_error(int i);
 void		ft_parse(char *file);
 void		ft_check_name_comment(char *line, t_parse *data, int type);

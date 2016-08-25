@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/15 13:58:16 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/08/24 18:39:55 by ddela-cr         ###   ########.fr        #
+#    Updated: 2016/08/25 12:14:25 by vbaudin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ SRCBASE		=	\
 				main.c														\
 				parse.c														\
 				write_header.c												\
-				write_instructions.c
+				write_instructions.c										\
+				ft_write_ouput.c
 
 INCBASE		=	\
 
