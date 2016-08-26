@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  <>                                        +#+  +:+       +#+        */
+/*   By:  <ddela-cr@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/26 10:48:40 by                   #+#    #+#             */
-/*   Updated: 2016/08/26 10:48:42 by                  ###   ########.fr       */
+/*   Created: 2016/08/26 10:48:40 by ddela-cr          #+#    #+#             */
+/*   Updated: 2016/08/26 22:57:50 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	ft_check_numbers(int *champ_nb)
 		{
 			if (champ_nb[j] > MAX_PLAYERS)
 				ft_exit_error("Champion number greater than MAX_PLAYERS : ", ft_itoa(champ_nb[j]));
-			if (i != j && champ_nb[i] == champ_nb[j])
+			if (i != j && champ_nb[i] && champ_nb[j] && champ_nb[i] == champ_nb[j])
 				ft_exit_error("Duplicate champion number : ", ft_itoa(champ_nb[i]));
 			j++;
 		}
@@ -67,6 +67,7 @@ static int		ft_check_file(char *file, int *champ_nb)
 		ft_exit_error("Incorrect file, enter .cor file : ", file);
 	if (ft_strcmp(last_dot, ".cor") != 0)
 		ft_exit_error("Incorrect file, enter .cor file : ", file);
+	close(fd);
 	return (ft_get_available_number(champ_nb));
 }
 

@@ -31,6 +31,7 @@ LIBFT_LIB	=	../libft/libft.a
 FTPRINTF_LIB	=	../ft_printf/libftprintf.a
 
 SRCBASE		=	\
+				check_header.c												\
 				exit_error.c												\
 				get_champions.c												\
 				main.c														\

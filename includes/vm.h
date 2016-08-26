@@ -36,8 +36,12 @@ typedef struct			s_vm
 	unsigned char		memory[MEM_SIZE];
 }						t_vm;
 
-void					ft_get_champions(char **av, t_champion *champions);
+void					ft_print_usage();
+void					ft_parse_command(char **av);
 
-void					ft_exit_error(char *error);
+void					ft_get_champions(char **av, t_champion *champions);
+void					ft_check_header(int fd, char *file);
+
+void					ft_exit_error(char *error, char *var);
 
 #endif

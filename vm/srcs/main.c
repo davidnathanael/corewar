@@ -20,8 +20,12 @@ void	ft_print_usage()
 
 int main(int ac, char **av)
 {
+	t_vm	*vm;
+
+	vm = ft_memalloc(sizeof(*vm));
 	if (ac == 1)
 		ft_print_usage();
 	ft_parse_command(av);
+	ft_get_champions(av, (vm->champions));
 	return (0);
 }

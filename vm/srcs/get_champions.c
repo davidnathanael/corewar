@@ -32,17 +32,25 @@ static void		ft_extract_data(t_champion *champion, int fd)
 	char		buf[CHAMP_MAX_SIZE];
 	int			size;
 
-	size = read(fd, buf, CHAMP_MAX_SIZE);
-	// ft_check_body(); NEED TO BE IMPLEMENTED
+	size = read(fd, buf, champion->data_size);
+	if (size == 0)
+		ft_exit_error("Champion has no instructions in body : ", champion->name);
 	champion->data = ft_memalloc(size);
 	champion->data  = (unsigned char *)ft_memcpy(champion->data, buf, size);
+	size = read(fd, buf, CHAMP_MAX_SIZE + 1);
+	// ft_printf("DEBUG ---> size : %d\n", size);
+	if (size > CHAMP_MAX_SIZE)
+		ft_exit_error("Champion exceeded maximum allowed size : ", champion->name);
+	if (size > 0)
+		ft_exit_error("Champion size is bigger than indicated in header : ", champion->name);
 }
 
-static void		ft_extract_header(t_champion *champion, int fd)
+static void		ft_extract_header(t_champion *champion, int fd, char *file)
 {
 	char		buf[HEADER_SIZE];
 
-	// ft_check_header(); NEED TO BE IMPLEMENTED
+	ft_check_header(fd, file);
+	lseek(fd, 0, SEEK_SET);
 	read(fd, buf, 4);
 	read(fd, buf, PROG_NAME_LENGTH + 4);
 	champion->name = ft_strdup(buf);
@@ -58,7 +66,7 @@ static void		ft_extract_champion(t_champion *champion, char *file, int champ_nb)
 
 	if ((fd = open(file, O_RDONLY)) == -1)
 		ft_exit_error("Could not open file : ", file);
-	ft_extract_header(champion, fd);
+	ft_extract_header(champion, fd, file);
 	ft_extract_data(champion, fd);
 	champion->champ_nb = champ_nb;
 	champion->live = 0;
