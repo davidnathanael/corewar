@@ -16,7 +16,7 @@
 #include <stdint.h>
 #include <string.h>
 #include "libft.h"
-#include "printf.h"
+#include "ft_printf.h"
 
 static int				ft_get_args(t_options *options, va_list ap)
 {

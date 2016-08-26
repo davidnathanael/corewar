@@ -14,11 +14,11 @@ NAME =	libftprintf.a
 
 NAMEBASE =	libftprintf
 
-LIB = ./libft/libft.a
+LIB = ../libft/libft.a
 
 FLAGS =	-Wall -Wextra -Werror
 
-INCFLAG =  -I./includes
+INCFLAG =  -I../includes
 
 SRCDIR = srcs
 OBJDIR = objs
@@ -53,7 +53,7 @@ OBJ = $(addprefix $(OBJDIR)/,$(OBJ_NAME))
 all: $(NAME)
 	echo "\033[38;5;44m☑️  ALL    $(NAMEBASE) is done\033[0m\033[K"
 
-$(NAME): $(OBJ) $(LIB)
+$(NAME): $(OBJ)
 	printf "\r\033[38;5;11m⌛  MAKE   $(NAMEBASE) please wait ...\033[0m\033[K"
 	cp $(LIB) $(NAME)
 	ar rc $(NAME) $(OBJ)
@@ -63,10 +63,6 @@ $(NAME): $(OBJ) $(LIB)
 $(OBJ): $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	mkdir -p $(OBJDIR)
 	gcc $(FLAGS) -o $@ -c $< $(INCFLAG)
-
-$(LIB):
-	make -C libft/ fclean
-	make -C libft/
 
 clean:
 	printf "\r\033[38;5;11m⌛  CLEAN  $(NAMEBASE) please wait ...\033[0m\033[K"

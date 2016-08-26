@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 #include "libft.h"
-#include "printf.h"
+#include "ft_printf.h"
 
 char			*ft_apply_precision(t_options *options, char *arg)
 {

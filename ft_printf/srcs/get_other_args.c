@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 #include <inttypes.h>
-#include "printf.h"
+#include "ft_printf.h"
 #include "libft.h"
 
 wchar_t		*ft_set_unvalid_type(t_options *options)

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "printf.h"
+#include "ft_printf.h"
 #include "libft.h"
 
 wchar_t	*ft_apply_sharp_flag(t_specifier specifier, t_precision precision,

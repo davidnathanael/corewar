@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 #include <locale.h>
-#include "printf.h"
+#include "ft_printf.h"
 #include "libft.h"
 
 int		ft_proceed_str(t_options *options, char *arg)

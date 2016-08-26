@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 #include "libft.h"
-#include "printf.h"
+#include "ft_printf.h"
 
 t_bool		ft_is_modifier(char c)
 {

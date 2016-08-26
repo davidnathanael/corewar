@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "printf.h"
+#include "ft_printf.h"
 #include "libft.h"
 
 int		ft_proceed_ptr(t_options *options, char *arg)

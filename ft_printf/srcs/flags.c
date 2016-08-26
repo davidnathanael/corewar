@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "printf.h"
+#include "ft_printf.h"
 #include "libft.h"
 
 static t_flags		*ft_init_flags(void)

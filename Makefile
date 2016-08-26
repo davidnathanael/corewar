@@ -28,8 +28,8 @@ all: libft asm
 	echo "\r\033[38;5;15m - ttridon \033[0m\033[K"
 
 libft:
-		$(MAKE) $(PRINTF)
 		$(MAKE) $(LIB)
+		$(MAKE) $(PRINTF)
 
 asm:
 		$(MAKE) $(ASM)

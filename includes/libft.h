@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 11:28:54 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/15 13:05:11 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/08/26 10:41:21 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int						ft_strcmp(const char *s1, const char *s2);
 int						ft_strncmp(const char *s1, const char *s2, size_t n);
 int						ft_atoi(const char *str);
 long long				ft_lltoi(const char *str);
+unsigned long			ft_ultoi(const char *str);
 unsigned long			ft_atoi_uns_long(const char *str);
 int						ft_isalpha(int c);
 int						ft_strisalpha(char *str);

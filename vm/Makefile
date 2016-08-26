@@ -55,7 +55,6 @@ $(NAME):	$(OBJS)
 $(OBJS):	$(SRCS) $(INCS)
 	printf "\r\033[38;5;11m⌛  MAKE   $(NAMEBASE) plz wait ...\033[0m\033[K"
 	mkdir -p $(OBJDIR)
-	make -C $(LIBFT_DIR)
 	(cd $(OBJDIR);															\
 	$(CC) $(FLAGS) -c $(addprefix ../, $(SRCS))								\
 	-I $(addprefix ../, $(LIBFT_DIR)/$(INCDIR))								\
@@ -63,7 +62,6 @@ $(OBJS):	$(SRCS) $(INCS)
 
 clean:
 	printf "\r\033[38;5;11m⌛  CLEAN  $(NAMEBASE) plz wait ...\033[0m\033[K"
-	make -C $(LIBFT_DIR) clean
 	if [[ `rm -R $(OBJDIR) &> /dev/null 2>&1; echo $$?` == "0" ]]; then		\
 		echo -en "\r\033[38;5;124m🔘  CLEAN  $(NAMEBASE)\033[0m\033[K";		\
 	else																	\
@@ -72,7 +70,6 @@ clean:
 
 fclean:		clean
 	printf "\r\033[38;5;11m⌛  FCLEAN $(NAMEBASE) plz wait ...\033[0m\033[K"
-	make -C $(LIBFT_DIR) fclean
 	if [[ `rm $(NAME) &> /dev/null 2>&1; echo $$?` == "0" ]]; then			\
 		echo -en "\r\033[38;5;124m🔘  FCLEAN $(NAMEBASE)\033[0m\033[K";		\
 	else																	\

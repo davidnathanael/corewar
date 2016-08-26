@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 #include "stdlib.h"
 
 int		ft_proceed_int_args(t_options *options, wchar_t *arg)

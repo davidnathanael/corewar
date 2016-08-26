@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 #include <stdarg.h>
-#include "printf.h"
+#include "ft_printf.h"
 #include "libft.h"
 
 int			ft_get_width(char *format, va_list ap)
