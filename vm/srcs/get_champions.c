@@ -57,7 +57,7 @@ static void		ft_extract_champion(t_champion *champion, char *file, int champ_nb)
 	int		fd;
 
 	if ((fd = open(file, O_RDONLY)) == -1)
-		ft_exit_error("Could not open file.");
+		ft_exit_error("Could not open file : ", file);
 	ft_extract_header(champion, fd);
 	ft_extract_data(champion, fd);
 	champion->champ_nb = champ_nb;

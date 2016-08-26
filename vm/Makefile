@@ -33,7 +33,8 @@ FTPRINTF_LIB	=	../ft_printf/libftprintf.a
 SRCBASE		=	\
 				exit_error.c												\
 				get_champions.c												\
-				main.c
+				main.c														\
+				parse_command.c
 
 INCBASE		=	\
 

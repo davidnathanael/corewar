@@ -12,9 +12,16 @@
 
 #include "vm.h"
 
+void	ft_print_usage()
+{
+	ft_putstr("usage: ./corewar [-n nb_player] <champion.cor>\n");
+	exit(-1);
+}
+
 int main(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
+	if (ac == 1)
+		ft_print_usage();
+	ft_parse_command(av);
 	return (0);
 }

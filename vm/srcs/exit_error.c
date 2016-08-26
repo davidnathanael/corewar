@@ -12,9 +12,12 @@
 
 #include "vm.h"
 
-void	ft_exit_error(char *error)
+void	ft_exit_error(char *error, char *var)
 {
 	ft_putstr("Error : ");
-	ft_putendl(error);
+	ft_putstr(error);
+	if (var)
+		ft_putstr(var);
+	ft_putchar('\n');
 	exit(-1);
 }
