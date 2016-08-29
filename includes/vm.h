@@ -6,7 +6,7 @@
 /*   By: bbichero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/19 15:17:56 by bbichero          #+#    #+#             */
-/*   Updated: 2016/08/20 13:11:34 by bbichero         ###   ########.fr       */
+/*   Updated: 2016/08/29 21:56:28 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ typedef struct			s_vm
 }						t_vm;
 
 void					ft_get_champions(char **av, t_champion *champions);
+void					ft_print_usage(void);
+void					ft_parse_command(char **av);
 
-void					ft_exit_error(char *error);
+void					ft_exit_error(char *error, char *var);
 
 #endif
