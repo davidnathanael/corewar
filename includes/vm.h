@@ -6,7 +6,7 @@
 /*   By: bbichero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/19 15:17:56 by bbichero          #+#    #+#             */
-/*   Updated: 2016/08/29 21:56:28 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/08/30 11:53:31 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct			s_vm
 	int					nb_executed_live;
 	unsigned char		memory[MEM_SIZE];
 }						t_vm;
+
+void		init_vm(t_vm *vm);
 
 void					ft_get_champions(char **av, t_champion *champions);
 void					ft_print_usage(void);
