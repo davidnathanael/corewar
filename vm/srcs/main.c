@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 14:37:21 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/30 12:21:52 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/08/31 16:55:35 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		ft_debug_champions(t_champion *champions)
 	i = 0;
 	while (i < MAX_PLAYERS)
 	{
-		ft_printf("Le nom du champion numero %d est %s\n", champions[i].champ_nb, champions[i].name);
+		ft_printf("Le nom du champion numero %d est %s\nSon commentaire est : %s\nLa size de sa data est : %d\n", champions[i].champ_nb, champions[i].name, champions[i].comment, champions[i].data_size);
 		i++;
 	}
 }
