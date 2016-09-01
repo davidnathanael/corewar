@@ -28,14 +28,17 @@ void		init_champ(t_vm *vm)
 	}
 }
 
-void		init_vm(t_vm *vm)
+t_vm		*init_vm()
 {
+	t_vm	*vm;
 	int		i;
 
+	vm = (t_vm *)ft_memalloc(sizeof(t_vm));
 	i = 0;
 	vm->cycle_to_die = CYCLE_TO_DIE;
 	vm->nb_executed_live = 0;
 	while (i < MEM_SIZE)
-		vm->memory[i++] = 0;
+		vm->memory[i++] = 0; // ft_memset(vm->memory, 0, MEM_SIZE)
 	init_champ(vm);
+	return (vm);
 }

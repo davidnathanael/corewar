@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/25 14:36:28 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/08/30 11:54:02 by vbaudin          ###   ########.fr        #
+#    Updated: 2016/09/01 14:42:03 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,10 @@ SRCBASE		=	\
 				check_header.c												\
 				exit_error.c												\
 				get_champions.c												\
+				init_vm.c													\
+				load_champion.c												\
 				main.c														\
-				parse_command.c												\
-				init_vm.c
+				parse_command.c
 
 INCBASE		=	\
 

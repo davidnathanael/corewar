@@ -35,13 +35,13 @@ void		ft_debug_champions(t_champion *champions)
 
 int			main(int ac, char **av)
 {
-	t_vm		vm;
+	t_vm		*vm;
 
 	if (ac == 1)
 		ft_print_usage();
-	init_vm(&vm);
+	vm = init_vm();
 	ft_parse_command(av);
-	ft_get_champions(av, vm.champions);
-//	ft_debug_champions(vm.champions);
+	ft_get_champions(av, vm->champions);
+	ft_debug_champions(vm->champions);
 	return (0);
 }

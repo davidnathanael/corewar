@@ -38,10 +38,12 @@ typedef struct			s_vm
 
 void					ft_parse_command(char **av);
 void					ft_print_usage(void);
-void					init_vm(t_vm *vm);
+t_vm					*init_vm();
 
 void					ft_get_champions(char **av, t_champion *champions);
 void					ft_check_header(int fd, char *file);
+
+void					ft_load_champions(t_vm *vm);
 
 void					ft_exit_error(char *error, char *var);
 
