@@ -20,11 +20,10 @@ int				ft_get_value(char *encoded, int size)
 	while (size)
 	{
 		value = value << 8;
-		value = *encoded & 0xff;
+		value = value | (*encoded & 0xff);
 		++encoded;
 		size--;
 	}
-	// ft_printf("%d\n", value);
 	return (value);
 }
 
@@ -55,6 +54,7 @@ static void		ft_extract_header(t_champion *champion, int fd, char *file)
 	ft_check_header(fd, file);
 	lseek(fd, 0, SEEK_SET);
 	read(fd, buf, 4);
+	ft_get_value(buf, 4);
 	read(fd, buf, PROG_NAME_LENGTH + 4);
 	champion->name = ft_strdup(buf);
 	read(fd, buf, 4);
