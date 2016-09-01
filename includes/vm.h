@@ -6,7 +6,7 @@
 /*   By: bbichero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/19 15:17:56 by bbichero          #+#    #+#             */
-/*   Updated: 2016/08/20 13:11:34 by bbichero         ###   ########.fr       */
+/*   Updated: 2016/09/01 08:19:24 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ typedef struct			s_vm
 	unsigned char		memory[MEM_SIZE];
 }						t_vm;
 
-void					ft_print_usage();
 void					ft_parse_command(char **av);
+void					ft_print_usage(void);
+void					init_vm(t_vm *vm);
 
 void					ft_get_champions(char **av, t_champion *champions);
 void					ft_check_header(int fd, char *file);

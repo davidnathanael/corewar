@@ -6,7 +6,7 @@
 /*   By:  <ddela-cr@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 10:48:40 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/26 22:57:50 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/09/01 08:13:18 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,13 @@ static void	ft_check_numbers(int *champ_nb)
 		{
 			if (champ_nb[j] > MAX_PLAYERS)
 				ft_exit_error("Champion number greater than MAX_PLAYERS : ", ft_itoa(champ_nb[j]));
-			if (i != j && champ_nb[i] && champ_nb[j] && champ_nb[i] == champ_nb[j])
+			if (i != j && champ_nb[i] == champ_nb[j] && champ_nb[i] != 0 && champ_nb[j] != 0)//On check les slots non attribuer a des champions ce qui fait planter le programme !! Fixer pour le moment avec les deux derniers arguments du While !!
 				ft_exit_error("Duplicate champion number : ", ft_itoa(champ_nb[i]));
 			j++;
 		}
 		j = 0;
 		i++;
 	}
-
 }
 
 static int		ft_get_available_number(int *champ_nb)
