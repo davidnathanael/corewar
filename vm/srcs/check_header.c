@@ -12,6 +12,8 @@
 
 #include "vm.h"
 
+#include <errno.h>
+
 static void		ft_check_magic(int size, unsigned char *buf, char *file)
 {
 	unsigned int	magic;
@@ -20,26 +22,41 @@ static void		ft_check_magic(int size, unsigned char *buf, char *file)
 	if (size == 0)
 		ft_exit_error("Empty file : ", file);
 	if (size != 4)
-		ft_exit_error("Incorrect header (magic)", NULL);
-	if (buf[0] != ((magic >> 24) | 0xff))
-		ft_exit_error("Incorrect header (magic)", NULL);
-	if (buf[1] != ((magic >> 16) | 0xff))
-		ft_exit_error("Incorrect header (magic)", NULL);
-	if (buf[2] != ((magic >> 8) | 0xff))
-		ft_exit_error("Incorrect header (magic)", NULL);
-	if (buf[3] != (magic | 0xff))
-		ft_exit_error("Incorrect header (magic)", NULL);
+		ft_exit_error("Incorrect header (magic) 1: ", file);
+	if (buf[0] != ((magic >> 24) & 0xff))
+		ft_exit_error("Incorrect header (magic) 2: ", file);
+	if (buf[1] != ((magic >> 16) & 0xff))
+		ft_exit_error("Incorrect header (magic) 3: ", file);
+	if (buf[2] != ((magic >> 8) & 0xff))
+		ft_exit_error("Incorrect header (magic) 4: ", file);
+	if (buf[3] != (magic & 0xff))
+		ft_exit_error("Incorrect header (magic) 5: ", file);
 }
 
 void			ft_check_header(int fd, char *file)
 {
-	unsigned char	*buf;
+	unsigned char	buf[HEADER_SIZE];
 	int				size;
 
-	buf = NULL;
-	size = read(fd, buf, sizeof(unsigned int));
-		// ft_exit_error("Could not read file.", NULL);
-	if (size == 4)
-		ft_check_magic(size, buf, file);
+	if ((size = read(fd, buf, 4)) == -1)
+		ft_exit_error("Could not read file : ", file);
+	ft_check_magic(size, buf, file);
+	size = read(fd, buf, PROG_NAME_LENGTH + 4);
+	if (size != PROG_NAME_LENGTH + 4)
+		ft_exit_error("Incorrect header : Program name too short", NULL);
+	size = read(fd, buf, 4);
+	if (size != 4)
+		ft_exit_error("Incorrect header : Program size not correctly encoded", NULL);
+	else if (size == 4)
+	{
+		if (ft_get_value((char *)buf, 4) < 0)
+			ft_exit_error("Incorrect header : indicates size of (below) 0", NULL);
+		else if (ft_get_value((char *)buf, 4) > CHAMP_MAX_SIZE)
+			ft_exit_error("Incorrect header : indicates a size greater than CHAMP_MAX_SIZE`", NULL);
+	}
+	size = read(fd, buf, COMMENT_LENGTH + 4);
+	if (size != COMMENT_LENGTH + 4)
+		ft_exit_error("Incorrect header : Program comment too short", NULL);
+
 
 }

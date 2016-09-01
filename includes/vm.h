@@ -18,8 +18,6 @@
 # include "libft.h"
 # include "op.h"
 
-# define LIVE ft_live
-
 typedef struct			s_args
 {
 	int					nb_args;
@@ -69,5 +67,6 @@ void					ft_check_header(int fd, char *file);
 void					ft_load_champions(t_vm *vm);
 
 void					ft_exit_error(char *error, char *var);
+int						ft_get_value(char *encoded, int size);
 
 #endif

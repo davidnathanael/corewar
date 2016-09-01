@@ -12,21 +12,6 @@
 
 #include "vm.h"
 
-int				ft_get_value(char *encoded, int size)
-{
-	int		value;
-
-	value = 0;
-	while (size)
-	{
-		value = value << 8;
-		value = value | (*encoded & 0xff);
-		++encoded;
-		size--;
-	}
-	return (value);
-}
-
 static void		ft_extract_data(t_champion *champion, int fd)
 {
 	char		buf[CHAMP_MAX_SIZE];
@@ -52,6 +37,7 @@ static void		ft_extract_header(t_champion *champion, int fd, char *file)
 	char		buf[HEADER_SIZE];
 
 	ft_check_header(fd, file);
+	ft_printf("fd : %d\n", fd);
 	lseek(fd, 0, SEEK_SET);
 	read(fd, buf, 4);
 	ft_get_value(buf, 4);
