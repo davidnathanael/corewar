@@ -24,6 +24,7 @@ int				ft_get_value(char *encoded, int size)
 		++encoded;
 		size--;
 	}
+	// ft_printf("%d\n", value);
 	return (value);
 }
 
@@ -33,12 +34,14 @@ static void		ft_extract_data(t_champion *champion, int fd)
 	int			size;
 
 	size = read(fd, buf, champion->data_size);
+	// ft_printf("DEBUG ---> size 1 : %d\n", champion->data_size);
 	if (size == 0)
 		ft_exit_error("Champion has no instructions in body : ", champion->name);
 	champion->data = ft_memalloc(size);
 	champion->data  = (unsigned char *)ft_memcpy(champion->data, buf, size);
 	size = read(fd, buf, CHAMP_MAX_SIZE + 1);
 	// ft_printf("DEBUG ---> size : %d\n", size);
+
 	if (size > CHAMP_MAX_SIZE)
 		ft_exit_error("Champion exceeded maximum allowed size : ", champion->name);
 	if (size > 0)
@@ -73,7 +76,7 @@ static void		ft_extract_champion(t_champion *champion, char *file, int champ_nb)
 	close(fd);
 }
 
-void	ft_get_champions(char **av, t_champion *champions)
+void	ft_get_champions(char **av, t_champion *champions, t_vm *vm)
 {
 	int		i;
 	int		nb_extracted_champ;
@@ -96,5 +99,6 @@ void	ft_get_champions(char **av, t_champion *champions)
 			ft_extract_champion(&champions[nb_extracted_champ], av[i], ++champ_nb);
 			nb_extracted_champ++;
 		}
+		vm->nb_champs++;
 	}
 }

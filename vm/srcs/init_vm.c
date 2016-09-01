@@ -37,8 +37,9 @@ t_vm		*init_vm()
 	i = 0;
 	vm->cycle_to_die = CYCLE_TO_DIE;
 	vm->nb_executed_live = 0;
-	while (i < MEM_SIZE)
-		vm->memory[i++] = 0; // ft_memset(vm->memory, 0, MEM_SIZE)
+	vm->nb_champs = 0;
+	vm->process = NULL;
+	ft_memset(vm->memory, 0, MEM_SIZE);
 	init_champ(vm);
 	return (vm);
 }
