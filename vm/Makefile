@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/25 14:36:28 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/09/01 19:32:11 by ddela-cr         ###   ########.fr        #
+#    Updated: 2016/09/02 12:53:38 by vbaudin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ SRCBASE		=	\
 				load_champion.c												\
 				main.c														\
 				parse_command.c												\
-				utils.c
+				utils.c														\
+				introduce_champs.c
 
 INCBASE		=	\
 

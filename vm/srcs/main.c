@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 14:37:21 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/01 08:16:18 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/09/02 12:57:04 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ int			main(int ac, char **av)
 	ft_get_champions(av, vm->champions, vm);
 //	ft_debug_champions(vm->champions, vm);
 	ft_load_champions(vm);
-	
+	ft_introduce_champs(vm);
 	return (0);
 }

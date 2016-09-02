@@ -6,13 +6,13 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/01 14:14:31 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/01 14:14:33 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/09/02 12:52:25 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static void	ft_debug_mem(t_vm *vm)
+void	ft_debug_mem(t_vm *vm)
 {
 	int		i;
 
@@ -70,5 +70,5 @@ void	ft_load_champions(t_vm *vm)
 		i++;
 		cursor += size;
 	}
-	ft_debug_mem(vm);
+//	ft_debug_mem(vm);
 }
