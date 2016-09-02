@@ -42,6 +42,34 @@ static void	free_data(t_parse *data)
 	ft_memdel((void **)&data);
 }
 
+int	ft_labelchr(t_parse *data, char *name)
+{
+	t_label	*label;
+
+	label = data->label;
+	while (label)
+	{
+		if (label->kind && label->name && !ft_strcmp(label->name, name))
+			return	(1);
+		label = label->next;
+	}
+	return	(0);
+}
+
+int	ft_labelexist(t_parse *data)
+{
+	t_label	*label;
+
+	label = data->label;
+	while (label)
+	{
+		if (!label->kind && label->name && !ft_labelchr(data, label->name))
+			return (0);
+		label = label->next;
+	}
+	return (1);
+}
+
 void	ft_parse(char *file)
 {
 	int		fd;
@@ -65,6 +93,8 @@ void	ft_parse(char *file)
 			ft_error(1);
 		free(line);
 	}
+	if (!ft_labelexist(data))
+		ft_error(1);
 	(data->line_inst == 0) ? ft_error(2) : NULL;
 	free_data(data);
 }
