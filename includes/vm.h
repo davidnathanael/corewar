@@ -18,6 +18,25 @@
 # include "libft.h"
 # include "op.h"
 
+# define		LIVE 		1
+# define		LD			2
+# define		ST			3
+# define		ADD			4
+# define		SUB			5
+# define		AND			6
+# define		OR			7
+# define		XOR			8
+# define		ZJMP		9
+# define		LDI			10
+# define		STI			11
+# define		FORK		12
+# define		LLD			13
+# define		LLDI		14
+# define		LFORK		15
+# define		AFF			16
+
+
+
 typedef struct			s_args
 {
 	int					nb_args;
@@ -66,6 +85,8 @@ void					ft_get_champions(char **av, t_champion *champions, t_vm *vm);
 void					ft_check_header(int fd, char *file);
 
 void					ft_load_champions(t_vm *vm);
+
+void					ft_launch_vm(t_vm *vm);
 
 void					ft_exit_error(char *error, char *var);
 int						ft_get_value(char *encoded, int size);

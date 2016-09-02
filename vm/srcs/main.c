@@ -42,6 +42,7 @@ int			main(int ac, char **av)
 	ft_get_champions(av, vm->champions, vm);
 //	ft_debug_champions(vm->champions, vm);
 	ft_load_champions(vm);
-	ft_introduce_champs(vm);
+	// ft_introduce_champs(vm);
+	ft_launch_vm(vm);
 	return (0);
 }
