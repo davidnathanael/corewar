@@ -90,5 +90,23 @@ void					ft_launch_vm(t_vm *vm);
 
 void					ft_exit_error(char *error, char *var);
 int						ft_get_value(char *encoded, int size);
+t_op					*ft_get_op_data(int op);
+t_args					*ft_get_args(t_vm *vm, t_process *process, t_op *data);
 
+void					ft_and(t_args *args, t_vm *vm, t_process *process);
+void		ft_or(t_args *args, t_vm *vm, t_process *process);
+void		ft_xor(t_args *args, t_vm *vm, t_process *process);
+void		ft_zjmp(t_args *args, t_vm *vm, t_process *process);
+void		ft_ldi(t_args *args, t_vm *vm, t_process *process);
+void		ft_fork(t_args *args, t_vm *vm, t_process *process);
+void		ft_lfork(t_args *args, t_vm *vm, t_process *process);
+void		ft_aff(t_args *args, t_vm *vm, t_process *process);
+void		ft_live(t_args *args, t_vm *vm, t_process *process);
+void		ft_ld(t_args *args, t_vm *vm, t_process *process);
+void		ft_st(t_args *args, t_vm *vm, t_process *process);
+void		ft_add(t_args *args, t_vm *vm, t_process *process);
+void		ft_sub(t_args *args, t_vm *vm, t_process *process);
+void		ft_sti(t_args *args, t_vm *vm, t_process *process);
+void		ft_lld(t_args *args, t_vm *vm, t_process *process);
+void		ft_lldi(t_args *args, t_vm *vm, t_process *process);
 #endif

@@ -87,6 +87,7 @@ typedef struct					s_op
 	int							unknown;
 	int							label_size;
 	t_bool						needs_prefix;
+	// void						*func(t_args *args, t_vm *vm, t_process);
 }								t_op;
 
 static t_op						g_op_tab[17] =
@@ -112,7 +113,7 @@ static t_op						g_op_tab[17] =
 	{"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
 		"long load index", 1, 1, 2, TRUE},
 	{"lfork", 1, {T_DIR}, 15, 1000, "long fork", 0, 1, 2, FALSE},
-	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0, 2, FALSE},
+	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0, 2, TRUE},
 	{0, 0, {0}, 0, 0, 0, 0, 0, 0, 0}
 };
 

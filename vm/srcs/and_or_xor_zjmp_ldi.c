@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-void		ft_and(t_arg *args, t_vm *vm, t_process *process)
+void		ft_and(t_args *args, t_vm *vm, t_process *process)
 {
 	long	value1;
 	long	value2;
@@ -40,7 +40,7 @@ void		ft_and(t_arg *args, t_vm *vm, t_process *process)
 		process->carry = 0;
 }
 
-void		ft_or(t_arg *args, t_vm *vm, t_process *process)
+void		ft_or(t_args *args, t_vm *vm, t_process *process)
 {
 	long	value1;
 	long	value2;
@@ -68,7 +68,7 @@ void		ft_or(t_arg *args, t_vm *vm, t_process *process)
 		process->carry = 0;
 }
 
-void		ft_xor(t_arg *args, t_vm *vm, t_process *process)
+void		ft_xor(t_args *args, t_vm *vm, t_process *process)
 {
 	long	value1;
 	long	value2;
@@ -96,7 +96,7 @@ void		ft_xor(t_arg *args, t_vm *vm, t_process *process)
 		process->carry = 0;
 }
 
-void		ft_zjmp(t_arg *args, t_vm *vm, t_process *process)
+void		ft_zjmp(t_args *args, t_vm *vm, t_process *process)
 {
 	if (process->carry == 1)
 		process->pc = ft_loop_memory(process->pc +
@@ -106,7 +106,7 @@ void		ft_zjmp(t_arg *args, t_vm *vm, t_process *process)
 	(void)vm;
 }
 
-void		ft_ldi(t_arg *args, t_vm *vm, t_process *process)
+void		ft_ldi(t_args *args, t_vm *vm, t_process *process)
 {
 	long	values[2];
 	long	addr;

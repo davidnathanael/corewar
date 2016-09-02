@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-void		ft_live(t_arg *args, t_vm *vm, t_process *process)
+void		ft_live(t_args *args, t_vm *vm, t_process *process)
 {
 	int			i;
 
@@ -33,7 +33,7 @@ void		ft_live(t_arg *args, t_vm *vm, t_process *process)
 	}
 }
 
-void		ft_ld(t_arg *args, t_vm *vm, t_process *process)
+void		ft_ld(t_args *args, t_vm *vm, t_process *process)
 {
 	int		value;
 
@@ -61,7 +61,7 @@ void		ft_ld(t_arg *args, t_vm *vm, t_process *process)
 		process->carry = 0;
 }
 
-void		ft_st(t_arg *args, t_vm *vm, t_process *process)
+void		ft_st(t_args *args, t_vm *vm, t_process *process)
 {
 	long	value;
 
@@ -82,7 +82,7 @@ void		ft_st(t_arg *args, t_vm *vm, t_process *process)
 	}
 }
 
-void		ft_add(t_arg *args, t_vm *vm, t_process *process)
+void		ft_add(t_args *args, t_vm *vm, t_process *process)
 {
 	long	value;
 
@@ -107,7 +107,7 @@ void		ft_add(t_arg *args, t_vm *vm, t_process *process)
 	(void)vm;
 }
 
-void		ft_sub(t_arg *args, t_vm *vm, t_process *process)
+void		ft_sub(t_args *args, t_vm *vm, t_process *process)
 {
 	long	value;
 

@@ -12,18 +12,15 @@
 
 #include "vm.h"
 
-t_op	*ft_get_op_data(int op)
-{
-	int		i;
 
-	i = 0;
-	while (g_op_tab[i].name != NULL)
-	{
-		if (g_op_tab[i].code == op)
-			return (&g_op_tab[i]);
-		i++;
-	}
-	return (NULL);
+void	ft_execute(t_vm *vm, t_process *process)
+{
+	t_op	*op;
+	t_args	*args;
+
+	op = ft_get_op_data(process->waiting_op);
+	args = ft_get_args(vm, process, op);
+	// (*op->func)(args, vm, process);
 }
 
 void	ft_do_process(t_vm *vm)
@@ -37,7 +34,12 @@ void	ft_do_process(t_vm *vm)
 		{
 			process->waiting_op = vm->memory[process->pc];
 			process->cycle_to_wait = ft_get_op_data(process->waiting_op)->cycle;
+			process->is_waiting = TRUE;
 		}
+		if (process->cycle_to_wait == 1)
+			ft_execute(vm, process);
+		else
+			--process->cycle_to_wait;
 		process = process->next;
 	}
 }

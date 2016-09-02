@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-void		ft_fork(t_arg *args, t_vm *vm, t_process *process)
+void		ft_fork(t_args *args, t_vm *vm, t_process *process)
 {
 	t_process	*new;
 	int			i;
@@ -39,7 +39,7 @@ void		ft_fork(t_arg *args, t_vm *vm, t_process *process)
 	vm->nb_process++;
 }
 
-void		ft_lfork(t_arg *args, t_vm *vm, t_process *process)
+void		ft_lfork(t_args *args, t_vm *vm, t_process *process)
 {
 	t_process	*new;
 	int			i;
@@ -65,7 +65,7 @@ void		ft_lfork(t_arg *args, t_vm *vm, t_process *process)
 	vm->nb_process++;
 }
 
-void		ft_aff(t_arg *args, t_vm *vm, t_process *process)
+void		ft_aff(t_args *args, t_vm *vm, t_process *process)
 {
 	if (args->values[0] > 0 && args->values[0] <= REG_NUMBER)
 		ft_putchar((unsigned char)process->reg[args->values[0]]);

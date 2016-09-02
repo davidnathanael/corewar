@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/25 14:36:28 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/09/02 13:52:34 by ddela-cr         ###   ########.fr        #
+#    Updated: 2016/09/02 14:51:43 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ FTPRINTF_LIB	=	../ft_printf/libftprintf.a
 SRCBASE		=	\
 				check_header.c												\
 				exit_error.c												\
+				get_args.c													\
 				get_champions.c												\
 				init_vm.c													\
 				launch_vm.c													\
