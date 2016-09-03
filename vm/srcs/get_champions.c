@@ -72,7 +72,9 @@ void	ft_get_champions(char **av, t_champion *champions, t_vm *vm)
 	champ_nb = 0;
 	while (av[++i])
 	{
-		if (ft_strcmp(av[i], "-n") == 0)
+		if (ft_strcmp(av[i], "-d") == 0)
+			i++;
+		else if (ft_strcmp(av[i], "-n") == 0)
 		{
 			champ_nb = ft_atoi(av[i + 1]);
 			ft_extract_champion(&champions[nb_extracted_champ], av[i + 2], champ_nb);
@@ -84,6 +86,6 @@ void	ft_get_champions(char **av, t_champion *champions, t_vm *vm)
 			ft_extract_champion(&champions[nb_extracted_champ], av[i], ++champ_nb);
 			nb_extracted_champ++;
 		}
-		vm->nb_champs++;
 	}
+	vm->nb_champs = nb_extracted_champ;
 }

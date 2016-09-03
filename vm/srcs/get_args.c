@@ -30,11 +30,14 @@ static void	ft_get_args_values(t_vm *vm, t_process *process, t_op *data, t_args 
 
 	i = 0;
 	cursor = (process->pc + data->has_encoding) + 1;
-	ft_debug_memory(vm->memory, cursor, 10);
+	process->op_size = (data->has_encoding) ? 2 : 1;
+	size = 0;
+	// ft_debug_memory(vm->memory, cursor, 10);
 	while (i < args->nb_args)
 	{
 		size = ft_get_value_size(args->types[i], data);
 		args->values[i] = ft_get_value(&(vm->memory[cursor]), size);
+		process->op_size += size;
 		cursor += size;
 		i++;
 	}
@@ -76,11 +79,10 @@ t_args	*ft_get_args(t_vm *vm, t_process *process, t_op *data)
 	ft_get_args_type(vm, process, data, args);
 	ft_get_args_values(vm, process, data, args);
 	i = 0;
-	while (i < 4)
-	{
-		ft_printf("i : %d | type : %d | value : %d\n", i, args->types[i], args->values[i]);
-		i++;
-	}
-	exit(0);
+	// while (i < 4)
+	// {
+	// 	ft_printf("i : %d | type : %d | value : %d\n", i, args->types[i], args->values[i]);
+	// 	i++;
+	// }
 	return (args);
 }

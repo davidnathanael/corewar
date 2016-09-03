@@ -42,7 +42,9 @@ t_process	*ft_init_process(t_process *process, t_champion *champion, int cursor)
 	new->carry = 0;
 	new->waiting_op = 0;
 	new->cycle_to_wait = 0;
+	new->op_size = 1;
 	new->is_waiting = FALSE;
+	new->live = 0;
 	new->prev = NULL;
 	if (!process)
 	{
@@ -67,8 +69,8 @@ void	ft_load_champions(t_vm *vm)
 	{
 		ft_memcpy(&(vm->memory[cursor]), vm->champions[i].data, vm->champions[i].data_size);
 		vm->process = ft_init_process(vm->process, &(vm->champions[i]), cursor);
+		vm->nb_process++;
 		i++;
 		cursor += size;
 	}
-//	ft_debug_mem(vm);
 }

@@ -51,6 +51,8 @@ typedef struct			s_process
 	int					carry;
 	int					waiting_op;
 	int					cycle_to_wait;
+	int					op_size;
+	int					live;
 	t_bool				is_waiting;
 	struct s_process	*next;
 	struct s_process	*prev;
@@ -69,14 +71,21 @@ typedef struct			s_champion
 typedef struct			s_vm
 {
 	int					cycle_to_die;
+	int					lives_in_current_period;
+	int					cycle_in_current_period;
+	int					check_in_current_period;
+	int					last_champion_alive_number;
+	char				*last_champion_alive_name;
 	t_champion			champions[MAX_PLAYERS];
 	int					nb_executed_live;
 	unsigned char		memory[MEM_SIZE];
 	int					nb_champs;
 	t_process			*process;
+	int					nb_process;
+	int					dump;
 }						t_vm;
 
-void					ft_parse_command(char **av);
+void					ft_parse_command(char **av, t_vm *vm);
 void					ft_print_usage(void);
 void					ft_introduce_champs(t_vm *vm);
 t_vm					*init_vm();
@@ -87,6 +96,7 @@ void					ft_check_header(int fd, char *file);
 void					ft_load_champions(t_vm *vm);
 
 void					ft_launch_vm(t_vm *vm);
+void					ft_check_alive(t_vm *vm);
 
 void					ft_exit_error(char *error, char *var);
 int						ft_get_value(unsigned char *encoded, int size);
@@ -110,5 +120,20 @@ void					ft_sti(t_args *args, t_vm *vm, t_process *process);
 void					ft_lld(t_args *args, t_vm *vm, t_process *process);
 void					ft_lldi(t_args *args, t_vm *vm, t_process *process);
 
-void 					ft_debug_memory(unsigned char *memory, int cursor, int size);
+void 					ft_dump_memory(unsigned char *memory, int cursor, int size);
+
+int		ft_loop_memory(int value);
+int		handle_coding_byte(int cursor, t_vm *vm, int op);
+int		ft_check_reg_exist(t_args *args);
+long	get_value_depending_on_type(int pos, t_args *args,
+									t_process *process, t_vm *vm);
+void	write_byte(long value, t_vm *vm, long number, t_process *process);
+int		get_argument_type(char *bin);
+
+void	ft_doing_op(t_args *args, t_vm *vm, t_process *process);
+
+int		get_int_from_bytes(t_vm *vm, t_process *process, int addr);
+int		get_int_from_two_bytes(t_vm *vm, t_process *process, int addr);
+
+
 #endif

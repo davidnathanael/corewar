@@ -14,7 +14,7 @@
 
 void		ft_print_usage(void)
 {
-	ft_putstr("Usage: ./corewar [-n nb_player] <champion.cor>\n");
+	ft_putstr("Usage: ./corewar [-d unsigned int] [-n nb_player] <champion.cor>\n");
 	exit(-1);
 }
 
@@ -38,11 +38,12 @@ int			main(int ac, char **av)
 	if (ac == 1)
 		ft_print_usage();
 	vm = init_vm();
-	ft_parse_command(av);
+	ft_parse_command(av, vm);
 	ft_get_champions(av, vm->champions, vm);
 //	ft_debug_champions(vm->champions, vm);
 	ft_load_champions(vm);
 	// ft_introduce_champs(vm);
 	ft_launch_vm(vm);
+	printf("Le gagnant est le joueur %s qui porte le numero %d\n", vm->last_champion_alive_name, vm->last_champion_alive_number);
 	return (0);
 }

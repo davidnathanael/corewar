@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/25 14:36:28 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/09/02 14:51:43 by ddela-cr         ###   ########.fr        #
+#    Updated: 2016/09/03 14:35:26 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAMEBASE    =   $(shell basename $(NAME))
 
 CC			=	gcc
 
-FLAGS		=	-Wall -Wextra -Werror
+FLAGS		=	-g -Wall -Wextra -Werror
 
 SRCDIR		=	srcs/
 
@@ -31,16 +31,22 @@ LIBFT_LIB	=	../libft/libft.a
 FTPRINTF_LIB	=	../ft_printf/libftprintf.a
 
 SRCBASE		=	\
+				and_or_xor_zjmp_ldi.c										\
+				check_alive.c												\
 				check_header.c												\
-				debug.c														\
+				doing_op.c													\
+				dump.c														\
 				exit_error.c												\
+				fork_lfork_aff.c											\
 				get_args.c													\
 				get_champions.c												\
 				init_vm.c													\
 				launch_vm.c													\
+				live_ld_st_add_sub.c										\
 				load_champion.c												\
 				main.c														\
 				parse_command.c												\
+				sti_lld_lldi.c												\
 				utils.c
 
 INCBASE		=	\

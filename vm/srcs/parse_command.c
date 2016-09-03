@@ -87,7 +87,7 @@ static int		ft_check_number(char ***ptr, char **av)
 	return (ret);
 }
 
-void			ft_parse_command(char **av)
+void			ft_parse_command(char **av, t_vm *vm)
 {
 	int		champ_nb[MAX_PLAYERS];
 	int		i;
@@ -96,7 +96,14 @@ void			ft_parse_command(char **av)
 	ft_bzero(champ_nb, sizeof(int) * MAX_PLAYERS);
 	while (*(++av))
 	{
-		if (ft_strcmp(*av, "-n") == 0)
+		if (ft_strcmp(*av, "-d") == 0)
+		{
+			if (ft_is_number(*(++av)))
+				vm->dump = ft_atoi(*(av));
+			else
+				ft_print_usage();
+		}
+		else if (ft_strcmp(*av, "-n") == 0)
 			champ_nb[i] = ft_check_number(&av, av);
 		else
 			champ_nb[i] = ft_check_file(*av, champ_nb);

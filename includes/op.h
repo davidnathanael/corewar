@@ -26,20 +26,20 @@
 # define DIR_CODE				2
 # define IND_CODE				3
 
-# define MAX_ARGS_NUMBER			4
-# define MAX_PLAYERS				4
+# define MAX_ARGS_NUMBER		4
+# define MAX_PLAYERS			4
 # define MEM_SIZE				(4 * 1024)
-# define IDX_MOD					(MEM_SIZE / 8)
+# define IDX_MOD				(MEM_SIZE / 8)
 # define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
 
 # define COMMENT_CHAR			'#'
 # define LABEL_CHAR				':'
-# define DIRECT_CHAR				'%'
+# define DIRECT_CHAR			'%'
 # define SEPARATOR_CHAR			','
 
-# define LABEL_CHARS				"abcdefghijklmnopqrstuvwxyz_0123456789"
+# define LABEL_CHARS			"abcdefghijklmnopqrstuvwxyz_0123456789"
 
-# define NAME_CMD_STRING			".name"
+# define NAME_CMD_STRING		".name"
 # define COMMENT_CMD_STRING		".comment"
 
 # define REG_NUMBER				16
@@ -76,6 +76,8 @@ typedef struct					s_header
 	char						comment[COMMENT_LENGTH + 1];
 }								t_header;
 
+// typedef   void (*t_func)(t_args *args, t_vm *vm, t_process *process);
+
 typedef struct					s_op
 {
 	char						*name;
@@ -88,8 +90,9 @@ typedef struct					s_op
 	int							unknown;
 	int							label_size;
 	t_bool						has_encoding;
-	// void						*func(t_args *args, t_vm *vm, t_process);
+	// t_func						f;
 }								t_op;
+
 
 static t_op						g_op_tab[17] =
 {
