@@ -49,9 +49,9 @@ void			ft_check_header(int fd, char *file)
 		ft_exit_error("Incorrect header : Program size not correctly encoded", NULL);
 	else if (size == 4)
 	{
-		if (ft_get_value((char *)buf, 4) < 0)
+		if (ft_get_value(buf, 4) < 0)
 			ft_exit_error("Incorrect header : indicates size of (below) 0", NULL);
-		else if (ft_get_value((char *)buf, 4) > CHAMP_MAX_SIZE)
+		else if (ft_get_value(buf, 4) > CHAMP_MAX_SIZE)
 			ft_exit_error("Incorrect header : indicates a size greater than CHAMP_MAX_SIZE`", NULL);
 	}
 	size = read(fd, buf, COMMENT_LENGTH + 4);

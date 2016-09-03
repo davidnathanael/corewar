@@ -40,7 +40,7 @@ static void		ft_write_args(int fd, t_inst *inst, t_op *infos, t_list *instructio
 
 	i = 0;
 	arg_type = 0;
-	if (infos->needs_prefix)
+	if (infos->has_encoding)
 		ft_write_prefix(fd, infos->nb_args, inst->args);
 	while (i < infos->nb_args)
 	{

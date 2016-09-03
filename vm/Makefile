@@ -32,6 +32,7 @@ FTPRINTF_LIB	=	../ft_printf/libftprintf.a
 
 SRCBASE		=	\
 				check_header.c												\
+				debug.c														\
 				exit_error.c												\
 				get_args.c													\
 				get_champions.c												\

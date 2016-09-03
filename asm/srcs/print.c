@@ -37,7 +37,7 @@ static void		ft_print_values_bis(t_inst *inst, t_op *infos, t_list *instructions
 	int		arg_type = 0;
 
 	ft_printf("                          %-5d", infos->code);
-	if (infos->needs_prefix)
+	if (infos->has_encoding)
 		ft_printf("{yellow}%-7d{eoc}", ft_get_prefix(infos->nb_args, inst->args));
 	else
 		ft_putstr("       ");
@@ -67,7 +67,7 @@ static void		ft_print_values(t_inst *inst, t_op *infos, t_list *instructions)
 	int		arg_type = 0;
 
 	ft_printf("                          %-5d", infos->code);
-	if (infos->needs_prefix)
+	if (infos->has_encoding)
 		ft_printf("{yellow}%-7d{eoc}", ft_get_prefix(infos->nb_args, inst->args));
 	else
 		ft_putstr("       ");

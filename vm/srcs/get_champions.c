@@ -14,7 +14,7 @@
 
 static void		ft_extract_data(t_champion *champion, int fd)
 {
-	char		buf[CHAMP_MAX_SIZE];
+	unsigned char		buf[CHAMP_MAX_SIZE];
 	int			size;
 
 	size = read(fd, buf, champion->data_size);
@@ -34,19 +34,18 @@ static void		ft_extract_data(t_champion *champion, int fd)
 
 static void		ft_extract_header(t_champion *champion, int fd, char *file)
 {
-	char		buf[HEADER_SIZE];
+	unsigned char		buf[HEADER_SIZE];
 
 	ft_check_header(fd, file);
-	ft_printf("fd : %d\n", fd);
 	lseek(fd, 0, SEEK_SET);
 	read(fd, buf, 4);
 	ft_get_value(buf, 4);
 	read(fd, buf, PROG_NAME_LENGTH + 4);
-	champion->name = ft_strdup(buf);
+	champion->name = ft_strdup((char *)buf);
 	read(fd, buf, 4);
 	champion->data_size = ft_get_value(buf, 4);
 	read(fd, buf, COMMENT_LENGTH + 4);
-	champion->comment = ft_strdup(buf);
+	champion->comment = ft_strdup((char *)buf);
 }
 
 static void		ft_extract_champion(t_champion *champion, char *file, int champ_nb)

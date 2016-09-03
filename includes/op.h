@@ -53,6 +53,7 @@ typedef char					t_arg_type;
 
 # define T_REG					1
 # define T_DIR					2
+# define IND					3
 # define T_IND					4
 # define T_LAB					8
 
@@ -86,7 +87,7 @@ typedef struct					s_op
 	int							octet;
 	int							unknown;
 	int							label_size;
-	t_bool						needs_prefix;
+	t_bool						has_encoding;
 	// void						*func(t_args *args, t_vm *vm, t_process);
 }								t_op;
 
