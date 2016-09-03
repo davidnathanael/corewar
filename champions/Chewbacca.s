@@ -6,7 +6,7 @@
 #    By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/03 17:52:29 by vbaudin           #+#    #+#              #
-#    Updated: 2016/09/03 18:03:06 by vbaudin          ###   ########.fr        #
+#    Updated: 2016/09/03 20:05:25 by vbaudin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,4 +15,6 @@
 .name "Chewie"
 .comment "Rrwwgawwrrggawwrr"
 
-live %1
+save: sti r1, %:live, %1
+live: live %1
+sti r2, %0, %:save
