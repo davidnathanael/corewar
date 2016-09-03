@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/02 13:20:03 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/02 13:20:05 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/09/03 18:49:44 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_do_process(t_vm *vm)
 		{
 			if (vm->memory[process->pc] > 0 && vm->memory[process->pc] < 17)
 			{
-			// ft_printf("waiting_op = %d || Pc = %d\n", vm->memory[process->pc], process->pc);
+			//ft_printf("waiting_op = %d || Pc = %d\n", vm->memory[process->pc], process->pc);
 			process->waiting_op = vm->memory[process->pc];
 			//ft_debug_memory(vm->memory, 0, 50);
 			process->cycle_to_wait = ft_get_op_data(process->waiting_op)->cycle;
@@ -57,6 +57,7 @@ void	ft_do_process(t_vm *vm)
 			ft_execute(vm, process);
 		else
 			--process->cycle_to_wait;
+		process->pc = process->pc == 4096 ? 0 : process->pc;
 		process = process->next;
 	}
 }
