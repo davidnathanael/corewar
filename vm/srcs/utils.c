@@ -99,29 +99,6 @@ int		ft_check_reg_exist(t_args *args)
 	return (1);
 }
 
-int		handle_coding_byte(int cursor, t_vm *vm, int op)
-{
-	int		i;
-	char	*coding_byte;
-
-	cursor += 1;
-	coding_byte = ft_itoa_base(vm->memory[ft_loop_memory(cursor)], "01");
-	if (ft_strlen(coding_byte) < 8)
-		coding_byte = ft_strjoin("0", coding_byte);
-	i = 0;
-	while (i < 6)
-	{
-		if (get_argument_type(coding_byte + i) == T_REG)
-			cursor += 1;
-		if (get_argument_type(coding_byte + i) == T_IND)
-			cursor += 2;
-		if (get_argument_type(coding_byte + i) == T_DIR)
-			cursor += ft_get_op_data(op)->label_size;
-		i = i + 2;
-	}
-	return (cursor);
-}
-
 int		ft_loop_memory(int value)
 {
 	int		ret;
@@ -132,17 +109,6 @@ int		ft_loop_memory(int value)
 	if (ret >= MEM_SIZE)
 		ret = value % MEM_SIZE;
 	return (ret);
-}
-
-int		get_argument_type(char *bin)
-{
-	if (ft_strncmp(bin, "10", 2) == 0)
-		return (T_DIR);
-	else if (ft_strncmp(bin, "11", 2) == 0)
-		return (T_IND);
-	else if (ft_strncmp(bin, "01", 2) == 0)
-		return (T_REG);
-	return (0);
 }
 
 int		get_int_from_bytes(t_vm *vm, t_process *process, int addr)
@@ -162,20 +128,54 @@ int		get_int_from_bytes(t_vm *vm, t_process *process, int addr)
 	return ((int)value);
 }
 
-int		get_int_from_two_bytes(t_vm *vm, t_process *process, int addr)
-{
-	int		i;
-	long	value;
-	int		result[2];
+// int		handle_coding_byte(int cursor, t_vm *vm, int op)
+// {
+// 	int		i;
+// 	char	*coding_byte;
+//
+// 	cursor += 1;
+// 	coding_byte = ft_itoa_base(vm->memory[ft_loop_memory(cursor)], "01");
+// 	if (ft_strlen(coding_byte) < 8)
+// 		coding_byte = ft_strjoin("0", coding_byte);
+// 	i = 0;
+// 	while (i < 6)
+// 	{
+// 		if (get_argument_type(coding_byte + i) == T_REG)
+// 			cursor += 1;
+// 		if (get_argument_type(coding_byte + i) == T_IND)
+// 			cursor += 2;
+// 		if (get_argument_type(coding_byte + i) == T_DIR)
+// 			cursor += ft_get_op_data(op)->label_size;
+// 		i = i + 2;
+// 	}
+// 	return (cursor);
+// }
 
-	i = 0;
-	while (i < 2)
-	{
-		result[i] = vm->memory[ft_loop_memory(process->pc + addr + i)];
-		i++;
-	}
-	value = 256L * result[0] + result[1];
-	if (value > (256 * 256) / 2)
-		value -= 256 * 256;
-	return ((int)value);
-}
+// int		get_argument_type(char *bin)
+// {
+// 	if (ft_strncmp(bin, "10", 2) == 0)
+// 		return (T_DIR);
+// 	else if (ft_strncmp(bin, "11", 2) == 0)
+// 		return (T_IND);
+// 	else if (ft_strncmp(bin, "01", 2) == 0)
+// 		return (T_REG);
+// 	return (0);
+// }
+
+// int		get_int_from_two_bytes(t_vm *vm, t_process *process, int addr)
+// {
+// 	int		i;
+// 	long	value;
+// 	int		result[2];
+//
+// 	i = 0;
+// 	while (i < 2)
+// 	{
+// 		result[i] = vm->memory[ft_loop_memory(process->pc + addr + i)];
+// 		i++;
+// 	}
+// 	value = 256L * result[0] + result[1];
+// 	if (value > (256 * 256) / 2)
+// 		value -= 256 * 256;
+// 	return ((int)value);
+// }
