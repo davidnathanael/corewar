@@ -14,7 +14,7 @@ NAME		=	asm
 
 NAMEBASE    =   $(shell basename $(NAME))
 
-CC			=	gcc
+CC			=	gcc -g
 
 FLAGS		=	-Wall -Wextra -Werror
 
