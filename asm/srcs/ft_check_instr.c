@@ -59,14 +59,14 @@ void		ft_check_instr(char *line, int opcode, t_parse *data)
 	{
 		tmp = ft_strtrim(instr[i]);
 		if (!(get_kind_arg(tmp, data) && g_op_tab[get_line(opcode)].type_arg[i]))
-			ft_error(6);
+			ft_free_and_exit(data, tmp, 6);
 		ft_memdel((void **)&tmp);
 		ft_memdel((void **)&instr[i]);
 		i++;
 	}
-	if (i < g_op_tab[get_line(opcode)].nb_args)
-		ft_error(6);
 	ft_memdel((void **)&instr);
 	ft_memdel((void **)&in_line);
+	if (i < g_op_tab[get_line(opcode)].nb_args)
+		ft_free_and_exit(data, NULL, 6);
 	data->line_inst++;
 }

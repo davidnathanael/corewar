@@ -55,8 +55,9 @@ SRCBASE		=	\
 				parse.c														\
 				print.c														\
 				write_header.c												\
-				write_instructions.c
-
+				write_instructions.c												\
+				ft_labelexist.c												\
+				ft_free_and_exit.c
 INCBASE		=	\
 
 SRCS		=	$(addprefix $(SRCDIR), $(SRCBASE))

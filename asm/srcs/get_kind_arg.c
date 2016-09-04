@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-static int	check_t_ind(char *arg)
+static int	check_t_ind(char *arg, t_parse *data)
 {
 	int		i;
 
@@ -20,7 +20,7 @@ static int	check_t_ind(char *arg)
 	while (arg[i] != '\0')
 	{
 		if (!ft_isdigit(arg[i]))
-			ft_error(6);
+			ft_free_and_exit(data, arg, 6);
 		else
 			i++;
 	}
@@ -45,12 +45,12 @@ static int	check_t_dir(char *arg, t_parse *data)
 		i += (arg[i + 1] == '-') ? 1 : 0;
 		while (arg[++i] != '\0')
 			if (!ft_isdigit(arg[i]))
-				ft_error(6);
+				ft_free_and_exit(data, arg, 6);
 	}
 	return(T_DIR);
 }
 
-static int	check_t_reg(char *arg)
+static int	check_t_reg(char *arg, t_parse *data)
 {
 	int		i;
 
@@ -58,13 +58,13 @@ static int	check_t_reg(char *arg)
 	while (arg[i] != '\0')
 	{
 		if (!ft_isdigit(arg[i]))
-			ft_error(6);
+			ft_free_and_exit(data, arg, 6);
 		else
 			i++;
 	}
 	i = ft_atoi(&arg[1]);
 	if (!(i > 0 && i <= REG_NUMBER))
-		ft_error(6);
+		ft_free_and_exit(data, arg, 6);
 	return(T_REG);
 }
 
@@ -73,11 +73,11 @@ int			get_kind_arg(char *arg, t_parse *data)
 	int		t_kind;
 
 	t_kind = 0;
-	if ((ft_isdigit(arg[0]) || (arg[0] == '-')) && ft_isdigit(arg[1]))
-		t_kind = check_t_ind(arg);
+	if (ft_isdigit(arg[0]) || ((arg[0] == '-') && arg[1] && ft_isdigit(arg[1])))
+		t_kind = check_t_ind(arg, data);
 	else if (arg[0] == '%')
 		t_kind = check_t_dir(arg, data);
 	else if (arg[0] == 'r')
-		t_kind = check_t_reg(arg);
+		t_kind = check_t_reg(arg, data);
 	return (t_kind);
 }

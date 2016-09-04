@@ -89,7 +89,7 @@ int			ft_get_size(char **args, char *opcode);
 int			ft_get_label_value(t_list *instructions, t_inst *inst, char *label);
 int			ft_get_prefix(int nb_args, char **args);
 int			ft_get_arg_type(char *arg);
-
+void		free_data(t_parse *data);
 void		ft_write_header(int fd, t_header *header);
 void		ft_write_instructions(int fd, t_list *instructions);
 
@@ -99,5 +99,7 @@ void		ft_debug_instruction(t_inst *instruction);
 void		ft_debug_header(t_header *header);
 
 t_parse		*malloc_me(void);
+int		ft_labelexist(t_parse *data);
+void		ft_free_and_exit(t_parse *data, char *line, int n);
 
 #endif

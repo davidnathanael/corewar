@@ -25,7 +25,7 @@ static void	ft_check_data(char *line, char *type, t_parse *data)
 	if (data_txt[i] == '"')
 		i++;
 	else
-		ft_error(1);
+		ft_free_and_exit(data, data_txt, 1);
 	while (data_txt[i] != '\0' && data_txt[i] != '"')
 		i++;
 	if (data_txt[i] == '"')
