@@ -26,12 +26,14 @@ static void	init(t_parse *data)
 	data->label = NULL;
 }
 
-static void	free_data(t_parse *data)
+void	free_data(t_parse *data)
 {
 	t_label	*c_label;
 
-	ft_memdel((void **)&data->name);
-	ft_memdel((void **)&data->comment);
+	if (data->name)
+		ft_memdel((void **)&data->name);
+	if (data->comment)
+		ft_memdel((void **)&data->comment);
 	while (data->label != NULL)
 	{
 		c_label = data->label;
@@ -40,34 +42,6 @@ static void	free_data(t_parse *data)
 		ft_memdel((void **)&c_label);
 	}
 	ft_memdel((void **)&data);
-}
-
-int	ft_labelchr(t_parse *data, char *name)
-{
-	t_label	*label;
-
-	label = data->label;
-	while (label)
-	{
-		if (label->kind && label->name && !ft_strcmp(label->name, name))
-			return	(1);
-		label = label->next;
-	}
-	return	(0);
-}
-
-int	ft_labelexist(t_parse *data)
-{
-	t_label	*label;
-
-	label = data->label;
-	while (label)
-	{
-		if (!label->kind && label->name && !ft_labelchr(data, label->name))
-			return (0);
-		label = label->next;
-	}
-	return (1);
 }
 
 void	ft_parse(char *file)
@@ -90,11 +64,10 @@ void	ft_parse(char *file)
 		else if (line_kind(line) >= 10 && data->header_is_parsed == 1)
 			ft_check_instr(line, line_kind(line) / 10, data);
 		else
-			ft_error(1);
-		free(line);
+			ft_free_and_exit(data, line, 1);
+		ft_strdel(&line);
 	}
-	if (!ft_labelexist(data))
-		ft_error(1);
-	(data->line_inst == 0) ? ft_error(2) : NULL;
+	!ft_labelexist(data) ? ft_free_and_exit(data, NULL, 1) : NULL;
+	(data->line_inst == 0) ? ft_free_and_exit(data, NULL, 2) : NULL;
 	free_data(data);
 }

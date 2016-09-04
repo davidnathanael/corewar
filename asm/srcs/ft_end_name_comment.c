@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-static int		get_end_name_comment(char *line)
+static int		get_end_name_comment(char *line, t_parse *data)
 {
 	int		i;
 	int		j;
@@ -32,7 +32,7 @@ static int		get_end_name_comment(char *line)
 			if (line[i] == ';' || line[i] == '#')
 				j = 1;
 			else
-				ft_error(1);
+				ft_free_and_exit(data, NULL, 1);
 		}
 		i++;
 	}
@@ -56,13 +56,13 @@ void			ft_end_name_comment(t_parse *data)
 	int		start;
 
 	start = get_start_name_comment(data->name);
-	end = get_end_name_comment(data->name);
+	end = get_end_name_comment(data->name, data);
 	tmp = ft_strdup(data->name);
 	ft_memdel((void **)&data->name);
 	data->name = ft_strsub(tmp, start, end - start - 1);
 	ft_memdel((void **)&tmp);
 	start = get_start_name_comment(data->comment);
-	end = get_end_name_comment(data->comment);
+	end = get_end_name_comment(data->comment, data);
 	tmp = ft_strdup(data->comment);
 	ft_memdel((void **)&data->comment);
 	data->comment = ft_strsub(tmp, start, end - start - 1);

@@ -70,12 +70,10 @@ t_list		*ft_get_instructions(int fd, t_header *header)
 	t_list		*instructions;
 	t_inst		*inst;
 	char		*line;
-	char		*prev_line;
 	int			kind;
 
 	instructions = NULL;
 	inst = NULL;
-	prev_line = NULL;
 	kind = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
@@ -84,7 +82,7 @@ t_list		*ft_get_instructions(int fd, t_header *header)
 			continue ;
 		if (line[0] != '\0' && (inst = ft_extract_instruction(line)) != NULL)
 		{
-			ft_lstappend(&instructions, ft_lstnew(inst, sizeof(*inst))); //leak of inst
+			ft_lstappend(&instructions, ft_lstnew(inst, sizeof(*inst)));
 			header->prog_size += inst->size;
 			// ft_debug_instruction(inst);
 			free(inst);

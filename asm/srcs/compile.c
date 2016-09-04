@@ -26,6 +26,27 @@ static char		*ft_get_new_file(char *old)
 	return (new);
 }
 
+void			ft_free_instructions(t_list *instructions)
+{
+	t_list	*tmp;
+	t_list	*ptmp;
+	t_inst	*inst;
+
+	tmp = instructions;
+	while (tmp)
+	{
+		ptmp = tmp->next;
+		inst = tmp->content;
+		ft_strdel(&(inst->label));
+		ft_strdel(&(inst->opcode));
+		if (inst->args)
+			ft_free_str_tab(inst->args);
+		free(inst);
+		free(tmp);
+		tmp = ptmp;
+	}
+}
+
 void			ft_compile(char *file, t_bool option_a)
 {
 	int			fd;
@@ -43,4 +64,6 @@ void			ft_compile(char *file, t_bool option_a)
 	ft_write_instructions(fd, instructions);
 	close(fd);
 	free(new_file);
+	free(header);
+	ft_free_instructions(instructions);
 }

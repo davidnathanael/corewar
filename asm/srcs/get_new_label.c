@@ -18,7 +18,7 @@ void		get_new_label(char *name, int kind, t_parse *data)
 	t_label		*new_label;
 
 	if (!(new_label = (t_label *)malloc(sizeof(t_label))))
-		ft_error(5);
+		ft_free_and_exit(data, name, 5);
 	if (data->label != NULL)
 	{
 		c_label = data->label;
