@@ -65,26 +65,26 @@ static void		ft_extract_champion(t_champion *champion,
 void			ft_get_champions(char **av, t_champion *champions, t_vm *vm)
 {
 	int		i;
-	int		champ_nb;
+	int		nb;
 
 	i = 0;
-	champ_nb = 0;
+	nb = 0;
 	while (av[++i])
 	{
 		if (ft_strcmp(av[i], "-d") == 0)
 			i++;
+		else if (ft_strcmp(av[i], "-m") == 0)
+			continue ;
 		else if (ft_strcmp(av[i], "-n") == 0)
 		{
-			champ_nb = ft_atoi(av[i + 1]);
-			ft_extract_champion(&champions[vm->nb_champs],
-								av[i + 2], champ_nb);
+			nb = ft_atoi(av[i + 1]);
+			ft_extract_champion(&champions[vm->nb_champs], av[i + 2], nb);
 			i += 2;
 			++vm->nb_champs;
 		}
 		else
 		{
-			ft_extract_champion(&champions[vm->nb_champs],
-								av[i], ++champ_nb);
+			ft_extract_champion(&champions[vm->nb_champs], av[i], ++nb);
 			++vm->nb_champs;
 		}
 	}

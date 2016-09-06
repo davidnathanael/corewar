@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/25 14:36:28 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/09/06 17:09:28 by ddela-cr         ###   ########.fr        #
+#    Updated: 2016/09/06 18:24:43 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCBASE		=	\
 				live_ld_st_add_sub.c										\
 				load_champion.c												\
 				main.c														\
+				options.c													\
 				parse_command.c												\
 				sti_lld_lldi.c												\
 				utils.c

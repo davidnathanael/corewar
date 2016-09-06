@@ -44,6 +44,7 @@ t_vm		*init_vm(void)
 	vm->cycle_in_current_period = 0;
 	vm->check_in_current_period = 0;
 	vm->dump = -1;
+	vm->mute = FALSE;
 	ft_memset(vm->memory, 0, MEM_SIZE);
 	init_champ(vm);
 	return (vm);

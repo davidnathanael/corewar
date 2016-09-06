@@ -82,9 +82,11 @@ typedef struct			s_vm
 	t_process			*process;
 	int					nb_process;
 	int					dump;
+	t_bool				mute;
 }						t_vm;
 
 void					ft_parse_command(char **av, t_vm *vm);
+t_bool					ft_handle_options(char *option, char ***ptr, t_vm *vm);
 void					ft_print_usage(void);
 void					ft_introduce_champs(t_vm *vm);
 t_vm					*init_vm();
@@ -120,7 +122,8 @@ void					ft_sti(t_args *args, t_vm *vm, t_process *process);
 void					ft_lld(t_args *args, t_vm *vm, t_process *process);
 void					ft_lldi(t_args *args, t_vm *vm, t_process *process);
 
-void					ft_redirect_op(t_args *args, t_vm *vm, t_process *process);
+void					ft_redirect_op(t_args *args, t_vm *vm,
+						t_process *process);
 
 int						ft_loop_memory(int value);
 t_bool					ft_check_reg_exist(t_args *args);
@@ -131,5 +134,5 @@ void					write_byte(int value, t_vm *vm, int number,
 
 void					ft_dump_memory(unsigned char *memory, int cursor,
 										int size);
-										
+
 #endif

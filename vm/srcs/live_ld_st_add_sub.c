@@ -23,8 +23,9 @@ void		ft_live(t_args *args, t_vm *vm, t_process *process)
 	{
 		if (vm->champions[i].champ_nb == args->values[0])
 		{
-			ft_printf("Un processus dit que le joueur %d (%s) est en vie\n",
-				vm->champions[i].champ_nb, vm->champions[i].name);
+			if (!vm->mute)
+				ft_printf("Un processus dit que le joueur %d (%s) est en vie\n",
+					vm->champions[i].champ_nb, vm->champions[i].name);
 			vm->champions[i].live = 1;
 			vm->last_champion_alive_number = vm->champions[i].champ_nb;
 			vm->last_champion_alive_name = ft_strdup(vm->champions[i].name);

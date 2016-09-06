@@ -99,13 +99,8 @@ void			ft_parse_command(char **av, t_vm *vm)
 	ft_bzero(champ_nb, sizeof(int) * MAX_PLAYERS);
 	while (*(++av))
 	{
-		if (ft_strcmp(*av, "-d") == 0)
-		{
-			if (ft_is_number(*(++av)))
-				vm->dump = ft_atoi(*(av));
-			else
-				ft_print_usage();
-		}
+		if (ft_handle_options(*av, &av, vm))
+			continue ;
 		else if (ft_strcmp(*av, "-n") == 0)
 			champ_nb[i] = ft_check_number(&av, av);
 		else
