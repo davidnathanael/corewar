@@ -57,7 +57,6 @@ static t_inst		*ft_extract_instruction(char *line)
 		instruction->is_label_only = TRUE;
 		return (instruction);
 	}
-	// ft_printf("line : |%s|\n", line);
 	instruction->opcode = ft_get_opcode(line, has_label);
 	instruction->nb_args = ft_get_op(instruction->opcode)->nb_args;
 	instruction->args = ft_get_args(line, instruction->opcode, has_label);

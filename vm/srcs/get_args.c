@@ -14,9 +14,9 @@
 
 static int		ft_get_value_size(int type, t_op *data)
 {
-	if (type == T_REG)
+	if (type == REG_CODE)
 		return (1);
-	else if (type == IND)
+	else if (type == IND_CODE)
 		return (2);
 	else
 		return (data->label_size);

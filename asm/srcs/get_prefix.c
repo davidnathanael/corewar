@@ -44,11 +44,11 @@ int		ft_get_prefix(int nb_args, char **args)
 		type = ft_get_arg_type(args[i]);
 		prefix = prefix << 2;
 		if (type == IS_REG)
-			prefix = prefix | T_REG;
+			prefix = prefix | REG_CODE;
 		else if (type == IS_DIR_VALUE || type == IS_DIR_LABEL)
-			prefix = prefix | T_DIR;
+			prefix = prefix | DIR_CODE;
 		else
-			prefix = prefix | 3;
+			prefix = prefix | IND_CODE;
 		i++;
 	}
 	return (prefix << (((3 - nb_args) * 2) + 2));
