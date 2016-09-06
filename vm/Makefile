@@ -31,13 +31,27 @@ LIBFT_LIB	=	../libft/libft.a
 FTPRINTF_LIB	=	../ft_printf/libftprintf.a
 
 SRCBASE		=	\
+				and_or_xor_zjmp_ldi.c										\
+				check_alive.c												\
+				check_header.c												\
+				doing_op.c													\
+				dump.c														\
+				exit_error.c												\
+				fork_lfork_aff.c											\
+				get_args.c													\
+				get_champions.c												\
+				init_vm.c													\
+				introduce_champs.c											\
+				launch_vm.c													\
+				live_ld_st_add_sub.c										\
+				load_champion.c												\
+				main.c														\
+				options.c													\
+				parse_command.c												\
+				sti_lld_lldi.c												\
+				utils.c
 
 INCBASE		=	\
-				asm.h														\
-				ft_printf.h													\
-				libft.h														\
-				op.h														\
-				vm.h
 
 SRCS		=	$(addprefix $(SRCDIR), $(SRCBASE))
 
