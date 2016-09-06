@@ -60,10 +60,10 @@ void	write_byte(long value, t_vm *vm, long number, t_process *process)
 	}
 }
 
-long	get_value_depending_on_type(int pos, t_args *args,
+int	get_value_depending_on_type(int pos, t_args *args,
 									t_process *process, t_vm *vm)
 {
-	long	value;
+	int	value;
 
 	value = 0;
 	if (args->types[pos] == T_REG)
@@ -77,7 +77,7 @@ long	get_value_depending_on_type(int pos, t_args *args,
 	return (value);
 }
 
-int		ft_check_reg_exist(t_args *args)
+t_bool		ft_check_reg_exist(t_args *args)
 {
 	int	i;
 
@@ -87,11 +87,11 @@ int		ft_check_reg_exist(t_args *args)
 		if (args->types[i] == T_REG)
 		{
 			if (args->values[i] < 1 || args->values[i] > REG_NUMBER)
-				return (0);
+				return (FALSE);
 		}
 		i++;
 	}
-	return (1);
+	return (TRUE);
 }
 
 int		ft_loop_memory(int value)

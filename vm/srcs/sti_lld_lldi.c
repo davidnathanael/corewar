@@ -14,8 +14,8 @@
 
 void		ft_sti(t_args *args, t_vm *vm, t_process *process)
 {
-	long	values[2];
-	long	addr;
+	int 	values[2];
+	int		addr;
 
 	if ((args->types[0] != T_REG) ||
 		(args->types[1] != T_DIR && args->types[1] != T_IND &&
@@ -63,9 +63,9 @@ void		ft_lld(t_args *args, t_vm *vm, t_process *process)
 
 void		ft_lldi(t_args *args, t_vm *vm, t_process *process)
 {
-	long	values[2];
-	long	value;
-	long	addr;
+	int		values[2];
+	int		value;
+	int		addr;
 
 	if ((args->types[0] != T_DIR && args->types[0] != T_IND &&
 		args->types[0] != T_REG) || (args->types[1] != T_DIR &&

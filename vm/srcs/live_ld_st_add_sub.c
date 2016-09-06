@@ -74,17 +74,13 @@ void		ft_st(t_args *args, t_vm *vm, t_process *process)
 		if (args->types[1] == T_REG)
 			process->reg[args->values[1] - 1] = value;
 		else if (args->types[1] == T_IND)
-		{
-			// if (value < 0)
-			// 	value += 256L * 256L * 256L * 256L;
 			write_byte(value, vm, args->values[1] % IDX_MOD, process);
-		}
 	}
 }
 
 void		ft_add(t_args *args, t_vm *vm, t_process *process)
 {
-	long	value;
+	int		value;
 
 	if (args->types[0] != T_REG || args->types[1] != T_REG ||
 		args->types[2] != T_REG)
@@ -96,7 +92,7 @@ void		ft_add(t_args *args, t_vm *vm, t_process *process)
 	{
 		value = process->reg[args->values[0] - 1] +
 				process->reg[args->values[1] - 1];
-		process->reg[args->values[2] - 1] = (int)value;
+		process->reg[args->values[2] - 1] = value;
 		if (value == 0)
 			process->carry = 1;
 		else
@@ -109,7 +105,7 @@ void		ft_add(t_args *args, t_vm *vm, t_process *process)
 
 void		ft_sub(t_args *args, t_vm *vm, t_process *process)
 {
-	long	value;
+	int		value;
 
 	if (args->types[0] != T_REG || args->types[1] != T_REG ||
 		args->types[2] != T_REG)
@@ -121,7 +117,7 @@ void		ft_sub(t_args *args, t_vm *vm, t_process *process)
 	{
 		value = process->reg[args->values[0] - 1] -
 				process->reg[args->values[1] - 1];
-		process->reg[args->values[2] - 1] = (int)value;
+		process->reg[args->values[2] - 1] = value;
 		if (value == 0)
 			process->carry = 1;
 		else

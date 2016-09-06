@@ -123,15 +123,13 @@ void					ft_lldi(t_args *args, t_vm *vm, t_process *process);
 
 void 					ft_dump_memory(unsigned char *memory, int cursor, int size);
 
-int		ft_loop_memory(int value);
-int		handle_coding_byte(int cursor, t_vm *vm, int op);
-int		ft_check_reg_exist(t_args *args);
-long	get_value_depending_on_type(int pos, t_args *args,
+int						ft_loop_memory(int value);
+t_bool					ft_check_reg_exist(t_args *args);
+int						get_value_depending_on_type(int pos, t_args *args,
 									t_process *process, t_vm *vm);
-void	write_byte(long value, t_vm *vm, long number, t_process *process);
-int		get_argument_type(char *bin);
+void					write_byte(long value, t_vm *vm, long number, t_process *process);
 
-void	ft_doing_op(t_args *args, t_vm *vm, t_process *process);
+void					ft_doing_op(t_args *args, t_vm *vm, t_process *process);
 
 
 #endif

@@ -14,8 +14,8 @@
 
 void		ft_and(t_args *args, t_vm *vm, t_process *process)
 {
-	long	value1;
-	long	value2;
+	int		value1;
+	int		value2;
 
 	if ((args->types[0] != T_DIR && args->types[0] != T_IND &&
 									args->types[0] != T_REG) ||
@@ -30,7 +30,7 @@ void		ft_and(t_args *args, t_vm *vm, t_process *process)
 	{
 		value1 = get_value_depending_on_type(0, args, process, vm);
 		value2 = get_value_depending_on_type(1, args, process, vm);
-		process->reg[args->values[2] - 1] = (int)(value1 & value2);
+		process->reg[args->values[2] - 1] = (value1 & value2);
 		if (process->reg[args->values[2] - 1] == 0)
 			process->carry = 1;
 		else
@@ -42,8 +42,8 @@ void		ft_and(t_args *args, t_vm *vm, t_process *process)
 
 void		ft_or(t_args *args, t_vm *vm, t_process *process)
 {
-	long	value1;
-	long	value2;
+	int		value1;
+	int		value2;
 
 	if ((args->types[0] != T_DIR && args->types[0] != T_IND &&
 									args->types[0] != T_REG) ||
@@ -58,7 +58,7 @@ void		ft_or(t_args *args, t_vm *vm, t_process *process)
 	{
 		value1 = get_value_depending_on_type(0, args, process, vm);
 		value2 = get_value_depending_on_type(1, args, process, vm);
-		process->reg[args->values[2] - 1] = (int)(value1 | value2);
+		process->reg[args->values[2] - 1] = (value1 | value2);
 		if (process->reg[args->values[2] - 1] == 0)
 			process->carry = 1;
 		else
@@ -70,8 +70,8 @@ void		ft_or(t_args *args, t_vm *vm, t_process *process)
 
 void		ft_xor(t_args *args, t_vm *vm, t_process *process)
 {
-	long	value1;
-	long	value2;
+	int		value1;
+	int		value2;
 
 	if ((args->types[0] != T_DIR && args->types[0] != T_IND &&
 									args->types[0] != T_REG) ||
@@ -86,7 +86,7 @@ void		ft_xor(t_args *args, t_vm *vm, t_process *process)
 	{
 		value1 = get_value_depending_on_type(0, args, process, vm);
 		value2 = get_value_depending_on_type(1, args, process, vm);
-		process->reg[args->values[2] - 1] = (int)(value1 ^ value2);
+		process->reg[args->values[2] - 1] = (value1 ^ value2);
 		if (process->reg[args->values[2] - 1])
 			process->carry = 0;
 		else
@@ -108,8 +108,8 @@ void		ft_zjmp(t_args *args, t_vm *vm, t_process *process)
 
 void		ft_ldi(t_args *args, t_vm *vm, t_process *process)
 {
-	long	values[2];
-	long	addr;
+	int		values[2];
+	int		addr;
 	int		value;
 
 	if ((args->types[0] != T_DIR && args->types[0] != T_IND &&
