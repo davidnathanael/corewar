@@ -19,24 +19,22 @@
 # include "op.h"
 # include <limits.h>
 
-# define		LIVE 		1
-# define		LD			2
-# define		ST			3
-# define		ADD			4
-# define		SUB			5
-# define		AND			6
-# define		OR			7
-# define		XOR			8
-# define		ZJMP		9
-# define		LDI			10
-# define		STI			11
-# define		FORK		12
-# define		LLD			13
-# define		LLDI		14
-# define		LFORK		15
-# define		AFF			16
-
-
+# define LIVE 			1
+# define LD				2
+# define ST				3
+# define ADD			4
+# define SUB			5
+# define AND			6
+# define OR				7
+# define XOR			8
+# define ZJMP			9
+# define LDI			10
+# define STI			11
+# define FORK			12
+# define LLD			13
+# define LLDI			14
+# define LFORK			15
+# define AFF			16
 
 typedef struct			s_args
 {
@@ -91,17 +89,18 @@ void					ft_print_usage(void);
 void					ft_introduce_champs(t_vm *vm);
 t_vm					*init_vm();
 
-void					ft_get_champions(char **av, t_champion *champions, t_vm *vm);
+void					ft_get_champions(char **av, t_champion *champions,
+										t_vm *vm);
 void					ft_check_header(int fd, char *file);
 
 void					ft_load_champions(t_vm *vm);
+void					ft_introduce_champs(t_vm *vm);
 
 void					ft_launch_vm(t_vm *vm);
 void					ft_check_alive(t_vm *vm);
 
 void					ft_exit_error(char *error, char *var);
 int						ft_get_value(unsigned char *encoded, int size);
-t_op					*ft_get_op_data(int op);
 t_args					*ft_get_args(t_vm *vm, t_process *process, t_op *data);
 
 void					ft_and(t_args *args, t_vm *vm, t_process *process);
@@ -121,15 +120,16 @@ void					ft_sti(t_args *args, t_vm *vm, t_process *process);
 void					ft_lld(t_args *args, t_vm *vm, t_process *process);
 void					ft_lldi(t_args *args, t_vm *vm, t_process *process);
 
-void 					ft_dump_memory(unsigned char *memory, int cursor, int size);
+void					ft_redirect_op(t_args *args, t_vm *vm, t_process *process);
 
 int						ft_loop_memory(int value);
 t_bool					ft_check_reg_exist(t_args *args);
 int						get_value_depending_on_type(int pos, t_args *args,
 									t_process *process, t_vm *vm);
-void					write_byte(long value, t_vm *vm, long number, t_process *process);
+void					write_byte(int value, t_vm *vm, int number,
+									t_process *process);
 
-void					ft_doing_op(t_args *args, t_vm *vm, t_process *process);
-
-
+void					ft_dump_memory(unsigned char *memory, int cursor,
+										int size);
+										
 #endif

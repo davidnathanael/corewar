@@ -13,27 +13,41 @@
 #include "vm.h"
 #include <time.h>
 
+static t_op		*ft_get_op_data(int op)
+{
+	int		i;
+
+	i = 0;
+	while (g_op_tab[i].name != NULL)
+	{
+		if (g_op_tab[i].code == op)
+			return (&g_op_tab[i]);
+		i++;
+	}
+	return (NULL);
+}
+
 static void		ft_get_pc(t_process *process)
 {
 	process->pc += process->op_size;
 	process->op_size = 1;
 }
 
-void	ft_execute(t_vm *vm, t_process *process)
+void			ft_execute(t_vm *vm, t_process *process)
 {
 	t_op	*op;
 	t_args	*args;
 
 	op = ft_get_op_data(process->waiting_op);
 	args = ft_get_args(vm, process, op);
-	ft_doing_op(args, vm, process);
+	ft_redirect_op(args, vm, process);
 	process->is_waiting = FALSE;
 	if (process->waiting_op != ZJMP)
 		ft_get_pc(process);
 	process->waiting_op = 0;
 }
 
-void	ft_do_process(t_vm *vm)
+void			ft_do_process(t_vm *vm)
 {
 	t_process	*process;
 
@@ -44,11 +58,10 @@ void	ft_do_process(t_vm *vm)
 		{
 			if (vm->memory[process->pc] > 0 && vm->memory[process->pc] < 17)
 			{
-			//ft_printf("waiting_op = %d || Pc = %d\n", vm->memory[process->pc], process->pc);
-			process->waiting_op = vm->memory[process->pc];
-			//ft_debug_memory(vm->memory, 0, 50);
-			process->cycle_to_wait = ft_get_op_data(process->waiting_op)->cycle;
-			process->is_waiting = TRUE;
+				process->waiting_op = vm->memory[process->pc];
+				process->cycle_to_wait =
+				ft_get_op_data(process->waiting_op)->cycle;
+				process->is_waiting = TRUE;
 			}
 			else
 				process->pc++;
@@ -62,7 +75,7 @@ void	ft_do_process(t_vm *vm)
 	}
 }
 
-void	ft_launch_vm(t_vm *vm)
+void			ft_launch_vm(t_vm *vm)
 {
 	int		cycles;
 

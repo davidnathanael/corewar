@@ -14,9 +14,12 @@
 
 void	ft_dump_memory(unsigned char *memory, int cursor, int size)
 {
-	int	i = 0;
+	int	i;
+
+	i = 0;
 	ft_printf("\e[2J\e[H");
-	ft_printf("{red}================{eoc}\nDebugging memory from %d for %d octets...\n\n", cursor, size);
+	ft_printf("{red}==============================={eoc}\n");
+	ft_printf("Debugging memory from %d for %d octets...\n\n", cursor, size);
 	while (i < size)
 	{
 		if ((i + cursor) >= MEM_SIZE)
@@ -29,6 +32,6 @@ void	ft_dump_memory(unsigned char *memory, int cursor, int size)
 		ft_printf("%02X ", memory[i + cursor]);
 		i++;
 	}
-	ft_printf("\n{red}================{eoc}\n\n");
+	ft_printf("\n{red}==============================={eoc}\n\n");
 	exit(0);
 }

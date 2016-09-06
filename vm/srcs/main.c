@@ -14,21 +14,9 @@
 
 void		ft_print_usage(void)
 {
-	ft_putstr("Usage: ./corewar [-d unsigned int] [-n nb_player] <champion.cor>\n");
+	ft_putstr("Usage: ./corewar [-d unsigned int] ");
+	ft_putstr("[-n nb_player] <champion.cor>\n");
 	exit(-1);
-}
-
-void		ft_debug_champions(t_champion *champions, t_vm *vm)
-{
-	int		i;
-
-	i = 0;
-	while (i < MAX_PLAYERS)
-	{
-		ft_printf("Le nom du champion numero {red}%d{eoc} est %s\nSon commentaire est : %s\nLa size de sa data est : %d\n", champions[i].champ_nb, champions[i].name, champions[i].comment, champions[i].data_size);
-		i++;
-	}
-	ft_printf("Le nombre total de champions est de %d\n", vm->nb_champs);
 }
 
 int			main(int ac, char **av)
@@ -40,10 +28,10 @@ int			main(int ac, char **av)
 	vm = init_vm();
 	ft_parse_command(av, vm);
 	ft_get_champions(av, vm->champions, vm);
-//	ft_debug_champions(vm->champions, vm);
 	ft_load_champions(vm);
-	// ft_introduce_champs(vm);
+	ft_introduce_champs(vm);
 	ft_launch_vm(vm);
-	printf("Le gagnant est le joueur %s qui porte le numero %d\n", vm->last_champion_alive_name, vm->last_champion_alive_number);
+	printf("Le gagnant est le joueur %s qui porte le numero %d\n",
+		vm->last_champion_alive_name, vm->last_champion_alive_number);
 	return (0);
 }

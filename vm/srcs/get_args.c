@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-static int	ft_get_value_size(int type, t_op *data)
+static int		ft_get_value_size(int type, t_op *data)
 {
 	if (type == T_REG)
 		return (1);
@@ -22,7 +22,8 @@ static int	ft_get_value_size(int type, t_op *data)
 		return (data->label_size);
 }
 
-static void	ft_get_args_values(t_vm *vm, t_process *process, t_op *data, t_args *args)
+static void		ft_get_args_values(t_vm *vm, t_process *process,
+									t_op *data, t_args *args)
 {
 	int			i;
 	int			cursor;
@@ -32,7 +33,6 @@ static void	ft_get_args_values(t_vm *vm, t_process *process, t_op *data, t_args 
 	cursor = (process->pc + data->has_encoding) + 1;
 	process->op_size = (data->has_encoding) ? 2 : 1;
 	size = 0;
-	// ft_debug_memory(vm->memory, cursor, 10);
 	while (i < args->nb_args)
 	{
 		size = ft_get_value_size(args->types[i], data);
@@ -43,7 +43,8 @@ static void	ft_get_args_values(t_vm *vm, t_process *process, t_op *data, t_args 
 	}
 }
 
-static void	ft_get_args_type(t_vm *vm, t_process *process, t_op *data, t_args *args)
+static void		ft_get_args_type(t_vm *vm, t_process *process,
+									t_op *data, t_args *args)
 {
 	int			cursor;
 	int			offset;
@@ -63,13 +64,11 @@ static void	ft_get_args_type(t_vm *vm, t_process *process, t_op *data, t_args *a
 	}
 	else
 		args->types[i] = T_DIR;
-
 }
 
-t_args	*ft_get_args(t_vm *vm, t_process *process, t_op *data)
+t_args			*ft_get_args(t_vm *vm, t_process *process, t_op *data)
 {
 	t_args		*args;
-	int			i;
 
 	if (!(args = (t_args *)ft_memalloc(sizeof(t_args))))
 		ft_exit_error("Malloc args failed.", NULL);
@@ -78,11 +77,5 @@ t_args	*ft_get_args(t_vm *vm, t_process *process, t_op *data)
 	ft_bzero(args->values, sizeof(int) * MAX_ARGS_NUMBER);
 	ft_get_args_type(vm, process, data, args);
 	ft_get_args_values(vm, process, data, args);
-	i = 0;
-	// while (i < 4)
-	// {
-	// 	ft_printf("i : %d | type : %d | value : %d\n", i, args->types[i], args->values[i]);
-	// 	i++;
-	// }
 	return (args);
 }

@@ -12,26 +12,8 @@
 
 #include "vm.h"
 
-void	ft_debug_mem(t_vm *vm)
-{
-	int		i;
-
-	i = 0;
-	while (i != MEM_SIZE)
-	{
-		ft_printf("%02x ", vm->memory[i++]);
-		if (i % (MEM_SIZE / 64) == 0)
-			ft_putchar('\n');
-	}
-
-	while (vm->process)
-	{
-		ft_printf("reg[0]  = %d\npc = %d %02x\n", vm->process->reg[0], vm->process->pc, vm->memory[vm->process->pc]);
-		vm->process = vm->process->next;
-	}
-}
-
-t_process	*ft_init_process(t_process *process, t_champion *champion, int cursor)
+t_process	*ft_init_process(t_process *process, t_champion *champion,
+							int cursor)
 {
 	t_process	*new;
 
@@ -56,7 +38,7 @@ t_process	*ft_init_process(t_process *process, t_champion *champion, int cursor)
 	return (new);
 }
 
-void	ft_load_champions(t_vm *vm)
+void		ft_load_champions(t_vm *vm)
 {
 	int		size;
 	int		cursor;
@@ -67,7 +49,8 @@ void	ft_load_champions(t_vm *vm)
 	i = 0;
 	while (i < vm->nb_champs)
 	{
-		ft_memcpy(&(vm->memory[cursor]), vm->champions[i].data, vm->champions[i].data_size);
+		ft_memcpy(&(vm->memory[cursor]), vm->champions[i].data,
+				vm->champions[i].data_size);
 		vm->process = ft_init_process(vm->process, &(vm->champions[i]), cursor);
 		vm->nb_process++;
 		i++;

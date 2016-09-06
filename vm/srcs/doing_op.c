@@ -12,23 +12,23 @@
 
 #include "vm.h"
 
-static void	ft_doing_op_2(t_args *args, t_vm *vm, t_process *process)
+static void	ft_redirect_op_2(t_args *args, t_vm *vm, t_process *process)
 {
 	if (process->waiting_op == STI)
-	ft_sti(args, vm, process);
+		ft_sti(args, vm, process);
 	else if (process->waiting_op == FORK)
-	ft_fork(args, vm, process);
+		ft_fork(args, vm, process);
 	else if (process->waiting_op == LLD)
-	ft_lld(args, vm, process);
+		ft_lld(args, vm, process);
 	else if (process->waiting_op == LLDI)
-	ft_lldi(args, vm, process);
+		ft_lldi(args, vm, process);
 	else if (process->waiting_op == LFORK)
-	ft_lfork(args, vm, process);
+		ft_lfork(args, vm, process);
 	else if (process->waiting_op == AFF)
-	ft_aff(args, vm, process);
+		ft_aff(args, vm, process);
 }
 
-void	ft_doing_op(t_args *args, t_vm *vm, t_process *process)
+void		ft_redirect_op(t_args *args, t_vm *vm, t_process *process)
 {
 	if (process->waiting_op == LIVE)
 		ft_live(args, vm, process);
@@ -51,5 +51,5 @@ void	ft_doing_op(t_args *args, t_vm *vm, t_process *process)
 	else if (process->waiting_op == LDI)
 		ft_ldi(args, vm, process);
 	else
-		ft_doing_op_2(args, vm, process);
+		ft_redirect_op_2(args, vm, process);
 }

@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 11:28:54 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/26 10:41:21 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/09/06 17:59:22 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdint.h>
 # include <stdlib.h>
 # include <wchar.h>
-# include "../ft_printf/includes/printf.h"
+# include "../includes/ft_printf.h"
 
 # define GNL_BUFF_SIZE 1024
 # define GNL_READ 1

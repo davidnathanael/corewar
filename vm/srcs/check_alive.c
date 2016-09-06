@@ -52,10 +52,10 @@ void	ft_restart_lives(t_vm *vm, t_champion *champions, t_process *process)
 void	ft_check_alive(t_vm *vm)
 {
 	/*
-	On check si des champions sont morts; !!
-	Si lives_in_current period > NBR | cycle_to_die -= CYCLE_DELTA;
-	si check_in_current_period == MAX_CHECK | cycle_to_die -= CYCLE_DELTA;
-	On met les lives des process et champs a 0 !
+	** On check si des champions sont morts; !!
+	** Si lives_in_current period > NBR | cycle_to_die -= CYCLE_DELTA;
+	** si check_in_current_period == MAX_CHECK | cycle_to_die -= CYCLE_DELTA;
+	** On met les lives des process et champs a 0 !
 	*/
 	//ft_sanitize(vm->process);
 	vm->check_in_current_period++;

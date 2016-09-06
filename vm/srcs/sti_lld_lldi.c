@@ -14,7 +14,7 @@
 
 void		ft_sti(t_args *args, t_vm *vm, t_process *process)
 {
-	int 	values[2];
+	int		values[2];
 	int		addr;
 
 	if ((args->types[0] != T_REG) ||
@@ -72,14 +72,14 @@ void		ft_lldi(t_args *args, t_vm *vm, t_process *process)
 		args->types[1] != T_REG) || args->types[2] != T_REG)
 	{
 		process->carry = 0;
-		return ;
 	}
-	if (ft_check_reg_exist(args))
+	else if (ft_check_reg_exist(args))
 	{
 		values[0] = get_value_depending_on_type(0, args, process, vm);
 		values[1] = get_value_depending_on_type(1, args, process, vm);
 		addr = values[0] + values[1];
-		value = ft_get_value(&vm->memory[ft_loop_memory(process->pc + addr)], 4);
+		value = ft_get_value(&vm->memory[ft_loop_memory(process->pc + addr)],
+														4);
 		process->reg[args->values[2] - 1] = value;
 		if (value == 0)
 			process->carry = 1;

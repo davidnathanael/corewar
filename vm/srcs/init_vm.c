@@ -28,7 +28,7 @@ void		init_champ(t_vm *vm)
 	}
 }
 
-t_vm		*init_vm()
+t_vm		*init_vm(void)
 {
 	t_vm	*vm;
 	int		i;

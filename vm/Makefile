@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/25 14:36:28 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/09/03 14:35:26 by ddela-cr         ###   ########.fr        #
+#    Updated: 2016/09/06 17:09:28 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCBASE		=	\
 				get_args.c													\
 				get_champions.c												\
 				init_vm.c													\
+				introduce_champs.c											\
 				launch_vm.c													\
 				live_ld_st_add_sub.c										\
 				load_champion.c												\

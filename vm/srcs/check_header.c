@@ -46,17 +46,15 @@ void			ft_check_header(int fd, char *file)
 		ft_exit_error("Incorrect header : Program name too short", NULL);
 	size = read(fd, buf, 4);
 	if (size != 4)
-		ft_exit_error("Incorrect header : Program size not correctly encoded", NULL);
+		ft_exit_error("Incorrect header : Program size corrupted", NULL);
 	else if (size == 4)
 	{
 		if (ft_get_value(buf, 4) < 0)
-			ft_exit_error("Incorrect header : indicates size of (below) 0", NULL);
+			ft_exit_error("Incorrect header : indicates negative size", NULL);
 		else if (ft_get_value(buf, 4) > CHAMP_MAX_SIZE)
-			ft_exit_error("Incorrect header : indicates a size greater than CHAMP_MAX_SIZE`", NULL);
+			ft_exit_error("Incorrect header : indicated size is too big", NULL);
 	}
 	size = read(fd, buf, COMMENT_LENGTH + 4);
 	if (size != COMMENT_LENGTH + 4)
 		ft_exit_error("Incorrect header : Program comment too short", NULL);
-
-
 }

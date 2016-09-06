@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  <ddela-cr@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 10:48:40 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/01 08:13:18 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/09/06 17:27:08 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static void	ft_check_numbers(int *champ_nb)
+static void		ft_check_numbers(int *champ_nb)
 {
 	int		nb;
 	int		i;
@@ -26,9 +26,12 @@ static void	ft_check_numbers(int *champ_nb)
 		while (j < MAX_PLAYERS)
 		{
 			if (champ_nb[j] > MAX_PLAYERS)
-				ft_exit_error("Champion number greater than MAX_PLAYERS : ", ft_itoa(champ_nb[j]));
-			if (i != j && champ_nb[i] == champ_nb[j] && champ_nb[i] != 0 && champ_nb[j] != 0)//On check les slots non attribuer a des champions ce qui fait planter le programme !! Fixer pour le moment avec les deux derniers arguments du While !!
-				ft_exit_error("Duplicate champion number : ", ft_itoa(champ_nb[i]));
+				ft_exit_error("Champion number greater than MAX_PLAYERS : ",
+								ft_itoa(champ_nb[j]));
+			if (i != j && champ_nb[i] == champ_nb[j]
+					&& champ_nb[i] != 0 && champ_nb[j] != 0)
+				ft_exit_error("Duplicate champion number : ",
+								ft_itoa(champ_nb[i]));
 			j++;
 		}
 		j = 0;
@@ -77,7 +80,7 @@ static int		ft_check_number(char ***ptr, char **av)
 
 	i = 0;
 	ret = 0;
-	while(av[i])
+	while (av[i])
 		i++;
 	if (i <= 2)
 		ft_print_usage();
@@ -108,7 +111,8 @@ void			ft_parse_command(char **av, t_vm *vm)
 		else
 			champ_nb[i] = ft_check_file(*av, champ_nb);
 		if (++i > MAX_PLAYERS)
-			ft_exit_error("Too much players, max players : ", ft_itoa(MAX_PLAYERS));
+			ft_exit_error("Too much players, max players : ",
+							ft_itoa(MAX_PLAYERS));
 	}
 	ft_check_numbers(champ_nb);
 }

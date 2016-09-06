@@ -24,7 +24,6 @@ void		ft_fork(t_args *args, t_vm *vm, t_process *process)
 	new->cycle_to_wait = 0;
 	new->waiting_op = 0;
 	new->pc = ft_loop_memory((process->pc + (args->values[0] % IDX_MOD)));
-	// new->num = vm->nb_process;
 	new->prev = NULL;
 	process->is_waiting = 0;
 	i = 0;
@@ -51,7 +50,6 @@ void		ft_lfork(t_args *args, t_vm *vm, t_process *process)
 	new->waiting_op = 0;
 	new->cycle_to_wait = 0;
 	new->pc = ft_loop_memory(process->pc + args->values[0]);
-	// new->num = vm->nb_process;
 	new->prev = NULL;
 	i = 0;
 	while (i < REG_NUMBER)

@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-int				ft_get_value(unsigned char *encoded, int size)
+int			ft_get_value(unsigned char *encoded, int size)
 {
 	int		value;
 	int		initial_size;
@@ -31,36 +31,7 @@ int				ft_get_value(unsigned char *encoded, int size)
 	return (value);
 }
 
-t_op	*ft_get_op_data(int op)
-{
-	int		i;
-
-	i = 0;
-	while (g_op_tab[i].name != NULL)
-	{
-		if (g_op_tab[i].code == op)
-			return (&g_op_tab[i]);
-		i++;
-	}
-	return (NULL);
-}
-
-void	write_byte(long value, t_vm *vm, long number, t_process *process)
-{
-	int		i;
-	int		offset;
-
-	i = 0;
-	offset = 24;
-	while (i < 4)
-	{
-		vm->memory[ft_loop_memory(process->pc + number + i)] = (value >> offset) & 0xff;
-		offset -= 8;
-		i++;
-	}
-}
-
-int	get_value_depending_on_type(int pos, t_args *args,
+int			get_value_depending_on_type(int pos, t_args *args,
 									t_process *process, t_vm *vm)
 {
 	int	value;
@@ -75,6 +46,22 @@ int	get_value_depending_on_type(int pos, t_args *args,
 		value = args->values[pos];
 	process->carry = 1;
 	return (value);
+}
+
+void		write_byte(int value, t_vm *vm, int number, t_process *process)
+{
+	int		i;
+	int		offset;
+
+	i = 0;
+	offset = 24;
+	while (i < 4)
+	{
+		vm->memory[ft_loop_memory(process->pc + number + i)] =
+											(value >> offset) & 0xff;
+		offset -= 8;
+		i++;
+	}
 }
 
 t_bool		ft_check_reg_exist(t_args *args)
@@ -94,7 +81,7 @@ t_bool		ft_check_reg_exist(t_args *args)
 	return (TRUE);
 }
 
-int		ft_loop_memory(int value)
+int			ft_loop_memory(int value)
 {
 	int		ret;
 
