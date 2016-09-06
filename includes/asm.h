@@ -101,5 +101,6 @@ void		ft_debug_header(t_header *header);
 t_parse		*malloc_me(void);
 int		ft_labelexist(t_parse *data);
 void		ft_free_and_exit(t_parse *data, char *line, int n);
+int		ft_check_separator(char *tmp);
 
 #endif

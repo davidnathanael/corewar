@@ -47,6 +47,8 @@ static int	check_t_dir(char *arg, t_parse *data)
 			if (!ft_isdigit(arg[i]))
 				ft_free_and_exit(data, arg, 6);
 	}
+	else
+		ft_free_and_exit(data, arg, 6);
 	return(T_DIR);
 }
 

@@ -57,7 +57,7 @@ SRCBASE		=	\
 				write_header.c												\
 				write_instructions.c												\
 				ft_labelexist.c												\
-				ft_free_and_exit.c
+				ft_check_separator.c
 INCBASE		=	\
 
 SRCS		=	$(addprefix $(SRCDIR), $(SRCBASE))
