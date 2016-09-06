@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/25 14:36:28 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/09/06 18:24:43 by ddela-cr         ###   ########.fr        #
+#    Updated: 2016/09/06 18:59:58 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,27 +31,13 @@ LIBFT_LIB	=	../libft/libft.a
 FTPRINTF_LIB	=	../ft_printf/libftprintf.a
 
 SRCBASE		=	\
-				and_or_xor_zjmp_ldi.c										\
-				check_alive.c												\
-				check_header.c												\
-				doing_op.c													\
-				dump.c														\
-				exit_error.c												\
-				fork_lfork_aff.c											\
-				get_args.c													\
-				get_champions.c												\
-				init_vm.c													\
-				introduce_champs.c											\
-				launch_vm.c													\
-				live_ld_st_add_sub.c										\
-				load_champion.c												\
-				main.c														\
-				options.c													\
-				parse_command.c												\
-				sti_lld_lldi.c												\
-				utils.c
 
 INCBASE		=	\
+				asm.h														\
+				ft_printf.h													\
+				libft.h														\
+				op.h														\
+				vm.h
 
 SRCS		=	$(addprefix $(SRCDIR), $(SRCBASE))
 
@@ -69,7 +55,7 @@ $(NAME):	$(OBJS)
 	echo -en "\r\033[38;5;22m☑️  MAKE   $(NAMEBASE)\033[0m\033[K"
 
 $(OBJS):	$(SRCS) $(INCS)
-	printf "\r\033[38;5;11m⌛  MAKE   $(NAMEBASE) plz wait ...\033[0m\033[K"
+	printf "\r\033[38;5;11m⌛  MAKE   $(NAMEBASE) please wait ...\033[0m\033[K"
 	mkdir -p $(OBJDIR)
 	(cd $(OBJDIR);															\
 	$(CC) $(FLAGS) -c $(addprefix ../, $(SRCS))								\
@@ -77,7 +63,7 @@ $(OBJS):	$(SRCS) $(INCS)
 	-I $(addprefix ../, $(INCDIR)))
 
 clean:
-	printf "\r\033[38;5;11m⌛  CLEAN  $(NAMEBASE) plz wait ...\033[0m\033[K"
+	printf "\r\033[38;5;11m⌛  CLEAN  $(NAMEBASE) please wait ...\033[0m\033[K"
 	if [[ `rm -R $(OBJDIR) &> /dev/null 2>&1; echo $$?` == "0" ]]; then		\
 		echo -en "\r\033[38;5;124m🔘  CLEAN  $(NAMEBASE)\033[0m\033[K";		\
 	else																	\
@@ -85,7 +71,7 @@ clean:
 	fi
 
 fclean:		clean
-	printf "\r\033[38;5;11m⌛  FCLEAN $(NAMEBASE) plz wait ...\033[0m\033[K"
+	printf "\r\033[38;5;11m⌛  FCLEAN $(NAMEBASE) please wait ...\033[0m\033[K"
 	if [[ `rm $(NAME) &> /dev/null 2>&1; echo $$?` == "0" ]]; then			\
 		echo -en "\r\033[38;5;124m🔘  FCLEAN $(NAMEBASE)\033[0m\033[K";		\
 	else																	\
