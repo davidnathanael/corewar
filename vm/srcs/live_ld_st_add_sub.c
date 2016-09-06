@@ -63,7 +63,7 @@ void		ft_ld(t_args *args, t_vm *vm, t_process *process)
 
 void		ft_st(t_args *args, t_vm *vm, t_process *process)
 {
-	long	value;
+	int	value;
 
 	if (args->types[0] != T_REG ||
 		(args->types[1] != T_IND && args->types[1] != T_REG))
@@ -75,8 +75,8 @@ void		ft_st(t_args *args, t_vm *vm, t_process *process)
 			process->reg[args->values[1] - 1] = value;
 		else if (args->types[1] == T_IND)
 		{
-			if (value < 0)
-				value += 256L * 256L * 256L * 256L;
+			// if (value < 0)
+			// 	value += 256L * 256L * 256L * 256L;
 			write_byte(value, vm, args->values[1] % IDX_MOD, process);
 		}
 	}

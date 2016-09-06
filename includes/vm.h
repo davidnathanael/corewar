@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include "libft.h"
 # include "op.h"
+# include <limits.h>
 
 # define		LIVE 		1
 # define		LD			2
@@ -131,9 +132,6 @@ void	write_byte(long value, t_vm *vm, long number, t_process *process);
 int		get_argument_type(char *bin);
 
 void	ft_doing_op(t_args *args, t_vm *vm, t_process *process);
-
-int		get_int_from_bytes(t_vm *vm, t_process *process, int addr);
-int		get_int_from_two_bytes(t_vm *vm, t_process *process, int addr);
 
 
 #endif

@@ -124,7 +124,7 @@ void		ft_ldi(t_args *args, t_vm *vm, t_process *process)
 		values[0] = get_value_depending_on_type(0, args, process, vm);
 		values[1] = get_value_depending_on_type(1, args, process, vm);
 		addr = values[0] + values[1];
-		value = get_int_from_bytes(vm, process, addr % IDX_MOD);
+		value = ft_get_value(&vm->memory[ft_loop_memory(process->pc + addr % IDX_MOD)], 4);
 		process->reg[args->values[2] - 1] = value;
 		if (value == 0)
 			process->carry = 1;
