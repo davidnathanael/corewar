@@ -15,14 +15,26 @@
 static int	check_t_ind(char *arg, t_parse *data)
 {
 	int		i;
+	char		*label_name;
 
-	i = (arg[0] == '-') ? 1 : 0;
-	while (arg[i] != '\0')
+	i = 0;
+	if (arg[i] == LABEL_CHAR && arg[i + 1])
 	{
-		if (!ft_isdigit(arg[i]))
+		label_name = ft_strsub(arg, i + 1, ft_strlen(arg) - i - 1);
+		get_new_label(label_name, A_VERIF, data);
+		ft_memdel((void**)&label_name);
+	}
+	else
+	{
+		i = (arg[0] == '-') ? 1 : 0;
+		if (!arg[i])
 			ft_free_and_exit(data, arg, 6);
-		else
+		while (arg[i] != '\0')
+		{
+			if (!ft_isdigit(arg[i]))
+				ft_free_and_exit(data, arg, 6);
 			i++;
+		}
 	}
 	return (T_IND);
 }
@@ -75,9 +87,9 @@ int			get_kind_arg(char *arg, t_parse *data)
 	int		t_kind;
 
 	t_kind = 0;
-	if (ft_isdigit(arg[0]) || ((arg[0] == '-') && arg[1] && ft_isdigit(arg[1])))
+	if (ft_isdigit(arg[0]) || ((arg[0] == '-') && arg[1] && ft_isdigit(arg[1])) || arg[0] == LABEL_CHAR)
 		t_kind = check_t_ind(arg, data);
-	else if (arg[0] == '%')
+	else if (arg[0] == DIRECT_CHAR)
 		t_kind = check_t_dir(arg, data);
 	else if (arg[0] == 'r')
 		t_kind = check_t_reg(arg, data);
