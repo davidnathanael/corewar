@@ -14,27 +14,15 @@
 
 char	*ft_get_label(char *line)
 {
-	char	*label_char_pos;
-	int		len;
+	int	i;
+	char	*tmp;
 
-	len = 0;
-	label_char_pos = ft_strchr(line, LABEL_CHAR);
-	if (label_char_pos != NULL)
-	{
-		if (*(--label_char_pos) != DIRECT_CHAR)
-		{
-			while (line && ft_isspace(*line))
-				++line;
-			len = label_char_pos - line;
-			while (label_char_pos != line)
-			{
-				if (*label_char_pos == SEPARATOR_CHAR)
-					return (NULL);
-				--label_char_pos;
-			}
-			return (ft_strsub(line, 0, len + 1));
-		}
-	}
+	i = 0;
+	tmp = ft_strtrim(line);
+	while (tmp[i] && ft_strchr(LABEL_CHARS, tmp[i]))
+		i++;
+	if (tmp[i] == LABEL_CHAR)
+		return (ft_strsub(tmp, 0, i));
 	return (NULL);
 }
 

@@ -44,6 +44,15 @@ void	free_data(t_parse *data)
 	ft_memdel((void **)&data);
 }
 
+char	*ft_free_and_trim(char *line)
+{
+	char	*tmp;
+
+	tmp = ft_strtrim(line);
+	ft_strdel(&line);
+	return (tmp);
+}
+
 void	ft_parse(char *file)
 {
 	int		fd;
@@ -56,6 +65,7 @@ void	ft_parse(char *file)
 	while (get_next_line(fd, &line) > 0)
 	{
 		data->nb_lines++;
+		line = ft_free_and_trim(line);
 		if (data->setting_name == 1 || data->setting_comment == 1
 			|| (line_kind(line) < 5 && line_kind(line) >= 0))
 			ft_check_name_comment(line, data, line_kind(line));
