@@ -6,7 +6,7 @@
 /*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:37:08 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/09/08 15:16:24 by jbateau          ###   ########.fr       */
+/*   Updated: 2016/09/08 17:50:06 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,6 @@ int							ft_check_separator(char *tmp);
 void						ft_get_headername(char *line, t_header *header);
 void						ft_get_headercomment(char *line, t_header *header);
 t_header					*ft_initheader(void);
+void						ft_print_value(int value, int size);
 
 #endif
