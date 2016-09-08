@@ -6,13 +6,11 @@
 #    By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/03 18:18:25 by vbaudin           #+#    #+#              #
-#    Updated: 2016/09/03 19:41:30 by vbaudin          ###   ########.fr        #
+#    Updated: 2016/09/08 12:01:48 by vbaudin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .name "zork"
 .comment "Ca ne compte quand meme que pour un"
 
-	
-	fork 20
-	sti r1, %:live, %1
+	fork %20
