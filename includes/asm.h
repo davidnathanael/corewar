@@ -6,7 +6,7 @@
 /*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:37:08 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/25 12:17:17 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/09/08 15:16:24 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,8 @@ t_parse						*malloc_me(void);
 int							ft_labelexist(t_parse *data);
 void						ft_free_and_exit(t_parse *data, char *line, int n);
 int							ft_check_separator(char *tmp);
+void						ft_get_headername(char *line, t_header *header);
+void						ft_get_headercomment(char *line, t_header *header);
+t_header					*ft_initheader(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: zaz <zaz@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2016/08/30 12:21:19 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/09/08 14:51:47 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,10 @@ typedef char					t_arg_type;
 typedef struct					s_header
 {
 	unsigned int				magic;
+	char						*tmp;
+	int							isset_name;
+	int							isset_comment;
+	int							setting;
 	char						prog_name[PROG_NAME_LENGTH + 1];
 	unsigned int				prog_size;
 	char						comment[COMMENT_LENGTH + 1];
