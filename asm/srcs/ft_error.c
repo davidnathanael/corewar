@@ -6,7 +6,7 @@
 /*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 15:23:52 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/09/08 16:26:18 by jbateau          ###   ########.fr       */
+/*   Updated: 2016/09/08 17:56:47 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ void	ft_error(int i)
 		ft_putendl("Op Args Invalid.");
 	else if (i == 7)
 		ft_putendl("ft_check_label error.");
-	exit(0);
+	else if (i == 8)
+		ft_putendl("Can't open file.");
+	else if (i == 9)
+		ft_putendl("Corrupted binary file.");
+	exit (0);
 }
 
 void	ft_free_and_exit(t_parse *data, char *line, int n)

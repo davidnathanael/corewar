@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/15 13:58:16 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/09/08 17:51:18 by jbateau          ###   ########.fr        #
+#    Updated: 2016/09/08 17:58:26 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,17 @@ SRCBASE		=	\
 				check_name_comment.c										\
 				compile.c													\
 				compile_debug.c												\
+				disassemble.c												\
+				disassemble_body.c											\
+				disassemble_header.c										\
 				ft_check_instr.c											\
 				ft_check_label.c											\
+				ft_check_separator.c										\
 				ft_end_name_comment.c										\
 				ft_error.c													\
+				ft_init_get_header.c										\
+				ft_labelexist.c												\
+				ft_print_value.c											\
 				ft_write_ouput.c											\
 				get_args.c													\
 				get_header.c												\
@@ -54,12 +61,10 @@ SRCBASE		=	\
 				main.c														\
 				parse.c														\
 				print.c														\
+				utils.c														\
 				write_header.c												\
-				write_instructions.c												\
-				ft_labelexist.c												\
-				ft_init_get_header.c												\
-				ft_check_separator.c										\
-				ft_print_value.c
+				write_instructions.c
+
 INCBASE		=	\
 
 SRCS		=	$(addprefix $(SRCDIR), $(SRCBASE))

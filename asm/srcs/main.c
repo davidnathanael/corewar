@@ -14,18 +14,32 @@
 
 int				main(int ac, char **av)
 {
+	char		*extension;
 	t_bool		option_a;
+	int			i;
 
-	option_a = FALSE;
-	if (ac == 1 || ac > 3)
-		ft_putendl("Usage: ./asm [-a] <sourcefile>");
-	else
+	extension = NULL;
+	option_a = (ft_strcmp(av[1], "-a") == 0) ? TRUE : FALSE;
+	i = (option_a) ? 2 : 1;
+	while (i < ac)
 	{
-		if (ft_strcmp("-a", av[1]) == 0)
-			option_a = TRUE;
-		ft_parse((option_a) ? av[2] : av[1]);
-		ft_write_output(av[1], option_a);
-		ft_compile((option_a) ? av[2] : av[1], option_a);
+		extension = ft_strchr(av[i], '.');
+		if (extension && ft_strcmp(extension, ".s") == 0)
+		{
+			ft_parse(av[i]);
+			ft_compile(av[i], option_a);
+		}
+		else if (extension && ft_strcmp(extension, ".cor") == 0)
+			{
+				ft_disassemble(av[i], option_a);
+				ft_printf("Disassemble %s {green}[OK]{eoc}\n", av[i]);
+			}
+		else
+		{
+			ft_printf("Incorrect file extension : %s\n", av[i]);
+			exit(0);
+		}
+		i++;
 	}
 	return (0);
 }
