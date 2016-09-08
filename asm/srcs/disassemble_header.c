@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-static void 		ft_write_size(int fd, int size)
+static void		ft_write_size(int fd, int size)
 {
 	ft_putstr_fd("\n# INDICATED SIZE : ", fd);
 	ft_putnbr_fd(size, fd);
@@ -26,11 +26,11 @@ static void		ft_write_info(int fd, char *attribute, unsigned char *buf)
 	ft_putendl_fd("\"", fd);
 }
 
-void	ft_disassemble_header(int src, int dest)
+void			ft_disassemble_header(int src, int dest)
 {
 	unsigned char	buf[HEADER_SIZE];
-	int			rbyte;
-	int			size;
+	int				rbyte;
+	int				size;
 
 	if ((rbyte = read(src, buf, 4)) != 4)
 		ft_error(9);

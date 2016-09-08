@@ -18,7 +18,6 @@ static char		*ft_get_new_file(char *old)
 	char	*base;
 	char	*new;
 
-
 	pos = ft_strrchr(old, '.');
 	base = ft_strsub(old, 0, pos - old);
 	new = ft_strjoin(base, ".s");
@@ -27,7 +26,7 @@ static char		*ft_get_new_file(char *old)
 	return (new);
 }
 
-void	ft_disassemble(char *file, t_bool option_a)
+void			ft_disassemble(char *file, t_bool option_a)
 {
 	char	*new_file;
 	int		fd_src;

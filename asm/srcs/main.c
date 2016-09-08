@@ -23,22 +23,19 @@ int				main(int ac, char **av)
 	i = (option_a) ? 2 : 1;
 	while (i < ac)
 	{
-		extension = ft_strchr(av[i], '.');
+		extension = ft_strrchr(av[i], '.');
 		if (extension && ft_strcmp(extension, ".s") == 0)
 		{
 			ft_parse(av[i]);
 			ft_compile(av[i], option_a);
 		}
 		else if (extension && ft_strcmp(extension, ".cor") == 0)
-			{
-				ft_disassemble(av[i], option_a);
-				ft_printf("Disassemble %s {green}[OK]{eoc}\n", av[i]);
-			}
-		else
 		{
-			ft_printf("Incorrect file extension : %s\n", av[i]);
-			exit(0);
+			ft_disassemble(av[i], option_a);
+			ft_printf("{green}[OK]{eoc} Disassembled %s\n", av[i]);
 		}
+		else
+			ft_printf("Incorrect file extension : %s\n", av[i]);
 		i++;
 	}
 	return (0);

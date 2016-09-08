@@ -32,7 +32,7 @@ void	ft_error(int i)
 		ft_putendl("Can't open file.");
 	else if (i == 9)
 		ft_putendl("Corrupted binary file.");
-	exit (0);
+	exit(0);
 }
 
 void	ft_free_and_exit(t_parse *data, char *line, int n)

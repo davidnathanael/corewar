@@ -12,18 +12,19 @@
 
 #include "asm.h"
 
-static void	ft_write_value(int src, int dest, int size)
+static void		ft_write_value(int src, int dest, int size)
 {
 	unsigned char	buf[size];
 	int				rbyte;
 
 	if ((rbyte = read(src, buf, size)) != size)
 		ft_error(9);
+	ft_putchar_fd(' ', dest);
 	ft_putnbr_fd(ft_get_value(buf, size), dest);
 }
 
-static void		ft_write_instruction(t_op *data, unsigned char encoding, int src,
-																	int dest)
+static void		ft_write_instruction(t_op *data, unsigned char encoding,
+												int src, int dest)
 {
 	int		offset;
 
@@ -42,7 +43,7 @@ static void		ft_write_instruction(t_op *data, unsigned char encoding, int src,
 		else if (((encoding >> offset) & 0b11) == IND_CODE)
 			ft_write_value(src, dest, data->label_size);
 		if ((encoding >> (offset - 2)) & 0b11)
-			ft_putstr_fd(", ", dest);
+			ft_putchar_fd(SEPARATOR_CHAR);
 		offset -= 2;
 	}
 	ft_putchar_fd('\n', dest);
