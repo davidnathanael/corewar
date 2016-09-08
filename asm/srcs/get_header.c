@@ -6,36 +6,74 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 17:44:12 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/22 18:49:43 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/09/08 15:31:56 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void		ft_get_comment(char *line, t_header *header)
+int				ft_cnt_setting(char *line, t_header *header)
 {
-	char	*start;
-	int		len;
+	int			i;
 
-	start = ft_strchr(line, '"') + 1;
-	len = 0;
-	while (start[len] && start[len] != '"')
-		len++;
-	len = (len > COMMENT_LENGTH) ? COMMENT_LENGTH : len;
-	ft_strncpy(header->comment, start, len);
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '"')
+			header->setting++;
+		i++;
+	}
+	return (1);
 }
 
-static void		ft_get_name(char *line, t_header *header)
+static void		ft_name_chr(t_header *header, char *line)
 {
-	char	*start;
-	int		len;
+	ft_cnt_setting(line, header);
+	if (header->setting != 2)
+	{
+		if (!header->tmp)
+			header->tmp = ft_strdup(line);
+		else
+			header->tmp = ft_strjoin(header->tmp, line);
+	}
+	else
+	{
+		if (header->tmp)
+		{
+			ft_get_headername(ft_strjoin(header->tmp, line), header);
+			ft_strdel(&(header->tmp));
+		}
+		else
+			ft_get_headername(line, header);
+		header->isset_name = 1;
+		header->setting = 0;
+	}
+}
 
-	start = ft_strchr(line, '"') + 1;
-	len = 0;
-	while (start[len] && start[len] != '"')
-		len++;
-	len = (len > PROG_NAME_LENGTH) ? PROG_NAME_LENGTH : len;
-	ft_strncpy(header->prog_name, start, len);
+static void		ft_comment_chr(t_header *header, char *line)
+{
+	ft_cnt_setting(line, header);
+	if (header->setting != 2)
+	{
+		if (line && line[0])
+		{
+			if (!header->tmp)
+				header->tmp = ft_strdup(line);
+			else
+				header->tmp = ft_strjoin(header->tmp, line);
+		}
+	}
+	else
+	{
+		if (header->tmp)
+		{
+			ft_get_headercomment(ft_strjoin(header->tmp, line), header);
+			ft_strdel(&(header->tmp));
+		}
+		else
+			ft_get_headercomment(line, header);
+		header->isset_comment = 1;
+	}
 }
 
 t_header		*ft_get_header(int fd)
@@ -44,22 +82,15 @@ t_header		*ft_get_header(int fd)
 	char		*line;
 	int			kind;
 
-	if (!(header = (t_header *)malloc(sizeof(t_header))))
-		return (NULL);
-	kind = 0;
-	header->magic = COREWAR_EXEC_MAGIC;
-	ft_bzero(&header->prog_name, PROG_NAME_LENGTH + 1);
-	ft_bzero(&header->comment, COMMENT_LENGTH + 1);
-	header->prog_size = 0;
-	while (get_next_line(fd, &line) > 0)
+	header = ft_initheader();
+	while (get_next_line(fd, &line) > 0 && (!header->isset_name || !header->isset_comment))
 	{
 		kind = line_kind(line);
-		if (kind == IS_CHAMP_NAME)
-			ft_get_name(line, header);
-		else if (kind == IS_CHAMP_COMMENT)
-			ft_get_comment(line, header);
+		if ((kind == IS_CHAMP_NAME || header->tmp) && !header->isset_name)
+			ft_name_chr(header, line);
+		else if ((kind == IS_CHAMP_COMMENT || header->tmp) && !header->isset_comment)
+			ft_comment_chr(header, line);
 		free(line);
 	}
-	lseek(fd, 0, SEEK_SET);
 	return (header);
 }

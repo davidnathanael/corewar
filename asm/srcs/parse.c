@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 13:26:11 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/23 17:50:46 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/09/08 14:06:55 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 static void	init(t_parse *data)
 {
-	data->isset_name = 0;
 	data->setting_name = 0;
 	data->name = NULL;
-	data->isset_comment = 0;
 	data->setting_comment = 0;
 	data->comment = NULL;
 	data->header_is_parsed = 0;
