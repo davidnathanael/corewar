@@ -88,6 +88,7 @@ ft_lstadd.c\
 ft_lstiter.c\
 ft_lstmap.c\
 ft_free_str_tab.c\
+ft_is_in_array.c\
 ft_strupcase.c\
 ft_strlowcase.c\
 ft_isspace.c\

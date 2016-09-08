@@ -65,10 +65,10 @@ static void		ft_extract_champion(t_champion *champion,
 void			ft_get_champions(char **av, t_champion *champions, t_vm *vm)
 {
 	int		i;
-	int		nb;
+	int		champ_nb[MAX_PLAYERS];
 
 	i = 0;
-	nb = 0;
+	ft_bzero(champ_nb, sizeof(int) * MAX_PLAYERS);
 	while (av[++i])
 	{
 		if (ft_strcmp(av[i], "-d") == 0)
@@ -77,15 +77,16 @@ void			ft_get_champions(char **av, t_champion *champions, t_vm *vm)
 			continue ;
 		else if (ft_strcmp(av[i], "-n") == 0)
 		{
-			nb = ft_atoi(av[i + 1]);
-			ft_extract_champion(&champions[vm->nb_champs], av[i + 2], nb);
+			champ_nb[vm->nb_champs] = ft_atoi(av[i + 1]);
+			ft_extract_champion(&champions[vm->nb_champs], av[i + 2],
+								champ_nb[vm->nb_champs++]);
 			i += 2;
-			++vm->nb_champs;
 		}
 		else
 		{
-			ft_extract_champion(&champions[vm->nb_champs], av[i], ++nb);
-			++vm->nb_champs;
+			champ_nb[vm->nb_champs] = ft_get_available_number(champ_nb);
+			ft_extract_champion(&champions[vm->nb_champs], av[i],
+								champ_nb[vm->nb_champs++]);
 		}
 	}
 }

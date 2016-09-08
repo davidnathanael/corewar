@@ -17,7 +17,7 @@ void		ft_introduce_champs(t_vm *vm)
 	int		i;
 
 	i = 0;
-	ft_putendl("Let's the battle Begin...");
+	ft_putendl("Let the battle begin...");
 	while (i < vm->nb_champs)
 	{
 		ft_printf("* Player %d, weighing %d bytes, name : %s, comment = %s\n",

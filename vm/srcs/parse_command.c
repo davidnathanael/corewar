@@ -39,22 +39,22 @@ static void		ft_check_numbers(int *champ_nb)
 	}
 }
 
-static int		ft_get_available_number(int *champ_nb)
+int		ft_get_available_number(int *champ_nb)
 {
-	int		i;
-	int		nb;
+	int			i;
+	int			nb;
 
 	i = 0;
 	nb = 0;
 	if (!champ_nb)
 		return (0);
-	while (i < MAX_PLAYERS)
+	while (nb <= MAX_PLAYERS)
 	{
-		if (champ_nb[i] > nb)
-			nb = champ_nb[i];
-		i++;
+		++nb;
+		if (!ft_is_in_array(champ_nb, nb, MAX_PLAYERS))
+			return (nb);
 	}
-	return (++nb);
+	return (nb);
 }
 
 static int		ft_check_file(char *file, int *champ_nb)

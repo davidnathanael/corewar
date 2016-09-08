@@ -93,6 +93,7 @@ t_vm					*init_vm();
 
 void					ft_get_champions(char **av, t_champion *champions,
 										t_vm *vm);
+int						ft_get_available_number(int *champ_nb);
 void					ft_check_header(int fd, char *file);
 
 void					ft_load_champions(t_vm *vm);
