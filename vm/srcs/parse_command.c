@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 10:48:40 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/06 17:27:08 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/09/08 14:09:38 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void		ft_check_numbers(int *champ_nb)
 	}
 }
 
-int		ft_get_available_number(int *champ_nb)
+int				ft_get_available_number(int *champ_nb)
 {
 	int			i;
 	int			nb;
