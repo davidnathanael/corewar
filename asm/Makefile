@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/15 13:58:16 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/09/08 15:17:20 by jbateau          ###   ########.fr        #
+#    Updated: 2016/09/08 17:51:18 by jbateau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,8 @@ SRCBASE		=	\
 				write_instructions.c												\
 				ft_labelexist.c												\
 				ft_init_get_header.c												\
-				ft_check_separator.c
+				ft_check_separator.c										\
+				ft_print_value.c
 INCBASE		=	\
 
 SRCS		=	$(addprefix $(SRCDIR), $(SRCBASE))
