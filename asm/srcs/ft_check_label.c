@@ -48,6 +48,8 @@ void			ft_check_label(char *line, t_parse *data)
 		ft_memdel((void **)&str);
 		if (get_instr(line_t) >= 10)
 			ft_check_instr(line_t, get_instr(line_t) / 10, data);
+		else if (line_t && line_t[0] && (line_t[0] == COMMENT_CHAR || line_t[0] == ';'))
+			i++;
 		else
 		{
 			ft_strdel(&line_t);
