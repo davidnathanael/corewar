@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/03 12:32:54 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/08 16:36:05 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/09/08 23:28:52 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,33 @@ void		fuck_the_norm(t_process **process, t_process **tmp)
 	(*tmp)->prev = NULL;
 }
 
-t_process	*ft_sanitize(t_process *process)
+t_process	*ft_sanitize(t_vm *vm, t_process *process)
 {
 	t_process	*tmp;
 	t_process	*cur;
+	int			i;
 
+	i = 0;
 	cur = process;
-	while (cur)
+	while (cur->final == 0)
 	{
-		if (cur->live == 0)
+		i++;
+		tmp = cur->next;
+		if (cur && cur->live == 0)
 		{
-			tmp = cur->next;
-			if (cur->prev != NULL)
-				cur->prev->next = tmp;
-			else
-				fuck_the_norm(&process, &tmp);
-			if (cur->next != NULL)
-				cur->next->prev = cur->prev;
-			else
-				cur->prev->next = NULL;
+			if (tmp != NULL)
+			{
+				tmp->prev = cur->prev;
+				if (cur->prev != NULL)
+					cur->prev->next = cur->next;
+				else
+					process = tmp;
+			}
 			ft_memdel((void **)&cur);
-			cur = tmp;
+			vm->nb_process--;
 		}
-		else
-			cur = cur->next;
+		if (tmp)
+			cur = tmp;
 	}
 	return (process);
 }
@@ -63,7 +66,7 @@ void		ft_restart_lives(t_vm *vm, t_champion *champions,
 
 void		ft_check_alive(t_vm *vm)
 {
-	vm->process = ft_sanitize(vm->process);
+	vm->process = ft_sanitize(vm, vm->process);
 	vm->check_in_current_period++;
 	if (vm->lives_in_current_period > NBR_LIVE)
 	{

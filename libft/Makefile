@@ -6,7 +6,7 @@
 #    By: ddela-cr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 16:43:54 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/09/08 13:58:28 by vbaudin          ###   ########.fr        #
+#    Updated: 2016/09/08 21:17:56 by vbaudin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libft.a
@@ -95,7 +95,7 @@ ft_isspace.c\
 ft_strcapitalize.c\
 get_next_line.c\
 
-FLAGS	= -Wall -Wextra -Werror
+FLAGS	= -Wall -Wextra -Werror -g
 
 INC		= -I ../includes
 

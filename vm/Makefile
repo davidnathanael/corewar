@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/25 14:36:28 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/09/06 18:59:58 by ddela-cr         ###   ########.fr        #
+#    Updated: 2016/09/08 17:41:55 by vbaudin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,8 @@ SRCBASE		=	\
 				options.c													\
 				parse_command.c												\
 				sti_lld_lldi.c												\
-				utils.c
+				utils.c														\
+				ft_handle_coding_byte.c
 
 INCBASE		=	\
 

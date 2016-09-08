@@ -6,14 +6,14 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/02 13:20:03 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/03 18:49:44 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/09/09 00:13:06 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 #include <time.h>
 
-static t_op		*ft_get_op_data(int op)
+t_op		*ft_get_op_data(int op)
 {
 	int		i;
 
@@ -21,7 +21,9 @@ static t_op		*ft_get_op_data(int op)
 	while (g_op_tab[i].name != NULL)
 	{
 		if (g_op_tab[i].code == op)
+		{
 			return (&g_op_tab[i]);
+		}
 		i++;
 	}
 	return (NULL);
@@ -31,6 +33,22 @@ static void		ft_get_pc(t_process *process)
 {
 	process->pc += process->op_size;
 	process->op_size = 1;
+}
+
+static int		get_next_pc(t_vm *vm, t_process *process, int op)
+{
+	int		cursor;
+
+	cursor = process->pc;
+	if (op == LIVE)
+		cursor += 4;
+	else if (op == FORK || op == LFORK)
+		cursor += 2;
+	else if (op > 0 && op < 17)
+		cursor = ft_handle_coding_byte(cursor, vm, op);
+	cursor++;
+	cursor = ft_loop_memory(cursor);
+	return (cursor);
 }
 
 void			ft_execute(t_vm *vm, t_process *process)
@@ -45,15 +63,21 @@ void			ft_execute(t_vm *vm, t_process *process)
 	if (process->waiting_op != ZJMP)
 		ft_get_pc(process);
 	process->waiting_op = 0;
+	if (args)
+		free(args);
 }
 
 void			ft_do_process(t_vm *vm)
 {
 	t_process	*process;
+	int			next_pc;
+	int			op;
 
 	process = vm->process;
 	while (process)
 	{
+		op = vm->memory[ft_loop_memory(process->pc)];
+		next_pc = get_next_pc(vm, process, op);
 		if (!process->waiting_op)
 		{
 			if (vm->memory[process->pc] > 0 && vm->memory[process->pc] < 17)
@@ -64,13 +88,14 @@ void			ft_do_process(t_vm *vm)
 				process->is_waiting = TRUE;
 			}
 			else
-				process->pc++;
+				process->pc = ft_loop_memory(++process->pc);
 		}
-		else if (process->cycle_to_wait == 1)
+		else if (process->cycle_to_wait == 1 && process->waiting_op)
 			ft_execute(vm, process);
 		else
 			--process->cycle_to_wait;
-		process->pc = process->pc == 4096 ? 0 : process->pc;
+		if (op != ZJMP && !process->is_waiting)
+			process->pc = next_pc;
 		process = process->next;
 	}
 }
@@ -86,7 +111,7 @@ void			ft_launch_vm(t_vm *vm)
 			ft_dump_memory(vm->memory, 0, MEM_SIZE);
 		if (vm->cycle_in_current_period == vm->cycle_to_die)
 			ft_check_alive(vm);
-		if (vm->cycle_to_die < 0)
+		if (vm->cycle_to_die < 0 || vm->nb_process <= 0)
 			break ;
 		ft_do_process(vm);
 		vm->cycle_in_current_period++;

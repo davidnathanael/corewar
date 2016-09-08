@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/01 19:23:28 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/02 14:01:08 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/09/08 18:46:09 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,13 @@ void		write_byte(int value, t_vm *vm, int number, t_process *process)
 
 	i = 0;
 	offset = 24;
+//	ft_printf("value = %d number = %d\n", value, number);
+//	ft_printf("On ecris a la case %d\n", process->pc + number + i);
 	while (i < 4)
 	{
 		vm->memory[ft_loop_memory(process->pc + number + i)] =
 											(value >> offset) & 0xff;
+//		ft_printf("byte = %08b\n", (value >> offset) & 0xff);
 		offset -= 8;
 		i++;
 	}

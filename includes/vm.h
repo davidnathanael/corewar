@@ -6,7 +6,7 @@
 /*   By: bbichero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/19 15:17:56 by bbichero          #+#    #+#             */
-/*   Updated: 2016/09/08 12:00:53 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/09/08 23:51:18 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct			s_args
 
 typedef struct			s_process
 {
+	int					final;
 	int					reg[REG_NUMBER];
 	int					pc;
 	int					carry;
@@ -132,6 +133,8 @@ int						get_value_depending_on_type(int pos, t_args *args,
 									t_process *process, t_vm *vm);
 void					write_byte(int value, t_vm *vm, int number,
 									t_process *process);
+t_op					*ft_get_op_data(int op);
+int						ft_handle_coding_byte(int cursor, t_vm *vm, int op);
 
 void					ft_dump_memory(unsigned char *memory, int cursor,
 										int size);
