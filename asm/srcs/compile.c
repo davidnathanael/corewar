@@ -62,7 +62,8 @@ void			ft_compile(char *file, t_bool option_a)
 	ft_write_output(file, option_a);
 	ft_write_header(fd, header);
 	ft_write_instructions(fd, instructions);
-	close(fd);
+	if (fd != STDOUT)
+		close(fd);
 	free(new_file);
 	free(header);
 	ft_free_instructions(instructions);
