@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 15:54:43 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/08 15:18:51 by jbateau          ###   ########.fr       */
+/*   Updated: 2016/09/08 16:28:53 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static char		*ft_get_new_file(char *old)
 	char	*pos;
 	char	*base;
 	char	*new;
-
 
 	pos = ft_strrchr(old, '.');
 	base = ft_strsub(old, 0, pos - old);

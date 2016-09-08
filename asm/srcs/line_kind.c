@@ -6,13 +6,13 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 12:56:22 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/08 13:58:35 by jbateau          ###   ########.fr       */
+/*   Updated: 2016/09/08 16:19:47 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int		get_instr(char *line_t)
+int			get_instr(char *line_t)
 {
 	char	*instr;
 	int		i;
@@ -49,10 +49,10 @@ static int	is_label(char *line_t)
 		if (line_t[i] == LABEL_CHAR && i > 0)
 		{
 			ret = 1;
-			break;
+			break ;
 		}
 		else if (ft_strchr(lc, line_t[i]) == NULL)
-			break;
+			break ;
 		else
 			i++;
 	}
@@ -73,10 +73,10 @@ int			line_kind(char *line)
 		ret = 1;
 	else if (line_t[0] == ';')
 		ret = 2;
-	else if (ft_strncmp(line_t, NAME_CMD_STRING, 
+	else if (ft_strncmp(line_t, NAME_CMD_STRING,
 				ft_strlen(NAME_CMD_STRING)) == 0)
 		ret = 3;
-	else if (ft_strncmp(line_t, COMMENT_CMD_STRING, 
+	else if (ft_strncmp(line_t, COMMENT_CMD_STRING,
 				ft_strlen(COMMENT_CMD_STRING)) == 0)
 		ret = 4;
 	else if (is_label(line_t) == 1)

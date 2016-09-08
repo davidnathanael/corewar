@@ -6,7 +6,7 @@
 /*   By: jbateau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/08 15:08:34 by jbateau           #+#    #+#             */
-/*   Updated: 2016/09/08 15:15:43 by jbateau          ###   ########.fr       */
+/*   Updated: 2016/09/08 16:22:20 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		ft_get_headername(char *line, t_header *header)
 	ft_strncpy(header->prog_name, start, len);
 }
 
-t_header		*ft_initheader(void)
+t_header	*ft_initheader(void)
 {
 	t_header	*header;
 

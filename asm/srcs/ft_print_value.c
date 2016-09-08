@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_separator.c                               :+:      :+:    :+:   */
+/*   ft_print_value.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbateau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/08 16:37:11 by jbateau           #+#    #+#             */
-/*   Updated: 2016/09/08 16:51:42 by jbateau          ###   ########.fr       */
+/*   Created: 2016/09/08 17:34:23 by jbateau           #+#    #+#             */
+/*   Updated: 2016/09/08 17:34:55 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int	ft_check_separator(char *tmp)
+void			ft_print_value(int value, int size)
 {
-	int	i;
+	int		print;
+	int		initial_size;
 
-	i = 0;
-	while (tmp[i])
+	print = 0;
+	initial_size = size;
+	while (size)
 	{
-		if (tmp[i] == SEPARATOR_CHAR && tmp[i + 1] &&
-				tmp[i + 1] == SEPARATOR_CHAR)
-			return (0);
-		if (tmp[i] == SEPARATOR_CHAR && !tmp[i + 1])
-			return (0);
-		i++;
+		print = (value >> (size * 8 - 8)) & 0xff;
+		ft_printf("%-4d", print);
+		size--;
 	}
-	return (1);
+	while (++initial_size <= 4)
+		ft_putstr("    ");
+	ft_putstr("  ");
 }

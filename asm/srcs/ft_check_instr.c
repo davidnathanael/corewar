@@ -6,7 +6,7 @@
 /*   By: vbaudin <vbaudin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 15:54:52 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/23 16:31:36 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/09/08 16:33:49 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*get_instruction(char *line)
 	return (line_t);
 }
 
-int		ft_expected_instr(int opcode, int instr, int i)
+int			ft_expected_instr(int opcode, int instr, int i)
 {
 	int	tmp;
 
@@ -62,13 +62,12 @@ int		ft_expected_instr(int opcode, int instr, int i)
 
 void		ft_check_tab(char *in_line, int opcode, t_parse *data)
 {
-	int	i;
-	int	n;
+	int		i;
+	int		n;
 	char	*tmp;
 	char	**instr;
 
 	i = 0;
-
 	instr = ft_strsplit(in_line, SEPARATOR_CHAR);
 	ft_memdel((void **)&in_line);
 	while (instr[i] != NULL)

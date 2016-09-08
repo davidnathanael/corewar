@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 11:48:29 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/23 11:48:30 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/09/08 16:36:10 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_get_param_size(char *param, t_op *data)
 		return (2);
 }
 
-int		ft_get_size(char **args, char *opcode)
+int			ft_get_size(char **args, char *opcode)
 {
 	int		i;
 	int		size;
@@ -36,6 +36,5 @@ int		ft_get_size(char **args, char *opcode)
 		size += ft_get_param_size(args[i], data);
 		i++;
 	}
-
 	return (size + data->octet);
 }

@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 14:34:59 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/24 14:35:00 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/09/08 17:29:18 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static void		ft_write_value(int fd, int value, int size)
 	}
 }
 
-static void		ft_write_args(int fd, t_inst *inst, t_op *infos, t_list *instructions)
+static void		ft_write_args(int fd, t_inst *inst, t_op *infos,
+		t_list *instructions)
 {
 	int		i;
 	int		arg_type;
@@ -50,29 +51,34 @@ static void		ft_write_args(int fd, t_inst *inst, t_op *infos, t_list *instructio
 		else if (arg_type == IS_DIR_VALUE)
 			ft_write_value(fd, ft_atoi(&(inst->args[i][1])), infos->label_size);
 		else if (arg_type == IS_DIR_LABEL)
-			ft_write_value(fd, ft_get_label_value(instructions, inst, &(inst->args[i][2])),
-							infos->label_size);
+			ft_write_value(fd, ft_get_label_value(instructions, inst,
+						&(inst->args[i][2])), infos->label_size);
 		else if (arg_type == IS_IND_VALUE)
 			ft_write_value(fd, ft_atoi(&(inst->args[i][0])), 2);
 		else if (arg_type == IS_IND_LABEL)
-			ft_write_value(fd, ft_get_label_value(instructions, inst, &(inst->args[i][1])),
-							infos->label_size);
+			ft_write_value(fd, ft_get_label_value(instructions, inst,
+						&(inst->args[i][1])), infos->label_size);
 		i++;
 	}
 }
 
-void	ft_write_instructions(int fd, t_list *instructions)
+void			ft_init_all(t_list **head, t_list **instructions, t_op **infos,
+		int *total_size)
+{
+	*head = *instructions;
+	*infos = NULL;
+	*total_size = 0;
+}
+
+void			ft_write_instructions(int fd, t_list *instructions)
 {
 	t_list	*head;
 	t_inst	*instruction;
 	t_op	*infos;
 	int		total_size;
 
-	head = instructions;
-	instruction = NULL;
-	infos = NULL;
-	total_size = 0;
-	while(instructions)
+	ft_init_all(&head, &instructions, &infos, &total_size);
+	while (instructions)
 	{
 		instruction = instructions->content;
 		if (!instruction->is_label_only)

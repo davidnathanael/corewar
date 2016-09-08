@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 17:44:12 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/08 15:31:56 by jbateau          ###   ########.fr       */
+/*   Updated: 2016/09/08 17:02:35 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,14 @@ t_header		*ft_get_header(int fd)
 	int			kind;
 
 	header = ft_initheader();
-	while (get_next_line(fd, &line) > 0 && (!header->isset_name || !header->isset_comment))
+	while (get_next_line(fd, &line) > 0 && (!header->isset_name ||
+				!header->isset_comment))
 	{
 		kind = line_kind(line);
 		if ((kind == IS_CHAMP_NAME || header->tmp) && !header->isset_name)
 			ft_name_chr(header, line);
-		else if ((kind == IS_CHAMP_COMMENT || header->tmp) && !header->isset_comment)
+		else if ((kind == IS_CHAMP_COMMENT || header->tmp) &&
+				!header->isset_comment)
 			ft_comment_chr(header, line);
 		free(line);
 	}

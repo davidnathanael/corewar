@@ -6,7 +6,7 @@
 /*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/19 11:47:05 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/23 16:02:36 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/09/08 16:53:00 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	check_t_ind(char *arg, t_parse *data)
 {
 	int		i;
-	char		*label_name;
+	char	*label_name;
 
 	i = 0;
 	if (arg[i] == LABEL_CHAR && arg[i + 1])
@@ -61,7 +61,7 @@ static int	check_t_dir(char *arg, t_parse *data)
 	}
 	else
 		ft_free_and_exit(data, arg, 6);
-	return(T_DIR);
+	return (T_DIR);
 }
 
 static int	check_t_reg(char *arg, t_parse *data)
@@ -79,7 +79,7 @@ static int	check_t_reg(char *arg, t_parse *data)
 	i = ft_atoi(&arg[1]);
 	if (!(i > 0 && i <= REG_NUMBER))
 		ft_free_and_exit(data, arg, 6);
-	return(T_REG);
+	return (T_REG);
 }
 
 int			get_kind_arg(char *arg, t_parse *data)
@@ -87,7 +87,8 @@ int			get_kind_arg(char *arg, t_parse *data)
 	int		t_kind;
 
 	t_kind = 0;
-	if (ft_isdigit(arg[0]) || ((arg[0] == '-') && arg[1] && ft_isdigit(arg[1])) || arg[0] == LABEL_CHAR)
+	if (ft_isdigit(arg[0]) || ((arg[0] == '-') && arg[1] && ft_isdigit(arg[1]))
+			|| arg[0] == LABEL_CHAR)
 		t_kind = check_t_ind(arg, data);
 	else if (arg[0] == DIRECT_CHAR)
 		t_kind = check_t_dir(arg, data);

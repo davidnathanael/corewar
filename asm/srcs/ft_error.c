@@ -6,7 +6,7 @@
 /*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 15:23:52 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/23 15:47:37 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/09/08 16:26:18 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ void	ft_error(int i)
 		ft_putendl("Op Args Invalid.");
 	else if (i == 7)
 		ft_putendl("ft_check_label error.");
-	exit (0);
+	exit(0);
 }
 
-void   	ft_free_and_exit(t_parse *data, char *line, int n)
+void	ft_free_and_exit(t_parse *data, char *line, int n)
 {
-       	if (data)
-       		free_data(data);
-       	if (line)
-       		ft_strdel(&line);
-       	ft_error(n);
+	if (data)
+		free_data(data);
+	if (line)
+		ft_strdel(&line);
+	ft_error(n);
 }

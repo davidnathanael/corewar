@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 15:45:29 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/23 15:45:31 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/09/08 16:27:36 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,17 @@ static void		ft_write_unsigned_int(int fd, unsigned int nb)
 
 static void		ft_write_string(int fd, char *string, int size)
 {
-		write(fd, string, size);
-		write(fd, &"\0\0\0", 3);
+	write(fd, string, size);
+	write(fd, &"\0\0\0", 3);
 }
 
-void	ft_write_header(int fd, t_header *header)
+void			ft_write_header(int fd, t_header *header)
 {
 	if (fd == STDOUT)
 	{
 		ft_printf("SIZE    : {bold}{green}%d{eoc}\n", header->prog_size);
 		ft_printf("NAME    : {bold}{green}%s{eoc}\n", header->prog_name);
 		ft_printf("COMMENT : {bold}{green}%s{eoc}\n\n", header->comment);
-
 	}
 	else
 	{

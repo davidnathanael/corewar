@@ -6,13 +6,13 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 15:00:55 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/08 14:33:37 by jbateau          ###   ########.fr       */
+/*   Updated: 2016/09/08 16:30:29 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void	ft_check_data(char *line, char *type, t_parse *data)
+static void		ft_check_data(char *line, char *type, t_parse *data)
 {
 	char	*data_txt;
 	int		i;
@@ -38,7 +38,7 @@ static void	ft_check_data(char *line, char *type, t_parse *data)
 	ft_memdel((void **)&data_txt);
 }
 
-static void ft_get_comment(t_parse *data, char *line)
+static void		ft_get_comment(t_parse *data, char *line)
 {
 	char	*tmp;
 
@@ -55,7 +55,7 @@ static void ft_get_comment(t_parse *data, char *line)
 	ft_check_data(data->comment, COMMENT_CMD_STRING, data);
 }
 
-static void ft_get_name(t_parse *data, char *line)
+static void		ft_get_name(t_parse *data, char *line)
 {
 	char	*tmp;
 
@@ -72,7 +72,7 @@ static void ft_get_name(t_parse *data, char *line)
 	ft_check_data(data->name, NAME_CMD_STRING, data);
 }
 
-void	ft_check_name_comment(char *line, t_parse *data, int type)
+void			ft_check_name_comment(char *line, t_parse *data, int type)
 {
 	char	*trimmed;
 

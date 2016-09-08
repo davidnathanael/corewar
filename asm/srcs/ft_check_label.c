@@ -6,7 +6,7 @@
 /*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 15:58:42 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/08/23 17:50:03 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/09/08 16:50:25 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,46 @@ static char		*get_label_name(char *line)
 	return (ft_strsub(line, i, j));
 }
 
+char			*ft_strsub_trim(char *line, int i)
+{
+	char		*str;
+	char		*line_t;
+
+	str = ft_strsub(line, i, ft_strlen(line) - 1);
+	line_t = ft_strtrim(str);
+	ft_memdel((void **)&str);
+	return (line_t);
+}
+
+int				ft_label_pos(char *line)
+{
+	int	i;
+
+	i = 1;
+	while (line[i - 1] != LABEL_CHAR)
+		i++;
+	while ((line[i] == ' ' || line[i] == '\t') && line[i] != '\0')
+		i++;
+	return (i);
+}
+
 void			ft_check_label(char *line, t_parse *data)
 {
 	int		i;
 	char	*line_t;
 	char	*str;
 
-	i = 1;
 	str = get_label_name(line);
 	get_new_label(str, IS_LABEL, data);
 	ft_memdel((void **)&str);
-	while (line[i - 1] != LABEL_CHAR)
-		i++;
-	while ((line[i] == ' ' || line[i] =='\t') && line[i] != '\0')
-		i++;
+	i = ft_label_pos(line);
 	if (line[i] != '\0')
 	{
-		str = ft_strsub(line, i, ft_strlen(line) - 1);
-		line_t = ft_strtrim(str);
-		ft_memdel((void **)&str);
+		line_t = ft_strsub_trim(line, i);
 		if (get_instr(line_t) >= 10)
 			ft_check_instr(line_t, get_instr(line_t) / 10, data);
-		else if (line_t && line_t[0] && (line_t[0] == COMMENT_CHAR || line_t[0] == ';'))
+		else if (line_t && line_t[0] && (line_t[0] == COMMENT_CHAR ||
+					line_t[0] == ';'))
 			i++;
 		else
 		{

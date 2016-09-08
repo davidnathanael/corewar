@@ -6,13 +6,14 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 18:28:07 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/24 18:28:09 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/09/08 16:52:12 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-t_inst		*ft_get_target(t_list *instructions, t_inst *inst, char *label, t_bool *is_before)
+t_inst		*ft_get_target(t_list *instructions, t_inst *inst, char *label,
+		t_bool *is_before)
 {
 	t_inst		*target;
 
@@ -21,7 +22,7 @@ t_inst		*ft_get_target(t_list *instructions, t_inst *inst, char *label, t_bool *
 	{
 		target = instructions->content;
 		if (target->label && ft_strcmp(target->label, label) == 0)
-			break;
+			break ;
 		if (target == inst)
 			*is_before = FALSE;
 		instructions = instructions->next;
@@ -48,7 +49,7 @@ int			ft_get_label_value(t_list *instructions, t_inst *inst, char *label)
 		if (tmp == inst || tmp == target)
 		{
 			if (add)
-				break;
+				break ;
 			add = TRUE;
 		}
 		value += (add) ? tmp->size : 0;

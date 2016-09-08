@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 18:50:24 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/08 14:55:27 by jbateau          ###   ########.fr       */
+/*   Updated: 2016/09/08 16:24:31 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_bool		ft_is_label_only(char *line)
 
 	label_char_pos = ft_strchr(line, LABEL_CHAR);
 	ret = (label_char_pos) ? TRUE : FALSE;
-	while(*(++label_char_pos) && ret)
+	while (*(++label_char_pos) && ret)
 	{
 		if (*(label_char_pos) == COMMENT_CHAR || *(label_char_pos) == ';')
 			return (TRUE);
@@ -29,7 +29,7 @@ static t_bool		ft_is_label_only(char *line)
 	return (ret);
 }
 
-static t_inst		*ft_init_instruction()
+static t_inst		*ft_init_instruction(void)
 {
 	t_inst		*instruction;
 
@@ -64,7 +64,7 @@ static t_inst		*ft_extract_instruction(char *line)
 	return (instruction);
 }
 
-t_list		*ft_get_instructions(int fd, t_header *header)
+t_list				*ft_get_instructions(int fd, t_header *header)
 {
 	t_list		*instructions;
 	t_inst		*inst;
@@ -83,11 +83,9 @@ t_list		*ft_get_instructions(int fd, t_header *header)
 		{
 			ft_lstappend(&instructions, ft_lstnew(inst, sizeof(*inst)));
 			header->prog_size += inst->size;
-			// ft_debug_instruction(inst);
 			free(inst);
 		}
 		free(line);
 	}
-	// ft_debug_header(header);
 	return (instructions);
 }

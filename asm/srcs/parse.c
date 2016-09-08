@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 13:26:11 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/08 14:06:55 by jbateau          ###   ########.fr       */
+/*   Updated: 2016/09/08 16:35:57 by jbateau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	init(t_parse *data)
 	data->label = NULL;
 }
 
-void	free_data(t_parse *data)
+void		free_data(t_parse *data)
 {
 	t_label	*c_label;
 
@@ -42,7 +42,7 @@ void	free_data(t_parse *data)
 	ft_memdel((void **)&data);
 }
 
-char	*ft_free_and_trim(char *line)
+char		*ft_free_and_trim(char *line)
 {
 	char	*tmp;
 
@@ -51,7 +51,7 @@ char	*ft_free_and_trim(char *line)
 	return (tmp);
 }
 
-void	ft_parse(char *file)
+void		ft_parse(char *file)
 {
 	int		fd;
 	char	*line;
