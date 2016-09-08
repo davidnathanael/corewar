@@ -30,10 +30,7 @@ int				main(int ac, char **av)
 			ft_compile(av[i], option_a);
 		}
 		else if (extension && ft_strcmp(extension, ".cor") == 0)
-		{
 			ft_disassemble(av[i], option_a);
-			ft_printf("{green}[OK]{eoc} Disassembled %s\n", av[i]);
-		}
 		else
 			ft_printf("Incorrect file extension : %s\n", av[i]);
 		i++;

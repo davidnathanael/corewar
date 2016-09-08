@@ -57,7 +57,7 @@ static void		ft_write_args(int fd, t_inst *inst, t_op *infos,
 			ft_write_value(fd, ft_atoi(&(inst->args[i][0])), 2);
 		else if (arg_type == IS_IND_LABEL)
 			ft_write_value(fd, ft_get_label_value(instructions, inst,
-						&(inst->args[i][1])), infos->label_size);
+						&(inst->args[i][1])), 2);
 		i++;
 	}
 }

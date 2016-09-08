@@ -19,7 +19,8 @@ static void		ft_write_value(int src, int dest, int size)
 
 	if ((rbyte = read(src, buf, size)) != size)
 		ft_error(9);
-	ft_putchar_fd(' ', dest);
+	// ft_printf("size : |%d| -> 1 : %d | 2 : %d\n", size, buf[0], buf[1]);
+	// ft_printf("size : |%d|\n", size);
 	ft_putnbr_fd(ft_get_value(buf, size), dest);
 }
 
@@ -34,16 +35,22 @@ static void		ft_write_instruction(t_op *data, unsigned char encoding,
 	while ((encoding >> offset) & 0b11)
 	{
 		if (((encoding >> offset) & 0b11) == REG_CODE)
+		{
+			ft_putchar_fd('r', dest);
 			ft_write_value(src, dest, 1);
+		}
 		else if (((encoding >> offset) & 0b11) == DIR_CODE)
 		{
 			ft_putchar_fd(DIRECT_CHAR, dest);
-			ft_write_value(src, dest, 2);
+			ft_write_value(src, dest, data->label_size);
 		}
 		else if (((encoding >> offset) & 0b11) == IND_CODE)
-			ft_write_value(src, dest, data->label_size);
+			ft_write_value(src, dest, 2);
 		if ((encoding >> (offset - 2)) & 0b11)
-			ft_putchar_fd(SEPARATOR_CHAR);
+		{
+			ft_putchar_fd(SEPARATOR_CHAR, dest);
+			ft_putchar_fd(' ', dest);
+		}
 		offset -= 2;
 	}
 	ft_putchar_fd('\n', dest);
@@ -59,18 +66,19 @@ void			ft_disassemble_body(int src, int dest)
 	while ((rbyte = read(src, buf, 1)) > 0)
 	{
 		if (!(data = ft_get_op_by_number(ft_get_value(buf, 1))))
-			ft_error(9);
+		ft_error(9);
 		if (data->has_encoding && (rbyte = read(src, buf, 1)))
 		{
 			if (rbyte != 1)
 				ft_error(9);
 			encoding = ft_get_value(buf, 1);
+			// ft_printf("encoding : %s -> %08b\n", data->name, encoding);
 			ft_write_instruction(data, encoding, src, dest);
 		}
 		else
 		{
 			ft_putstr_fd(data->name, dest);
-			ft_putchar_fd('\t', dest);
+			ft_putstr_fd("\t%", dest);
 			ft_write_value(src, dest, data->label_size);
 			ft_putchar_fd('\n', dest);
 		}

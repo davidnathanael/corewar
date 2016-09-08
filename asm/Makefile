@@ -6,7 +6,7 @@
 #    By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/15 13:58:16 by ddela-cr          #+#    #+#              #
-#    Updated: 2016/09/08 17:58:26 by ddela-cr         ###   ########.fr        #
+#    Updated: 2016/09/08 19:29:09 by ddela-cr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,6 @@ SRCBASE		=	\
 				ft_init_get_header.c										\
 				ft_labelexist.c												\
 				ft_print_value.c											\
-				ft_write_ouput.c											\
 				get_args.c													\
 				get_header.c												\
 				get_instructions.c											\

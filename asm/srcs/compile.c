@@ -58,8 +58,8 @@ void			ft_compile(char *file, t_bool option_a)
 	instructions = ft_get_instructions(fd, header);
 	new_file = ft_get_new_file(file);
 	close(fd);
-	fd = (option_a) ? STDOUT : open(new_file, O_WRONLY | O_CREAT, S_IRWXU);
-	ft_write_output(file, option_a);
+	fd = (option_a) ? STDOUT : open(new_file, O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
+	ft_printf("{green}[OK]{eoc} Compiled file %s\n", new_file);
 	ft_write_header(fd, header);
 	ft_write_instructions(fd, instructions);
 	if (fd != STDOUT)
