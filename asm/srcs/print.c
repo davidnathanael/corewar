@@ -98,7 +98,8 @@ static void		ft_print_args(char **args)
 	i = 0;
 	while (args[i])
 	{
-		ft_printf("%-18s", args[i]);
+		if (!ft_strchr(args[i], COMMENT_CHAR))
+			ft_printf("%-18s", args[i]);
 		i++;
 	}
 	ft_putchar('\n');

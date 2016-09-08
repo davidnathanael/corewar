@@ -21,10 +21,10 @@ static t_bool		ft_is_label_only(char *line)
 	ret = (label_char_pos) ? TRUE : FALSE;
 	while(*(++label_char_pos) && ret)
 	{
+		if (*(label_char_pos) == COMMENT_CHAR || *(label_char_pos) == ';')
+			return (TRUE);
 		if (!ft_isspace(*label_char_pos))
-		{
-			ret = FALSE;
-		}
+			return (FALSE);
 	}
 	return (ret);
 }
