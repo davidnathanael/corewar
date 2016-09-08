@@ -37,14 +37,15 @@ int		ft_proceed_ptr(t_options *options, char *arg)
 	if (options->width > 0)
 		to_print = ft_apply_width(options, to_print, arg);
 	if (ft_has_flags(options->flags) && to_print)
-		to_print = (char *)ft_apply_flags(options, (wchar_t *)to_print, to_print);
+		to_print = (char *)ft_apply_flags(options, (wchar_t *)to_print,
+											to_print);
 	ret = ft_putstr(to_print);
 	return (ret);
 }
 
 int		ft_proceed_not_valid_type(t_options *options, char *arg)
 {
-	int	ret;
+	int		ret;
 	char	*to_print;
 
 	ret = 0;

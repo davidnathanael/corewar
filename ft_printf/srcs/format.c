@@ -68,7 +68,7 @@ static t_options		*ft_get_options(char *format, va_list ap)
 	return (options);
 }
 
-int				ft_do_format(char *format, va_list ap)
+int						ft_do_format(char *format, va_list ap)
 {
 	int			printed;
 	t_options	*options;
