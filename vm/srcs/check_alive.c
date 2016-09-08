@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/03 12:32:54 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/08 14:09:05 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/09/08 16:36:05 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ t_process	*ft_sanitize(t_process *process)
 	{
 		if (cur->live == 0)
 		{
-			if (cur->next != NULL)
-				tmp = cur->next;
+			tmp = cur->next;
 			if (cur->prev != NULL)
 				cur->prev->next = tmp;
 			else
