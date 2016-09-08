@@ -28,6 +28,10 @@ void	ft_error(int i)
 		ft_putendl("Op Args Invalid.");
 	else if (i == 7)
 		ft_putendl("ft_check_label error.");
+	else if (i == 8)
+		ft_putendl("Can't open file.");
+	else if (i == 9)
+		ft_putendl("Corrupted binary file.");
 	exit (0);
 }
 

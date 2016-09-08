@@ -82,6 +82,7 @@ int							get_kind_arg(char *arg, t_parse *data);
 
 void						ft_compile(char *file, t_bool option_a);
 t_op						*ft_get_op(char *name);
+t_op						*ft_get_op_by_number(int index);
 t_header					*ft_get_header(int fd);
 t_list						*ft_get_instructions(int fd, t_header *header);
 char						*ft_get_label(char *line);
@@ -96,6 +97,12 @@ int							ft_get_arg_type(char *arg);
 void						free_data(t_parse *data);
 void						ft_write_header(int fd, t_header *header);
 void						ft_write_instructions(int fd, t_list *instructions);
+int							ft_get_value(unsigned char *encoded, int size);
+
+
+void						ft_disassemble(char *file, t_bool option_a);
+void						ft_disassemble_header(int src, int dest);
+void						ft_disassemble_body(int src, int dest);
 
 void						ft_print_instruction(t_inst *instruction,
 							t_op *infos, int total_size, t_list *head);

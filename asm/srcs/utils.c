@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_op.c                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/23 12:12:40 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/08/23 12:12:42 by ddela-cr         ###   ########.fr       */
+/*   Created: 2016/09/08 16:13:48 by ddela-cr          #+#    #+#             */
+/*   Updated: 2016/09/08 16:13:49 by ddela-cr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-t_op	*ft_get_op(char *name)
+int			ft_get_value(unsigned char *encoded, int size)
 {
-	int		i;
+	int		value;
+	int		initial_size;
 
-	i = 0;
-	while (g_op_tab[i].name != NULL)
+	value = 0;
+	initial_size = size;
+	while (size)
 	{
-		if (ft_strcmp(g_op_tab[i].name, name) == 0)
-			return (&g_op_tab[i]);
-		i++;
+		value = value << 8;
+		value = value | (*encoded & 0xff);
+		++encoded;
+		size--;
 	}
-	return (NULL);
-}
-
-t_op	*ft_get_op_by_number(int index)
-{
-	int		i;
-
-	i = 0;
-	while (g_op_tab[i].name != NULL)
-	{
-		if (index == g_op_tab[i].code)
-			return (&g_op_tab[i]);
-		i++;
-	}
-	return (NULL);
+	if (initial_size == 2)
+		return ((short)value);
+	return (value);
 }
