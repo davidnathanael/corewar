@@ -14,16 +14,26 @@
 
 static void		ft_write_size(int fd, int size)
 {
-	ft_putstr_fd("\n# INDICATED SIZE : ", fd);
-	ft_putnbr_fd(size, fd);
-	ft_putstr_fd("\n\n", fd);
+	if (fd == STDOUT)
+		ft_printf("\n# INDICATED SIZE : {red}%d{eoc}\n\n", size);
+	else
+	{
+		ft_putstr_fd("\n# INDICATED SIZE : ", fd);
+		ft_putnbr_fd(size, fd);
+		ft_putstr_fd("\n\n", fd);
+	}
 }
 
-static void		ft_write_info(int fd, char *attribute, unsigned char *buf)
+static void		ft_write_info(int fd, char *attribute, unsigned char *value)
 {
-	ft_putstr_fd(attribute, fd);
-	ft_putstr_fd((char *)buf, fd);
-	ft_putendl_fd("\"", fd);
+	if (fd == STDOUT)
+		ft_printf("%s{red}%s{eoc}\"\n", attribute, value);
+	else
+	{
+		ft_putstr_fd(attribute, fd);
+		ft_putstr_fd((char *)value, fd);
+		ft_putendl_fd("\"", fd);
+	}
 }
 
 void			ft_disassemble_header(int src, int dest)
