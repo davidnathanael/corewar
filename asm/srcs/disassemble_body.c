@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/08 16:17:07 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/08 16:17:08 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/09/09 05:23:43 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void		ft_write_op(char *name, int fd)
 static void		ft_write_instruction(t_op *data, unsigned char encoding,
 												int src, int dest)
 {
-	int		offset;
+	int				offset;
 
 	offset = 6;
 	ft_write_op(data->name, dest);

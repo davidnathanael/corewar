@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/02 13:07:27 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/02 13:07:28 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/09/08 18:50:45 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void		ft_and(t_args *args, t_vm *vm, t_process *process)
 	int		value1;
 	int		value2;
 
-	if ((args->types[0] != T_DIR && args->types[0] != T_IND &&
-									args->types[0] != T_REG) ||
-		(args->types[1] != T_DIR && args->types[1] != T_IND &&
-									args->types[1] != T_REG) ||
-		args->types[2] != T_REG)
+	if ((args->types[0] != DIR_CODE && args->types[0] != IND_CODE &&
+									args->types[0] != REG_CODE) ||
+		(args->types[1] != DIR_CODE && args->types[1] != IND_CODE &&
+									args->types[1] != REG_CODE) ||
+		args->types[2] != REG_CODE)
 	{
 		process->carry = 0;
 		return ;
@@ -45,11 +45,11 @@ void		ft_or(t_args *args, t_vm *vm, t_process *process)
 	int		value1;
 	int		value2;
 
-	if ((args->types[0] != T_DIR && args->types[0] != T_IND &&
-									args->types[0] != T_REG) ||
-		(args->types[1] != T_DIR && args->types[1] != T_IND &&
-									args->types[1] != T_REG) ||
-		args->types[2] != T_REG)
+	if ((args->types[0] != DIR_CODE && args->types[0] != IND_CODE &&
+									args->types[0] != REG_CODE) ||
+		(args->types[1] != DIR_CODE && args->types[1] != IND_CODE &&
+									args->types[1] != REG_CODE) ||
+		args->types[2] != REG_CODE)
 	{
 		process->carry = 0;
 		return ;
@@ -73,11 +73,11 @@ void		ft_xor(t_args *args, t_vm *vm, t_process *process)
 	int		value1;
 	int		value2;
 
-	if ((args->types[0] != T_DIR && args->types[0] != T_IND &&
-									args->types[0] != T_REG) ||
-		(args->types[1] != T_DIR && args->types[1] != T_IND &&
-									args->types[1] != T_REG) ||
-		args->types[2] != T_REG)
+	if ((args->types[0] != DIR_CODE && args->types[0] != IND_CODE &&
+									args->types[0] != REG_CODE) ||
+		(args->types[1] != DIR_CODE && args->types[1] != IND_CODE &&
+									args->types[1] != REG_CODE) ||
+		args->types[2] != REG_CODE)
 	{
 		process->carry = 0;
 		return ;
@@ -112,9 +112,9 @@ void		ft_ldi(t_args *args, t_vm *vm, t_process *process)
 	int		addr;
 	int		value;
 
-	if ((args->types[0] != T_DIR && args->types[0] != T_IND &&
-		args->types[0] != T_REG) || (args->types[1] != T_DIR &&
-		args->types[1] != T_REG) || args->types[2] != T_REG)
+	if ((args->types[0] != DIR_CODE && args->types[0] != IND_CODE &&
+		args->types[0] != REG_CODE) || (args->types[1] != DIR_CODE &&
+		args->types[1] != REG_CODE) || args->types[2] != REG_CODE)
 	{
 		process->carry = 0;
 	}

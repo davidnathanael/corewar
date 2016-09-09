@@ -6,7 +6,7 @@
 /*   By: vbaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:37:08 by vbaudin           #+#    #+#             */
-/*   Updated: 2016/09/08 17:50:06 by jbateau          ###   ########.fr       */
+/*   Updated: 2016/09/09 05:05:30 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void						free_data(t_parse *data);
 void						ft_write_header(int fd, t_header *header);
 void						ft_write_instructions(int fd, t_list *instructions);
 int							ft_get_value(unsigned char *encoded, int size);
-
 
 void						ft_disassemble(char *file, t_bool option_a);
 void						ft_disassemble_header(int src, int dest);
