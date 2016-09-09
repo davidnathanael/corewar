@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/08 14:44:13 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/08 14:44:13 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/09/09 05:16:35 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,15 @@ void			ft_disassemble(char *file, t_bool option_a)
 	new_file = ft_get_new_file(file);
 	if ((fd_src = open(file, O_RDONLY)) == -1)
 		ft_error(8);
-	fd_dest = (option_a) ? STDOUT : open(new_file, O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
+	fd_dest = (option_a) ? STDOUT : open(new_file, O_WRONLY | O_CREAT |
+			O_TRUNC, S_IRWXU);
 	ft_disassemble_header(fd_src, fd_dest);
 	ft_disassemble_body(fd_src, fd_dest);
 	close(fd_src);
 	if (fd_dest != STDOUT)
 	{
 		close(fd_dest);
-		ft_printf("{green}[OK]{eoc} Disassembled {red}%s{eoc} to {red}%s{eoc}\n", file, new_file);
+		ft_printf("{green}[OK]{eoc} Disassembled {red}%s{eoc} \
+				to {red}%s{eoc}\n", file, new_file);
 	}
 }

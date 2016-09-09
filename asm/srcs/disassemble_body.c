@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/08 16:17:07 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/08 16:17:08 by ddela-cr         ###   ########.fr       */
+/*   Updated: 2016/09/09 05:23:43 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,19 @@ static void		ft_write_value(int src, int dest, int size)
 
 	if ((rbyte = read(src, buf, size)) != size)
 		ft_error(9);
-	// ft_printf("size : |%d| -> 1 : %d | 2 : %d\n", size, buf[0], buf[1]);
-	// ft_printf("size : |%d|\n", size);
 	ft_putnbr_fd(ft_get_value(buf, size), dest);
+}
+
+static void		ft_ftw(int src, int dest, t_op *data)
+{
+	ft_putchar_fd(DIRECT_CHAR, dest);
+	ft_write_value(src, dest, data->label_size);
 }
 
 static void		ft_write_instruction(t_op *data, unsigned char encoding,
 												int src, int dest)
 {
-	int		offset;
+	int				offset;
 
 	offset = 6;
 	ft_putstr_fd(data->name, dest);
@@ -40,10 +44,7 @@ static void		ft_write_instruction(t_op *data, unsigned char encoding,
 			ft_write_value(src, dest, 1);
 		}
 		else if (((encoding >> offset) & 0b11) == DIR_CODE)
-		{
-			ft_putchar_fd(DIRECT_CHAR, dest);
-			ft_write_value(src, dest, data->label_size);
-		}
+			ft_ftw(src, dest, data);
 		else if (((encoding >> offset) & 0b11) == IND_CODE)
 			ft_write_value(src, dest, 2);
 		if ((encoding >> (offset - 2)) & 0b11)
@@ -66,13 +67,12 @@ void			ft_disassemble_body(int src, int dest)
 	while ((rbyte = read(src, buf, 1)) > 0)
 	{
 		if (!(data = ft_get_op_by_number(ft_get_value(buf, 1))))
-		ft_error(9);
+			ft_error(9);
 		if (data->has_encoding && (rbyte = read(src, buf, 1)))
 		{
 			if (rbyte != 1)
 				ft_error(9);
 			encoding = ft_get_value(buf, 1);
-			// ft_printf("encoding : %s -> %08b\n", data->name, encoding);
 			ft_write_instruction(data, encoding, src, dest);
 		}
 		else

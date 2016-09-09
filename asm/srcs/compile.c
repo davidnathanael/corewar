@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 15:54:43 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/08 16:28:53 by jbateau          ###   ########.fr       */
+/*   Updated: 2016/09/09 05:17:04 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void			ft_compile(char *file, t_bool option_a)
 	instructions = ft_get_instructions(fd, header);
 	new_file = ft_get_new_file(file);
 	close(fd);
-	fd = (option_a) ? STDOUT : open(new_file, O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
+	fd = (option_a) ? STDOUT : open(new_file, O_WRONLY | O_CREAT |
+			O_TRUNC, S_IRWXU);
 	ft_printf("{green}[OK]{eoc} Compiled file %s\n", new_file);
 	ft_write_header(fd, header);
 	ft_write_instructions(fd, instructions);

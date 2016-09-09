@@ -6,16 +6,16 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/02 13:20:03 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/09 00:13:06 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/09/09 05:13:34 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 #include <time.h>
 
-t_op		*ft_get_op_data(int op)
+t_op			*ft_get_op_data(int op)
 {
-	int		i;
+	int			i;
 
 	i = 0;
 	while (g_op_tab[i].name != NULL)
@@ -29,15 +29,9 @@ t_op		*ft_get_op_data(int op)
 	return (NULL);
 }
 
-static void		ft_get_pc(t_process *process)
-{
-	process->pc += process->op_size;
-	process->op_size = 1;
-}
-
 static int		get_next_pc(t_vm *vm, t_process *process, int op)
 {
-	int		cursor;
+	int			cursor;
 
 	cursor = process->pc;
 	if (op == LIVE)
@@ -51,20 +45,12 @@ static int		get_next_pc(t_vm *vm, t_process *process, int op)
 	return (cursor);
 }
 
-void			ft_execute(t_vm *vm, t_process *process)
+static void		ft_do_2(t_vm *vm, t_process *process)
 {
-	t_op	*op;
-	t_args	*args;
-
-	op = ft_get_op_data(process->waiting_op);
-	args = ft_get_args(vm, process, op);
-	ft_redirect_op(args, vm, process);
-	process->is_waiting = FALSE;
-	if (process->waiting_op != ZJMP)
-		ft_get_pc(process);
-	process->waiting_op = 0;
-	if (args)
-		free(args);
+	process->waiting_op = vm->memory[process->pc];
+	process->cycle_to_wait =
+	ft_get_op_data(process->waiting_op)->cycle;
+	process->is_waiting = TRUE;
 }
 
 void			ft_do_process(t_vm *vm)
@@ -81,12 +67,7 @@ void			ft_do_process(t_vm *vm)
 		if (!process->waiting_op)
 		{
 			if (vm->memory[process->pc] > 0 && vm->memory[process->pc] < 17)
-			{
-				process->waiting_op = vm->memory[process->pc];
-				process->cycle_to_wait =
-				ft_get_op_data(process->waiting_op)->cycle;
-				process->is_waiting = TRUE;
-			}
+				ft_do_2(vm, process);
 			else
 				process->pc = ft_loop_memory(++process->pc);
 		}
@@ -102,7 +83,7 @@ void			ft_do_process(t_vm *vm)
 
 void			ft_launch_vm(t_vm *vm)
 {
-	int		cycles;
+	int			cycles;
 
 	cycles = 1;
 	while (1)

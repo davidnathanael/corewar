@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 14:37:21 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/09 01:09:37 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/09/09 05:13:17 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,20 @@ void		ft_print_usage(void)
 	ft_putstr("Usage: ./corewar [-d unsigned int] ");
 	ft_putstr("[-n nb_player] <champion.cor>\n");
 	exit(-1);
+}
+
+void		ft_execute(t_vm *vm, t_process *process)
+{
+	t_op		*op;
+	t_args		*args;
+
+	op = ft_get_op_data(process->waiting_op);
+	args = ft_get_args(vm, process, op);
+	ft_redirect_op(args, vm, process);
+	process->is_waiting = FALSE;
+	process->waiting_op = 0;
+	if (args)
+		free(args);
 }
 
 void		ft_free_vm(t_vm *vm)

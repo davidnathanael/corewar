@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/03 12:32:54 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/08 23:28:52 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/09/09 05:08:55 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,10 @@ t_process	*ft_sanitize(t_vm *vm, t_process *process)
 {
 	t_process	*tmp;
 	t_process	*cur;
-	int			i;
 
-	i = 0;
 	cur = process;
 	while (cur->final == 0)
 	{
-		i++;
 		tmp = cur->next;
 		if (cur && cur->live == 0)
 		{

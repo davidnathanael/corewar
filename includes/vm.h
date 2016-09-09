@@ -6,7 +6,7 @@
 /*   By: bbichero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/19 15:17:56 by bbichero          #+#    #+#             */
-/*   Updated: 2016/09/08 23:51:18 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/09/09 05:12:30 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void					ft_parse_command(char **av, t_vm *vm);
 t_bool					ft_handle_options(char *option, char ***ptr, t_vm *vm);
 void					ft_print_usage(void);
 void					ft_introduce_champs(t_vm *vm);
-t_vm					*init_vm();
+t_vm					*init_vm(void);
 
 void					ft_get_champions(char **av, t_champion *champions,
 										t_vm *vm);
@@ -102,6 +102,7 @@ void					ft_introduce_champs(t_vm *vm);
 
 void					ft_launch_vm(t_vm *vm);
 void					ft_check_alive(t_vm *vm);
+void					ft_execute(t_vm *vm, t_process *process);
 
 void					ft_exit_error(char *error, char *var);
 int						ft_get_value(unsigned char *encoded, int size);

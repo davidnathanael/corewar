@@ -6,7 +6,7 @@
 /*   By: ddela-cr <ddela-cr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/01 14:14:31 by ddela-cr          #+#    #+#             */
-/*   Updated: 2016/09/08 22:30:11 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/09/09 05:03:53 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 t_process	*ft_create_final(t_process *prev)
 {
 	t_process	*final;
+
 	if (!(final = (t_process *)ft_memalloc(sizeof(t_process))))
 		ft_exit_error("Malloc t_process failed", NULL);
 	final->pc = 0;
@@ -31,7 +32,7 @@ t_process	*ft_create_final(t_process *prev)
 }
 
 t_process	*ft_init_process(t_process *process, t_champion *champion,
-							int cursor)
+		int cursor)
 {
 	t_process	*new;
 

@@ -6,14 +6,9 @@
 /*   By: zaz <zaz@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2016/09/08 22:00:21 by vbaudin          ###   ########.fr       */
+/*   Updated: 2016/09/09 05:15:05 by vbaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-** Toutes les tailles sont en octets.
-** On part du principe qu'un int fait 32 bits. Est-ce vrai chez vous ?
-*/
 
 #ifndef OP_H
 # define OP_H
